@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>海雲台飯店 3 選 1 決策分析</title>
+  <title>海雲台飯店比較與評分決策 (2026/12/06–12/10)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       /* Layer 1 & 2 Design Tokens */
@@ -24,6 +24,8 @@
       --shilla-color: #3e6fb2;
       --hound-color: #2f9070;
       --bw-color: #a85c90;
+      --como-color: #d97706;
+      --ty-color: #0284c7;
 
       --font-mono: 'SF Mono', 'Roboto Mono', monospace;
       --radius-sm: 6px;
@@ -47,7 +49,7 @@
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -110,7 +112,7 @@
     /* Hotel Overview Cards Grid */
     .hotel-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.25rem;
       margin-bottom: 3rem;
     }
@@ -119,7 +121,7 @@
       background-color: var(--c-paper-raised);
       border: 1px solid var(--c-hairline);
       border-radius: var(--radius-md);
-      padding: 1.5rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -135,43 +137,68 @@
     .hotel-card.shilla { border-top: 4px solid var(--shilla-color); }
     .hotel-card.hound { border-top: 4px solid var(--hound-color); }
     .hotel-card.bw { border-top: 4px solid var(--bw-color); }
+    .hotel-card.como { border-top: 4px solid var(--como-color); }
+    .hotel-card.ty { border-top: 4px solid var(--ty-color); }
 
-    .hotel-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--c-ink);
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 0.25rem;
     }
 
-    .hotel-meta {
+    .hotel-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--c-ink);
+    }
+
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      background-color: #0c4a6e;
+      color: #ffffff;
       font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .rating-badge.high {
+      background-color: #065f46;
+    }
+
+    .hotel-meta {
+      font-size: 0.825rem;
       color: var(--c-ink-3);
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.75rem;
     }
 
     .one-liner {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--c-ink-2);
       background-color: var(--c-wash-1);
-      padding: 0.6rem 0.8rem;
+      padding: 0.5rem 0.75rem;
       border-radius: var(--radius-sm);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       font-weight: 500;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .price-block {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     .price-value {
-      font-size: 1.6rem;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--c-ink);
     }
 
     .price-sub {
-      font-size: 0.8rem;
+      font-size: 0.775rem;
       color: var(--c-ink-3);
     }
 
@@ -180,14 +207,14 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      padding: 0.65rem 1rem;
+      padding: 0.6rem 0.85rem;
       border-radius: var(--radius-sm);
       background-color: var(--c-paper);
       color: var(--c-terracotta-deep);
       border: 1px solid var(--c-hairline);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       transition: all 0.2s ease;
     }
 
@@ -229,33 +256,34 @@
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.925rem;
-      min-width: 720px;
+      font-size: 0.875rem;
+      min-width: 900px;
     }
 
     th, td {
-      padding: 1rem 1.25rem;
+      padding: 0.85rem 1rem;
       border-bottom: 1px solid var(--c-hairline);
+      vertical-align: top;
     }
 
     th {
       background-color: var(--c-wash-1);
       color: var(--c-ink-3);
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.825rem;
       text-transform: uppercase;
       letter-spacing: 0.03em;
     }
 
     th.col-hotel {
-      width: 27%;
+      width: 17%;
     }
 
     td.feature-title {
       font-weight: 600;
       color: var(--c-ink-2);
       background-color: rgba(20, 20, 19, 0.015);
-      width: 19%;
+      width: 15%;
     }
 
     .highlight-row {
@@ -264,11 +292,11 @@
 
     .tag {
       display: inline-block;
-      padding: 0.15rem 0.45rem;
+      padding: 0.15rem 0.4rem;
       border-radius: 4px;
-      font-size: 0.75rem;
+      font-size: 0.725rem;
       font-weight: 600;
-      margin-left: 0.35rem;
+      margin-left: 0.25rem;
     }
 
     .tag-neg {
@@ -281,10 +309,16 @@
       color: #2f6b34;
     }
 
+    .score-num {
+      font-weight: 700;
+      color: #065f46;
+      font-size: 0.95rem;
+    }
+
     /* Analysis Cards */
     .analysis-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.25rem;
       margin-bottom: 3rem;
     }
@@ -293,20 +327,20 @@
       background-color: var(--c-paper-raised);
       border: 1px solid var(--c-hairline);
       border-radius: var(--radius-md);
-      padding: 1.5rem;
+      padding: 1.35rem;
     }
 
     .analysis-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
       color: var(--c-ink);
     }
 
     .analysis-card p {
-      font-size: 0.925rem;
+      font-size: 0.9rem;
       color: var(--c-ink-2);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     .alert-card {
@@ -330,16 +364,6 @@
       margin-bottom: 0.5rem;
     }
 
-    .alert-card ul {
-      padding-left: 1.2rem;
-      font-size: 0.875rem;
-      color: var(--c-ink-2);
-    }
-
-    .alert-card li {
-      margin-bottom: 0.25rem;
-    }
-
     footer {
       border-top: 1px solid var(--c-hairline);
       padding-top: 1.5rem;
@@ -358,7 +382,7 @@
       }
 
       th, td {
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 0.85rem;
       }
     }
   </style>
@@ -373,171 +397,209 @@
     <!-- Header -->
     <header>
       <div class="badge">釜山海雲台住宿專案</div>
-      <h1>海雲台飯店 3 選 1 決策分析</h1>
-      <p class="subtitle">入住日期：2026/12/06 – 12/10（4 晚 ‧ 2 大人）</p>
+      <h1>海雲台飯店 5 大熱門選擇比較與評分</h1>
+      <p class="subtitle">入住日期：2026/12/06 – 12/10（4 晚 ‧ 2 大人 ‧ 精準 12/6-12/10 Booking.com 專屬連結）</p>
     </header>
 
-    <!-- Hotel Overview Cards -->
+    <!-- Hotel Overview Cards Grid -->
     <div class="hotel-grid">
+      <!-- 1. Como Casa -->
+      <div class="hotel-card como">
+        <div>
+          <div class="card-header-row">
+            <div class="hotel-name">Como Casa Residence</div>
+            <div class="rating-badge high">★ 8.7</div>
+          </div>
+          <div class="hotel-meta">海景公寓式住宅 ‧ 一線海景</div>
+          <div class="one-liner">💡 第一排海景＋住宅洗脫烘｜景觀絕佳，房內附完整廚房設施</div>
+          <div class="price-block">
+            <div class="price-value">約 NT$8,500 - 12,000</div>
+            <div class="price-sub">4 晚估價 (視海景/套房房型)</div>
+          </div>
+        </div>
+        <a href="https://www.booking.com/hotel/kr/como-casa-residence-haeundae-oceanfront.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 (12/6-10) ↗</a>
+      </div>
+
+      <!-- 2. Toyoko Inn 2 -->
+      <div class="hotel-card ty">
+        <div>
+          <div class="card-header-row">
+            <div class="hotel-name">Toyoko Inn 海雲台 2</div>
+            <div class="rating-badge high">★ 8.6</div>
+          </div>
+          <div class="hotel-meta">日系連鎖飯店 ‧ 離海灘 100m</div>
+          <div class="one-liner">💡 超高 CP 值＋免費早餐｜海灘步行 1 分鐘，經濟實惠首選</div>
+          <div class="price-block">
+            <div class="price-value">約 NT$6,500 - 7,800</div>
+            <div class="price-sub">4 晚估價 (含每日免費早餐)</div>
+          </div>
+        </div>
+        <a href="https://www.booking.com/hotel/kr/toyoko-inn-busan-haeundae-2.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 (12/6-10) ↗</a>
+      </div>
+
+      <!-- 3. Shilla Stay -->
       <div class="hotel-card shilla">
         <div>
-          <div class="hotel-name">Shilla Stay 海雲台</div>
+          <div class="card-header-row">
+            <div class="hotel-name">Shilla Stay 海雲台</div>
+            <div class="rating-badge">★ 8.3</div>
+          </div>
           <div class="hotel-meta">4 星級 ‧ 新羅集團 ‧ 407 間房</div>
-          <div class="one-liner">💡 新＋大品牌｜服務與清潔有集團 SOP 撐著</div>
+          <div class="one-liner">💡 新＋大品牌｜服務與清潔有集團 SOP 隔音優秀</div>
           <div class="price-block">
             <div class="price-value">約 NT$13,000</div>
-            <div class="price-sub">4 晚估價 (免費取消)</div>
+            <div class="price-sub">4 晚估價 (12/6-12/10 條款)</div>
           </div>
         </div>
-        <a href="https://booking.com/hotel/kr/shilla-stay-haeundae.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 ↗</a>
+        <a href="https://www.booking.com/hotel/kr/shilla-stay-haeundae.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 (12/6-10) ↗</a>
       </div>
 
+      <!-- 4. Hound Signature -->
       <div class="hotel-card hound">
         <div>
-          <div class="hotel-name">Hound Signature</div>
+          <div class="card-header-row">
+            <div class="hotel-name">Hound Signature</div>
+            <div class="rating-badge">★ 8.2</div>
+          </div>
           <div class="hotel-meta">2–3 星級 ‧ 設計旅店 ‧ 71 間房</div>
-          <div class="one-liner">💡 多房型彈性選擇｜訂 2 間標準雙人房 或 80.6㎡ 頂級 Spa 套房（一房塞下全家）</div>
+          <div class="one-liner">💡 房型彈性大｜訂 2 間雙人房或 80.6㎡ Spa 套房</div>
           <div class="price-block">
             <div class="price-value" style="color: var(--hound-color);">約 NT$7,700 – 11,000</div>
-            <div class="price-sub">4 晚估價 (雙人房x2約$7.7K / Spa套房約$11K)</div>
+            <div class="price-sub">4 晚估價 (雙人房x2或Spa套房)</div>
           </div>
         </div>
-        <a href="https://booking.com/hotel/kr/haundeuhotel-haeundae-sigeuniceo.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 ↗</a>
+        <a href="https://www.booking.com/hotel/kr/haundeuhotel-haeundae-sigeuniceo.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 (12/6-10) ↗</a>
       </div>
 
+      <!-- 5. Best Western -->
       <div class="hotel-card bw">
         <div>
-          <div class="hotel-name">Best Western 海雲台</div>
+          <div class="card-header-row">
+            <div class="hotel-name">Best Western 海雲台</div>
+            <div class="rating-badge">★ 8.0</div>
+          </div>
           <div class="hotel-meta">3 星級 ‧ 國際連鎖 ‧ 134 間翻新房</div>
-          <div class="one-liner">💡 房內迷你廚房｜有水槽＋微波爐，市場買回來直接加熱</div>
+          <div class="one-liner">💡 房內迷你廚房｜水槽＋微波爐，市場買美食直接加熱</div>
           <div class="price-block">
             <div class="price-value">約 NT$9,900</div>
-            <div class="price-sub">4 晚估價 (依平台條款)</div>
+            <div class="price-sub">4 晚估價 (12/6-12/10 條款)</div>
           </div>
         </div>
-        <a href="https://booking.com/hotel/kr/best-western-haeundae.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 ↗</a>
+        <a href="https://www.booking.com/hotel/kr/best-western-haeundae.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank" class="booking-btn">Booking.com 預訂 (12/6-10) ↗</a>
       </div>
     </div>
 
     <!-- Comparison Table -->
-    <h2 class="section-title">詳細維度比較表</h2>
+    <h2 class="section-title">詳細維度與 Booking.com 評分比較表</h2>
     <div class="table-wrapper">
       <table>
         <thead>
           <tr>
             <th>比較維度</th>
+            <th class="col-hotel" style="color: var(--como-color);">Como Casa Residence</th>
+            <th class="col-hotel" style="color: var(--ty-color);">Toyoko Inn 海雲台 2</th>
             <th class="col-hotel" style="color: var(--shilla-color);">Shilla Stay 海雲台</th>
             <th class="col-hotel" style="color: var(--hound-color);">Hound Signature</th>
             <th class="col-hotel" style="color: var(--bw-color);">Best Western 海雲台</th>
           </tr>
         </thead>
         <tbody>
+          <tr class="highlight-row">
+            <td class="feature-title">Booking.com 評分</td>
+            <td><span class="score-num">8.7 / 10</span> (非常好)</td>
+            <td><span class="score-num">8.6 / 10</span> (非常好)</td>
+            <td><span class="score-num">8.3 / 10</span> (很好)</td>
+            <td><span class="score-num">8.2 / 10</span> (很好)</td>
+            <td><span class="score-num">8.0 / 10</span> (好)</td>
+          </tr>
           <tr>
             <td class="feature-title">4 晚總價 (估)</td>
+            <td style="font-weight: 700;">約 NT$8,500–12,000</td>
+            <td style="font-weight: 700; color: var(--ty-color);">約 NT$6,500–7,800 <span class="tag tag-pos">最低</span></td>
             <td style="font-weight: 700;">約 NT$13,000</td>
-            <td style="font-weight: 700; color: var(--hound-color);">
-              約 NT$7,700 – 11,000
-              <div style="font-size:0.8rem; font-weight:normal; color:var(--c-ink-3); margin-top:2px;">
-                ‧ 2 間雙人房：約 $7,700<br>‧ 1 間 Spa Suite：約 $11,000
-              </div>
-            </td>
+            <td style="font-weight: 700; color: var(--hound-color);">約 NT$7,700–11,000</td>
             <td style="font-weight: 700;">約 NT$9,900</td>
           </tr>
           <tr class="highlight-row">
             <td class="feature-title">一句話特色</td>
-            <td>新＋大品牌｜4 星、407 間房，服務與清潔有集團 SOP 撐著</td>
-            <td>超大空間＋Spa 套房｜可選訂 2 間雙人房（價差大）或 80.6㎡ Spa Suite（一房塞下全家）</td>
-            <td>房內迷你廚房｜房內有水槽＋微波爐，市場買回來直接加熱</td>
+            <td>第一排全海景＋住宅廚房洗脫烘，居家感極強</td>
+            <td>海灘 100m＋免費日式早餐，預算超省實惠首選</td>
+            <td>新＋大品牌，集團 SOP 清潔與全房隔音標準高</td>
+            <td>超大空間，可選 2 間雙人房或 80.6㎡ Spa 套房</td>
+            <td>房內迷你廚房（水槽＋微波爐），傳統市場買美食加熱方便</td>
           </tr>
           <tr class="highlight-row">
-            <td class="feature-title">關鍵配備</td>
-            <td>全房隔音、電子免治馬桶、浴袍拖鞋</td>
-            <td>Spa Suite 附室外檜木浴缸、Air Dresser（三星電子衣櫥）、空氣清淨機、陽台；標準房配置視房型而定</td>
-            <td>部分房型 29㎡ 附浴缸；樓下即 Olive Young ＋ 7-11便利商店</td>
-          </tr>
-          <tr class="highlight-row">
-            <td class="feature-title">床型 / 配置與人數</td>
-            <td>Family Twin 可容納 4 人</td>
-            <td>
-              <strong>配置 1：</strong>訂 2 間標準雙人房（獨立空間與雙衛浴）<br>
-              <strong>配置 2：</strong>Spa Suite（大 King ＋ Queen ＋ 單人床 ＋ 沙發床，基準 4 人、最多 6 人）
-            </td>
-            <td>提供三人房 / 四人房選擇</td>
+            <td class="feature-title">關鍵配備與優勢</td>
+            <td>直面海景陽台、微波爐/水槽/洗脫烘衣機、客廳空間</td>
+            <td>免費自助早餐、洗脫烘公共洗衣房、浴缸、日式標準品質</td>
+            <td>全房隔音、免治馬桶、品牌床墊與飯店級備品</td>
+            <td>Spa Suite 附室外檜木浴缸、Air Dresser 電子衣櫥、陽台</td>
+            <td>房內微波爐與水槽；樓下即 Olive Young ＋ 7-11便利商店</td>
           </tr>
           <tr>
-            <td class="feature-title">星級與規模</td>
-            <td>4 星 ｜ 407 間房</td>
-            <td>2–3 星 ｜ 71 間房</td>
-            <td>3 星 ｜ 134 間翻新房</td>
+            <td class="feature-title">到海灘距離</td>
+            <td>步行 1–2 分 <span class="tag tag-pos">第一排</span></td>
+            <td>步行 1–2 分 (約 100m) <span class="tag tag-pos">最近</span></td>
+            <td>約 230 公尺 (步行 3 分)</td>
+            <td>步行 7 分</td>
+            <td>步行 2–3 分</td>
           </tr>
           <tr>
             <td class="feature-title">到地鐵站</td>
-            <td>7 號出口步行 9 分</td>
-            <td>步行約 5 分 <span class="tag tag-pos">最近</span></td>
-            <td>7 號出口步行 7 分</td>
-          </tr>
-          <tr>
-            <td class="feature-title">到海灘</td>
-            <td>約 230 公尺</td>
-            <td>步行 7 分</td>
-            <td>步行 2–3 分 <span class="tag tag-pos">最近</span></td>
-          </tr>
-          <tr>
-            <td class="feature-title">周邊覓食</td>
-            <td>海灘側，餐廳多</td>
-            <td>站前鬧區</td>
-            <td>對面即傳統市場，步行 1 分</td>
-          </tr>
-          <tr>
-            <td class="feature-title">浴缸配置</td>
-            <td>分淋浴／浴缸／兩者，須指定房型</td>
-            <td>依房型而異，須指定房型 (Spa Suite 專屬室外檜木浴缸)</td>
-            <td>部分房型有浴缸</td>
-          </tr>
-          <tr>
-            <td class="feature-title">12 月泳池</td>
-            <td><span class="tag tag-neg">✕ 關閉</span></td>
-            <td><span class="tag tag-neg">✕ 關閉</span></td>
-            <td>無泳池設施</td>
-          </tr>
-          <tr>
-            <td class="feature-title">取消條款</td>
-            <td>入住前 1 天 18:00 前免費取消</td>
-            <td>依訂房平台條款</td>
-            <td>依訂房平台條款</td>
+            <td>海雲台站步行約 7 分</td>
+            <td>海雲台站步行約 9-10 分</td>
+            <td>海雲台站步行約 9 分</td>
+            <td>海雲台站步行約 5 分 <span class="tag tag-pos">最近</span></td>
+            <td>海雲台站步行 7 分</td>
           </tr>
           <tr>
             <td class="feature-title">主要痛點</td>
-            <td>最貴、房數多人潮較雜</td>
-            <td>隔音普通、早餐簡單</td>
-            <td><span class="tag tag-neg">房內無桌椅</span> 外帶只能坐床上吃</td>
+            <td>前台非24hr傳統飯店(公寓管理)，訂房熱門易滿</td>
+            <td>房間尺寸較精緻日系，熱門日期需提早搶房</td>
+            <td>價格最高、離峰時間大廳人潮較多</td>
+            <td>隔音相對普通、早餐簡單</td>
+            <td><span class="tag tag-neg">房內無桌椅</span> 外帶需在床上吃</td>
+          </tr>
+          <tr>
+            <td class="feature-title">直達預訂連結</td>
+            <td><a href="https://www.booking.com/hotel/kr/como-casa-residence-haeundae-oceanfront.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank">12/6-10 查價 ↗</a></td>
+            <td><a href="https://www.booking.com/hotel/kr/toyoko-inn-busan-haeundae-2.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank">12/6-10 查價 ↗</a></td>
+            <td><a href="https://www.booking.com/hotel/kr/shilla-stay-haeundae.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank">12/6-10 查價 ↗</a></td>
+            <td><a href="https://www.booking.com/hotel/kr/haundeuhotel-haeundae-sigeuniceo.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank">12/6-10 查價 ↗</a></td>
+            <td><a href="https://www.booking.com/hotel/kr/best-western-haeundae.zh-tw.html?checkin=2026-12-06&checkout=2026-12-10&group_adults=2&no_rooms=1" target="_blank">12/6-10 查價 ↗</a></td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <!-- 12月版結論分析 -->
-    <h2 class="section-title">12 月版決策建議</h2>
+    <h2 class="section-title">12 月海雲台住宿推薦總結</h2>
     <div class="analysis-grid">
       <div class="analysis-card">
-        <h3>🏆 Shilla Stay：品質與隔音首選</h3>
-        <p>泳池關閉後，Hound 的賣點只剩空間。若 Hound 價格在 7,700 左右，價差 NT$5,300（每晚多付 $1,300）換取新羅集團的清潔標準與優質隔音——對睡眠品質有要求者非常划算。</p>
+        <h3>🌅 Como Casa Residence (評分 8.7)</h3>
+        <p>擁有最高的 8.7 分好評！第一排絕美海景搭配完整的公寓住宅設備（洗脫烘衣機與小廚房），極適合家庭或喜歡海景觀感的旅客。</p>
       </div>
 
       <div class="analysis-card">
-        <h3>💎 Hound Signature：房型組合靈活</h3>
-        <p>提供多種訂房方案：若希望性價比最高，訂 <strong>2 間標準雙人房（約 NT$7,700）</strong> 能擁有雙衛浴與極佳隱私；若希望全家同住大空間，可選 <strong>80.6㎡ Spa Suite（約 NT$11,000）</strong>，附室外檜木浴缸與電子衣櫥。</p>
+        <h3>🍱 東橫 Inn 海雲台 2 (評分 8.6)</h3>
+        <p>高達 8.6 分的超讚評價！4 晚只需約 NT$6,500–7,800，且附贈免費每日早餐，距離海灘僅 100 公尺，是預算導向與高 CP 值首選。</p>
       </div>
 
       <div class="analysis-card">
-        <h3>⚠️ Best Western：便利機能取勝</h3>
-        <p>房內設有水槽與微波爐，樓下即 Olive Young 與 7-11。雖對面傳統市場晚間 8 點陸續收攤，但房內加熱設備極適合外帶美食小吃。</p>
+        <h3>🏆 Shilla Stay 海雲台 (評分 8.3)</h3>
+        <p>4 星級新羅集團 SOP 撐腰，全房隔音與清潔標準最高。若重視睡眠品質與高質感飯店體驗，每晚多花 NT$1,300 非常值得。</p>
+      </div>
+
+      <div class="analysis-card">
+        <h3>💎 Hound Signature (評分 8.2)</h3>
+        <p>房型彈性極佳！可選訂 2 間雙人房（約 $7,700）維護隱私，或選 80.6㎡ Spa Suite（約 $11,000）享室外檜木浴缸與電子衣櫥。</p>
       </div>
     </div>
 
+    <!-- Alert / Notes Box -->
     <div class="alert-card">
-      <h4>🔍 報價條件補充說明</h4>
-      <p>Hound Signature 的 NT$7,700 區間為「2 間標準雙人房」的估算組合；NT$11,000 則為「80.6㎡ 頂級 Spa 套房」之報價。您可以根據 family 同行的隱私與空間偏好進行選擇。</p>
+      <h4>🔍 Booking.com 12/6–12/10 預訂連結說明</h4>
+      <p>以上所有連結均已帶入 <strong>入住日期：2026/12/06 – 退房日期：2026/12/10（4 晚、2 位大人）</strong> 的精準參數。點擊預訂即可直接查看當下的即時房價與剩餘房型。</p>
     </div>
 
     <footer>
