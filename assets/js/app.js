@@ -787,7 +787,7 @@ function App() {
         <span>韓國行程規劃專區：</span>
         <div style=${{ display: 'flex', gap: '12px' }}>
           <a href="./" style=${{ color: '#7dd3fc', textDecoration: 'none', fontWeight: 'bold' }}>🇰🇷 首爾 7 日親子行程</a>
-          <a href="./haeundae.html" style=${{ color: '#fca5a5', textDecoration: 'none', fontWeight: 'bold' }}>🏖️ 海雲台飯店 3 選 1 比較</a>
+          <a href="./haeundae.html" style=${{ color: '#fca5a5', textDecoration: 'none', fontWeight: 'bold' }}>🏖️ 海雲台飯店挑選</a>
         </div>
       </nav>
       <header className="hero">
