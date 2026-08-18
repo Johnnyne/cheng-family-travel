@@ -1,19 +1,234 @@
-<!doctype html>
-<html lang="zh-Hant">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#16304d">
-    <meta
-      name="description"
-      content="首爾親子七日行程：2 大 1 小、4.5 歲、Seoul Land 取代樂天世界，附每日行程與附近餐廳推薦。"
-    >
-    <title>首爾親子七日行程</title>
-    <link rel="stylesheet" href="./assets/css/app.css">
-  </head>
-  <body>
-    <noscript>這個頁面需要啟用 JavaScript 才能使用每日切頁導航。</noscript>
-    <div id="root"></div>
-    <script type="module" src="./assets/js/app.js"></script>
-  </body>
-  </html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheng Family Travel 鄭家韓國旅遊指南與行程大彙整</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Claude Minimalist Layer 1 & 2 Tokens */
+      --c-paper: #f9f9f7;
+      --c-paper-raised: #fcfcfb;
+      --c-ink: #141413;
+      --c-ink-2: #52514e;
+      --c-ink-3: #6f6d66;
+      --c-hairline: #e1e0d9;
+      --c-terracotta: #c25a41;
+      --c-terracotta-deep: #a34732;
+      --c-terracotta-wash: #f6e9e4;
+      --c-wash-1: rgba(150, 118, 62, 0.06);
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--c-paper);
+      color: var(--c-ink);
+      font-family: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.6;
+      padding: 3rem 1.25rem;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      background-color: var(--c-terracotta-wash);
+      color: var(--c-terracotta-deep);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--c-ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      color: var(--c-ink-2);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Grid Portal Section */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .portal-card {
+      background-color: var(--c-paper-raised);
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .portal-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--c-terracotta);
+      box-shadow: 0 12px 24px rgba(194, 90, 65, 0.08);
+    }
+
+    .card-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--c-ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--c-ink);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: var(--c-ink-2);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-footer {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--c-terracotta-deep);
+    }
+
+    .card-footer span {
+      transition: transform 0.2s ease;
+    }
+
+    .portal-card:hover .card-footer span {
+      transform: translateX(4px);
+    }
+
+    footer {
+      border-top: 1px solid var(--c-hairline);
+      padding-top: 1.75rem;
+      text-align: center;
+      color: var(--c-ink-3);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">CHENG FAMILY TRAVEL</div>
+      <h1>鄭家韓國旅遊指南入口</h1>
+      <p class="subtitle">歡迎來到我們的家庭韓國旅遊行程計畫中心，請選擇欲查看的專案行程：</p>
+    </header>
+
+    <!-- Grid Portal Cards -->
+    <div class="portal-grid">
+      <!-- Card 1: 首爾 7 日行程 -->
+      <a href="./seoul.html" class="portal-card">
+        <div>
+          <div class="card-tag">📍 行程規劃 ‧ 2 大 1 小</div>
+          <div class="card-title">
+            首爾 7 日親子行程
+            <span style="font-size: 1.2rem;">🏯</span>
+          </div>
+          <div class="card-desc">
+            針對 4.5 歲小童量身打造！包含 Seoul Land、Everland 主題樂園完整安排，江南與孔德雙住宿地點導覽及美食清單。
+          </div>
+        </div>
+        <div class="card-footer">
+          進入首爾行程內容 <span>→</span>
+        </div>
+      </a>
+
+      <!-- Card 2: 海雲台飯店 3 選 1 -->
+      <a href="./haeundae.html" class="portal-card">
+        <div>
+          <div class="card-tag">🏨 住宿分析 ‧ 海雲台</div>
+          <div class="card-title">
+            海雲台飯店 3 選 1
+            <span style="font-size: 1.2rem;">🏖️</span>
+          </div>
+          <div class="card-desc">
+            Shilla Stay、Hound Signature 與 Best Western 深度比較！包含價格、 Spa 套房大空間、房內微波爐等優劣分析。
+          </div>
+        </div>
+        <div class="card-footer">
+          查看海雲台飯店比較 <span>→</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <p>© 2026 Cheng Family Travel ‧ 鄭家韓國旅遊專屬導航入口</p>
+    </footer>
+  </div>
+
+</body>
+</html>
