@@ -783,6 +783,13 @@ function App() {
 
   return html`
     <div className="app-shell">
+      <nav className="sub-header-nav" style=${{ background: '#0e1f33', padding: '10px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#fff', fontSize: '14px', borderRadius: '8px', marginBottom: '16px' }}>
+        <span>韓國行程規劃專區：</span>
+        <div style=${{ display: 'flex', gap: '12px' }}>
+          <a href="./" style=${{ color: '#7dd3fc', textDecoration: 'none', fontWeight: 'bold' }}>🇰🇷 首爾 7 日親子行程</a>
+          <a href="./haeundae.html" style=${{ color: '#fca5a5', textDecoration: 'none', fontWeight: 'bold' }}>🏖️ 海雲台飯店 3 選 1 比較</a>
+        </div>
+      </nav>
       <header className="hero">
         <div className="hero-layout">
           <div className="hero-copy">
