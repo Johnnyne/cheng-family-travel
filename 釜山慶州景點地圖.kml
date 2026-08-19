@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
+    <LookAt>
+      <longitude>129.1625</longitude>
+      <latitude>35.1585</latitude>
+      <altitude>0</altitude>
+      <heading>0</heading>
+      <tilt>0</tilt>
+      <range>7500</range>
+      <altitudeMode>relativeToGround</altitudeMode>
+    </LookAt>
     <name>釜山慶州精選旅遊地圖 (含四大活動區域範圍填色版)</name>
     <description>包含圖層分區、色彩標記、星級評分、評價數、實景圖片與區域範圍填色 (海雲臺、西面、慶州古蹟、機張樂園區)</description>
 

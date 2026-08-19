@@ -862,8 +862,9 @@
         markerMap[p.id] = marker;
       });
 
-      const group = L.featureGroup(Object.values(markerMap));
-      map.fitBounds(group.getBounds(), { padding: [40, 40] });
+      // Default focus on Haeundae Zone (海雲臺觀光海景區) covering the polygon box with comfortable padding
+      const haeundaePoly = L.polygon(polygons[0].coords);
+      map.fitBounds(haeundaePoly.getBounds(), { padding: [60, 60] });
     };
 
     function flyToPlace(id) {
