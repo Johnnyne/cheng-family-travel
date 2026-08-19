@@ -2,12 +2,12 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
     <LookAt>
-      <longitude>129.1625</longitude>
-      <latitude>35.1585</latitude>
+      <longitude>129.1650</longitude>
+      <latitude>35.1800</latitude>
       <altitude>0</altitude>
       <heading>0</heading>
       <tilt>0</tilt>
-      <range>7500</range>
+      <range>22000</range>
       <altitudeMode>relativeToGround</altitudeMode>
     </LookAt>
     <name>釜山慶州精選旅遊地圖 (含四大活動區域範圍填色版)</name>

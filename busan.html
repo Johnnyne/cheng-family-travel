@@ -862,9 +862,8 @@
         markerMap[p.id] = marker;
       });
 
-      // Default focus on Haeundae Zone (海雲臺觀光海景區) covering the polygon box with comfortable padding
-      const haeundaePoly = L.polygon(polygons[0].coords);
-      map.fitBounds(haeundaePoly.getBounds(), { padding: [60, 60] });
+      // Default focus and zoom level matching user screenshot (Haeundae, Gijang, Centum City overview)
+      map.setView([35.1800, 129.1650], 12);
     };
 
     function flyToPlace(id) {
