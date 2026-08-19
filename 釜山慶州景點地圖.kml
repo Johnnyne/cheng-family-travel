@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>釜山慶州精選旅遊地圖 (含四大活動區域範圍填色版)</name>
+    <description>包含圖層分區、色彩標記、星級評分、評價數、實景圖片與區域範圍填色 (海雲臺、西面、慶州古蹟、機張樂園區)</description>
+
+    <!-- 景點樣式 -->
+    <Style id="gyeongju-style">
+      <IconStyle>
+        <color>ff00a5ff</color>
+        <scale>1.2</scale>
+        <Icon><href>http://maps.google.com/mapfiles/kml/paddle/orange-blank.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="haeundae-style">
+      <IconStyle>
+        <color>ffff9900</color>
+        <scale>1.2</scale>
+        <Icon><href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="attraction-style">
+      <IconStyle>
+        <color>ffff0080</color>
+        <scale>1.2</scale>
+        <Icon><href>http://maps.google.com/mapfiles/kml/paddle/purple-blank.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="hotel-style">
+      <IconStyle>
+        <color>ffb6c1ff</color>
+        <scale>1.2</scale>
+        <Icon><href>http://maps.google.com/mapfiles/kml/paddle/pink-blank.png</href></Icon>
+      </IconStyle>
+    </Style>
+    <Style id="shopping-style">
+      <IconStyle>
+        <color>ff00bb00</color>
+        <scale>1.2</scale>
+        <Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-blank.png</href></Icon>
+      </IconStyle>
+    </Style>
+
+    <!-- 區域範圍填色樣式 (AABBGGRR: 40 = 25% 標籤透明度) -->
+    <!-- 1. 海雲臺區域 (透藍色) -->
+    <Style id="poly-haeundae">
+      <LineStyle><color>ff0088ff</color><width>2.5</width></LineStyle>
+      <PolyStyle><color>45ff9900</color><fill>1</fill><outline>1</outline></PolyStyle>
+    </Style>
+
+    <!-- 2. 西面購物區 (透珊瑚橘) -->
+    <Style id="poly-seomyeon">
+      <LineStyle><color>ff0055ff</color><width>2.5</width></LineStyle>
+      <PolyStyle><color>450066ff</color><fill>1</fill><outline>1</outline></PolyStyle>
+    </Style>
+
+    <!-- 3. 慶州古蹟區 (透森林綠) -->
+    <Style id="poly-gyeongju">
+      <LineStyle><color>ff00aa33</color><width>2.5</width></LineStyle>
+      <PolyStyle><color>4500aa33</color><fill>1</fill><outline>1</outline></PolyStyle>
+    </Style>
+
+    <!-- 4. 機張樂園區 (透紫金黃) -->
+    <Style id="poly-gijang">
+      <LineStyle><color>ffaa00aa</color><width>2.5</width></LineStyle>
+      <PolyStyle><color>45aa00aa</color><fill>1</fill><outline>1</outline></PolyStyle>
+    </Style>
+
+    <Folder>
+      <name>🏯 慶州歷史文化與街區</name>
+      <Placemark>
+        <name>皇理團路 (황리단길)</name>
+        <styleUrl>#shopping-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">皇理團路 (황리단길)</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.2 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(7,777 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">旅遊景點</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    慶州熱門文青街區 融合傳統韓屋特色文創店家
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.2104,35.8378,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>大陵苑 (대릉원)</name>
+        <styleUrl>#gyeongju-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">大陵苑 (대릉원)</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.5 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(3,708 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">古蹟墓園</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    慶州知名新羅古墓公園 綠意盎然丘陵景緻優美
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.2125,35.8373,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>慶州 月精橋 (월정교)</name>
+        <styleUrl>#gyeongju-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">慶州 月精橋 (월정교)</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.6 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(8,772 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">旅遊景點</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    慶州經典傳統木造橋樑 絕美夕陽景緻與夜點燈
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.2181,35.8294,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+
+    <Folder>
+      <name>🌊 海雲臺海岸線與水樂園</name>
+      <Placemark>
+        <name>海雲臺藍線公園 尾浦站</name>
+        <styleUrl>#haeundae-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">海雲臺藍線公園 尾浦站</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.5 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(8,997 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">旅遊景點</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    膠囊列車尾浦站風景最美 路線延伸至青沙浦站
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.1675,35.1599,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>SEA LIFE 釜山水族館</name>
+        <styleUrl>#haeundae-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">SEA LIFE 釜山水族館</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.2 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(9,380 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">水族館</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    海雲臺沙灘旁邊水族館 適合親子探索海底世界
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.1610,35.1592,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>Club D Oasis</name>
+        <styleUrl>#haeundae-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">Club D Oasis</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.4 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(1,157 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">水上樂園</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    海雲臺高空無邊際泳池 享受水樂園奢華汗蒸幕
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.1678,35.1601,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>東橫INN 釜山海雲台2號店</name>
+        <styleUrl>#hotel-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">東橫INN 釜山海雲台2號店</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.2 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(2,195 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">3 星級飯店</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    海雲臺熱門三星飯店 距離美麗海景沙灘非常近
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.1627,35.1593,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+
+    <Folder>
+      <name>🎡 釜山特色展覽與主題樂園</name>
+      <Placemark>
+        <name>ARTE MUSEUM Busan</name>
+        <styleUrl>#attraction-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">ARTE MUSEUM Busan</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.8 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(2,884 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">藝術博物館</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    影島沉浸光影展覽 展現震撼數位媒體視覺效果
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.0759,35.0865,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>釜山樂天世界冒險樂園</name>
+        <styleUrl>#attraction-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">釜山樂天世界冒險樂園</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.1 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(3,206 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">主題樂園</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    釜山大型戶外城堡樂園 提供各類刺激遊樂設施
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.2144,35.1963,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>海東龍宮寺</name>
+        <styleUrl>#gyeongju-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">海東龍宮寺</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.5 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(27,471 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">寺廟景點</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    韓國罕見建於海邊峭壁 景色極佳古老歷史寺廟
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.2233,35.1884,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>新世界百貨公司 Centum City店</name>
+        <styleUrl>#shopping-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">新世界百貨公司 Centum City店</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.6 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(2,806 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">百貨公司</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    金氏紀錄全球最大百貨公司 內有熱門汗蒸幕店
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.1306,35.1691,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+
+    <!-- 圖層 4: 🗺️ 主要活動區域範圍 (Polygons) -->
+    <Folder>
+      <name>🗺️ 主要活動區域範圍</name>
+      <description>包含海雲臺觀光海景區、西面熱門購物區、慶州古蹟區與機張遊樂園區</description>
+
+      <!-- 海雲臺觀光海景區 -->
+      <Placemark>
+        <name>🌊 海雲臺觀光海景區 (Haeundae Zone)</name>
+        <styleUrl>#poly-haeundae</styleUrl>
+        <description><![CDATA[<b>區域重點：</b>海雲臺沙灘、LCT 高空泳池、藍線公園海岸膠囊列車、SEA LIFE 水族館。]]></description>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                129.1500,35.1650,0
+                129.1750,35.1650,0
+                129.1750,35.1520,0
+                129.1500,35.1520,0
+                129.1500,35.1650,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <!-- 西面熱門購物與商圈區 -->
+      <Placemark>
+        <name>🛍️ 西面熱門商圈與美食區 (Seomyeon Zone)</name>
+        <styleUrl>#poly-seomyeon</styleUrl>
+        <description><![CDATA[<b>區域重點：</b>釜山心臟樞紐、西面地下街、樂天百貨、田浦咖啡街、美食巷弄。]]></description>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                129.0520,35.1630,0
+                129.0680,35.1630,0
+                129.0680,35.1500,0
+                129.0520,35.1500,0
+                129.0520,35.1630,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <!-- 慶州古蹟文化區 -->
+      <Placemark>
+        <name>🏯 慶州歷史古蹟與皇理團路區 (Gyeongju Cultural Zone)</name>
+        <styleUrl>#poly-gyeongju</styleUrl>
+        <description><![CDATA[<b>區域重點：</b>大陵苑新羅古墓群、皇理團路韓屋文創巷弄、月精橋夕陽夜景。]]></description>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                129.2000,35.8450,0
+                129.2280,35.8450,0
+                129.2280,35.8250,0
+                129.2000,35.8250,0
+                129.2000,35.8450,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+      <!-- 機張樂園與海岸寺廟區 -->
+      <Placemark>
+        <name>🎡 機張樂園與海邊寺廟區 (Gijang Resort Zone)</name>
+        <styleUrl>#poly-gijang</styleUrl>
+        <description><![CDATA[<b>區域重點：</b>釜山樂天世界冒險樂園、海東龍宮寺、樂天 Premium Outlets。]]></description>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>
+                129.2050,35.2050,0
+                129.2320,35.2050,0
+                129.2320,35.1820,0
+                129.2050,35.1820,0
+                129.2050,35.2050,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+
+    </Folder>
+
+  </Document>
+</kml>
