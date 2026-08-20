@@ -1065,6 +1065,29 @@
     .showcase-card:hover .showcase-img {
       transform: scale(1.04);
     }
+    /* Liz Recommended Badge */
+    .showcase-liz-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+      color: #be185d;
+      border: 1px solid #f472b6;
+      font-size: 0.725rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(190, 24, 93, 0.08);
+      transition: all 0.15s ease;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+    }
+    .showcase-liz-badge:hover {
+      background: #be185d;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
     .showcase-badge-top {
       position: absolute;
       top: 10px;
@@ -1573,17 +1596,18 @@
 
         <!-- Category Filter Buttons -->
         <div class="showcase-filter-bar" id="showcaseFilterBar">
-          <button class="filter-btn active" onclick="filterShowcase('all')">🌈 全部展示 (33)</button>
+          <button class="filter-btn active" onclick="filterShowcase('all')">🌈 全部展示 (37)</button>
+          <button class="filter-btn" style="background:#fdf2f8; color:#be185d; border-color:#f472b6; font-weight:800;" onclick="filterShowcase('liz-rec')">✨ 網紅Liz曆子推薦 (22)</button>
           <button class="filter-btn" onclick="filterShowcase('boy-dad')">🦖 5 歲男寶與父子強推 (10)</button>
-          <button class="filter-btn" onclick="filterShowcase('viral')">📸 網紅打卡海景 (7)</button>
+          <button class="filter-btn" onclick="filterShowcase('viral')">📸 網紅打卡海景 (10)</button>
           <button class="filter-btn" onclick="filterShowcase('local-food')">🥩 在地老饕必吃名店 (10)</button>
-          <button class="filter-btn" onclick="filterShowcase('culture')">🏯 文化古蹟與休閒 (6)</button>
+          <button class="filter-btn" onclick="filterShowcase('culture')">🏯 文化古蹟與休閒 (7)</button>
         </div>
 
         <!-- Showcase Grid -->
         <div class="showcase-grid" id="showcaseCardGrid">
           <!-- 1. 5歲男童與父子強推 -->
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&auto=format&fit=crop" class="showcase-img" alt="Skyline Luge 釜山斜坡滑車">
               <span class="showcase-badge-top" style="background:#e74c3c;">🏎️ 父子雙人賽車</span>
@@ -1594,7 +1618,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.5</span>
                   <span class="rating-reviews">(5,260 則 Google 評價) · 機張</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">大人可與 5 歲小孩雙人共乘！搭乘露天滑雪吊椅上山，沿著 4 條專用曲折賽道一邊看海一邊滑衝下來，有速度感又極度安全。</div>
                 <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>小孩坐在爸爸胸前一起握龍頭手把操控，小男生玩完通常大喊「還要再玩一次！」</div>
               </div>
@@ -1605,7 +1629,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1508873696983-2df5293cb32b?w=600&auto=format&fit=crop" class="showcase-img" alt="松島海上纜車 & 恐龍公園">
               <span class="showcase-badge-top" style="background:#00a8ff;">🦖 透明纜車+恐龍</span>
@@ -1616,7 +1640,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.5</span>
                   <span class="rating-reviews">(12,850 則 Google 評價) · 松島</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">透明水晶車廂橫跨大海！抵達頂端巖南公園 Sky Park，森林裡隱藏著會擺頭、發出吼叫聲的真實巨型恐龍（暴龍、三角龍）。</div>
                 <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>腳底看透明浪花像飛行冒險，森林尋找會動的恐龍，5 歲男童合照探險超興奮。</div>
               </div>
@@ -1649,7 +1673,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=600&auto=format&fit=crop" class="showcase-img" alt="廣安里/海雲台 遊艇出海餵海鷗">
               <span class="showcase-badge-top" style="background:#8e44ad;">🦅 出海餵海鷗</span>
@@ -1660,7 +1684,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.8</span>
                   <span class="rating-reviews">(3,850 則 Google 評價) · 廣安里/海雲台</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">搭乘雙體豪華帆船出海吹海風！12 月冬季海鷗最多，手拿蝦味先餅乾舉高，成群海鷗在空中精準俯衝搶食，互動感極強。</div>
                 <div class="showcase-kid-tip"><strong>❄️ 冬季貼心：</strong>室內船艙有暖氣，船家免費提供厚毛毯、暖暖包與熱飲，甲板穿防風外套即可暢快餵海鷗。</div>
               </div>
@@ -1671,7 +1695,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop" class="showcase-img" alt="新世界 Centum City 恐龍樂園">
               <span class="showcase-badge-top" style="background:#2ecc71;">🦕 9F 恐龍+4F 職業體驗</span>
@@ -1682,7 +1706,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.6</span>
                   <span class="rating-reviews">(3,800 則 Google 評價) · Centum City</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">9樓戶外有免費「Zooraji 侏儸紀恐龍空中花園」，有巨大暴龍、恐龍骨骼滑梯與 7 歲以下專屬旋轉木馬；4 樓有 KidZania 職業體驗城。</div>
                 <div class="showcase-kid-tip"><strong>👶 年齡超合適：</strong>5 歲剛好符合旋轉木馬與設施限制；天冷可至 4F 體驗當小小消防員、警察或機長開飛機！</div>
               </div>
@@ -1693,7 +1717,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop" class="showcase-img" alt="海雲臺藍線公園 尾浦站">
               <span class="showcase-badge-top" style="background:#2980b9;">🚊 彩色天空膠囊列車</span>
@@ -1704,7 +1728,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.5</span>
                   <span class="rating-reviews">(8,997 則 Google 評價) · 海雲台</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">行駛在海岸高架軌道上的彩色復古膠囊小火車，沿著無敵海景緩慢行駛，是釜山最具代表性的景觀列車。</div>
                 <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>小男生對機械軌道和對向交會的各色車廂著迷不已，2大1小包車獨立私密又安全。</div>
               </div>
@@ -1715,7 +1739,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop" class="showcase-img" alt="SEA LIFE 釜山水族館">
               <span class="showcase-badge-top" style="background:#00a8ff;">🐬 海底隧道+水獺企鵝</span>
@@ -1726,7 +1750,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.2</span>
                   <span class="rating-reviews">(9,380 則 Google 評價) · 海雲台沙灘旁</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">座落於海雲台沙灘正前方，擁有海底隧道、水獺餵食秀、企鵝館與鯊魚互動區，全館無障礙設施極佳。</div>
                 <div class="showcase-kid-tip"><strong>👶 行程亮點：</strong>館內逛完走上地面就是海雲台海灘，可順便帶孩子在沙灘踩沙踏浪放電。</div>
               </div>
@@ -1737,7 +1761,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="boy-dad">
+          <article class="showcase-card" data-liz="true" data-category="boy-dad">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop" class="showcase-img" alt="釜山樂天世界冒險樂園">
               <span class="showcase-badge-top" style="background:#e74c3c;">🏰 戶外城堡樂園</span>
@@ -1748,7 +1772,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.1</span>
                   <span class="rating-reviews">(3,206 則 Google 評價) · 機張</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">比首爾更開闊的戶外城堡主題樂園！童話小精靈村莊設有旋轉木馬、餅乾小火車、親子碰碰車等，排隊時間短很多。</div>
                 <div class="showcase-kid-tip"><strong>👶 親子友善：</strong>專屬學齡前幼童遊樂區，設施溫和不刺激，比首爾樂天世界更適合 5 歲小孩。</div>
               </div>
@@ -1848,7 +1872,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="viral">
+          <article class="showcase-card" data-liz="true" data-category="viral">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&auto=format&fit=crop" class="showcase-img" alt="Millak the Market">
               <span class="showcase-badge-top" style="background:#9b59b6;">🍔 巨型階梯落地窗市集</span>
@@ -1859,7 +1883,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.3</span>
                   <span class="rating-reviews">(3,280 則 Google 評價) · 廣安里</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">正對廣安大橋的超大型現代文創市場！最吸睛的是面海巨型階梯觀景座，能買手作漢堡、炸雞、甜甜圈坐在階梯上看海港。</div>
                 <div class="showcase-kid-tip"><strong>✨ 逛街亮點：</strong>市集內有許多質感文創小物、玩具與服飾選品，氣氛潮流且輕鬆無壓力。</div>
               </div>
@@ -1892,7 +1916,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="viral">
+          <article class="showcase-card" data-liz="true" data-category="viral">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&auto=format&fit=crop" class="showcase-img" alt="田浦咖啡街">
               <span class="showcase-badge-top" style="background:#e67e22;">🛍️ 釜山版聖水洞選物</span>
@@ -1903,7 +1927,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.4</span>
                   <span class="rating-reviews">(6,950 則 Google 評價) · 西面田浦</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">釜山版的「聖水洞」！由五金工廠街轉型的文青聚落，巷弄內藏滿獨立香氛店、設計師選品、生活雜貨與特色烘焙咖啡館。</div>
                 <div class="showcase-kid-tip"><strong>✨ 大人約會：</strong>適合兩位大人推車悠閒散步挖寶，買質感小禮物與護手霜，步調比明洞舒適太多。</div>
               </div>
@@ -1914,7 +1938,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="viral">
+          <article class="showcase-card" data-liz="true" data-category="viral">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&auto=format&fit=crop" class="showcase-img" alt="The Bay 101">
               <span class="showcase-badge-top" style="background:#f39c12;">🌃 摩天樓夜景+炸魚薯條</span>
@@ -1925,7 +1949,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.3</span>
                   <span class="rating-reviews">(8,200 則 Google 評價) · 海雲台</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">海雲台最具代表性的璀璨夜景地標！點一份外酥內嫩的現炸魚柳薯條（Fish & Chips）與韓式炸雞，坐在露天碼頭看大樓倒影。</div>
                 <div class="showcase-kid-tip"><strong>🍴 親子吃法：</strong>現炸魚柳完全無刺、薯條香脆，小朋友吃得津津有味，是完美的晚餐後宵夜點心。</div>
               </div>
@@ -1936,7 +1960,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="viral">
+          <article class="showcase-card" data-liz="true" data-category="viral">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop" class="showcase-img" alt="ARTE MUSEUM Busan">
               <span class="showcase-badge-top" style="background:#9b59b6;">🎨 沉浸式光影藝術展</span>
@@ -1947,7 +1971,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.8</span>
                   <span class="rating-reviews">(2,884 則 Google 評價) · 影島</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">影島全新開幕的沉浸式數位光影展覽！巨大光影瀑布、夢幻花海森林與立體光影叢林，視覺震撼感超越一般展覽。</div>
                 <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>可以在紙上為恐龍或動物塗色，掃描後自己的動物會立刻在巨大螢幕上奔跑互動！</div>
               </div>
@@ -1981,7 +2005,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="local-food">
+          <article class="showcase-card" data-liz="true" data-category="local-food">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?w=600&auto=format&fit=crop" class="showcase-img" alt="極東豬肉湯飯">
               <span class="showcase-badge-top" style="background:#27ae60;">🍲 米其林推薦清湯湯飯</span>
@@ -1992,7 +2016,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.4</span>
                   <span class="rating-reviews">(2,150 則 Google 評價) · 海雲台尾浦</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">米其林指南推薦！海雲台尾浦海景第一排，顛覆傳統濁湯印象，湯頭極為清澈甘甜、毫無豬肉腥味，配上軟嫩豬五花與薄切肉片。</div>
                 <div class="showcase-kid-tip"><strong>👶 親子吃法：</strong>湯頭鮮美不辣，小孩湯泡飯吃得又快又香，大人加入蝦醬與韭菜更添風味。</div>
               </div>
@@ -2003,7 +2027,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="local-food">
+          <article class="showcase-card" data-liz="true" data-category="local-food">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&auto=format&fit=crop" class="showcase-img" alt="機張市場 青海王雪蟹">
               <span class="showcase-badge-top" style="background:#e74c3c;">🦀 現挑現蒸大雪蟹</span>
@@ -2014,7 +2038,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.7</span>
                   <span class="rating-reviews">(1,630 則 Google 評價) · 機張市場</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">機張市場超高口碑名店！一樓水族箱現挑活跳跳大雪蟹與帝王蟹，現秤現蒸，上桌時已全數去殼剪開，吃起來毫不費力。</div>
                 <div class="showcase-kid-tip"><strong>🍴 親子吃法：</strong>蟹肉甘甜細緻無骨，小孩大口吃蟹肉超滿足，最後將蟹膏送回廚房炒出極香的「蟹膏炒飯」！</div>
               </div>
@@ -2180,7 +2204,7 @@
           </article>
 
           <!-- 4. 文化古蹟與慶州 -->
-          <article class="showcase-card" data-category="culture">
+          <article class="showcase-card" data-liz="true" data-category="culture">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop" class="showcase-img" alt="海東龍宮寺">
               <span class="showcase-badge-top" style="background:#d35400;">🌊 海邊峭壁歷史古剎</span>
@@ -2191,7 +2215,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.5</span>
                   <span class="rating-reviews">(27,471 則 Google 評價) · 機張</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">韓國唯一建在海邊岩石懸崖上的古寺！十二生肖石雕、許願池與日出海景壯闊無比，沿途還有各種傳統海苔包飯與熱魚板攤販。</div>
                 <div class="showcase-kid-tip"><strong>👶 男孩亮點：</strong>入口處尋找自己屬相的十二生肖石像合照，在石橋許願池丟硬幣許願趣味十足。</div>
               </div>
@@ -2202,7 +2226,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="culture">
+          <article class="showcase-card" data-liz="true" data-category="culture">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop" class="showcase-img" alt="Club D Oasis">
               <span class="showcase-badge-top" style="background:#16a085;">🏊 高空無邊際海景溫泉</span>
@@ -2213,7 +2237,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.4</span>
                   <span class="rating-reviews">(1,157 則 Google 評價) · 海雲台 LCT</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">海雲台 LCT 摩天大樓內的高空無邊際海景水上樂園與頂級汗蒸幕！能一邊泡溫泉一邊俯瞰海雲台整個海灣，設施奢華現代。</div>
                 <div class="showcase-kid-tip"><strong>❄️ 冬季享受：</strong>戶外高空溫水池恆溫溫暖，室內有各類藥草汗蒸幕與休息躺椅，爸媽與小孩一起徹底放鬆。</div>
               </div>
@@ -2224,7 +2248,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="culture">
+          <article class="showcase-card" data-liz="true" data-category="culture">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1538485399081-7191377e8241?w=600&auto=format&fit=crop" class="showcase-img" alt="皇理團路">
               <span class="showcase-badge-top" style="background:#f39c12;">🏯 慶州文青韓屋街區</span>
@@ -2235,7 +2259,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.2</span>
                   <span class="rating-reviews">(7,777 則 Google 評價) · 慶州</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">慶州最熱門的文青街區！保留完整的傳統韓屋建築，匯集特色文創小店、韓服租借、韓屋咖啡與超人氣「慶州十角拉絲起司餅」。</div>
                 <div class="showcase-kid-tip"><strong>🧀 美食必吃：</strong>十角硬幣造型的熱騰騰現烤雞蛋糕，裡面包著拉絲超長的濃郁起司，小朋友超愛！</div>
               </div>
@@ -2246,7 +2270,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="culture">
+          <article class="showcase-card" data-liz="true" data-category="culture">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&auto=format&fit=crop" class="showcase-img" alt="大陵苑">
               <span class="showcase-badge-top" style="background:#27ae60;">👑 新羅古墓天馬塚</span>
@@ -2257,7 +2281,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.5</span>
                   <span class="rating-reviews">(3,708 則 Google 評價) · 慶州</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">新羅王朝國王與貴族的巨大古墓公園！翠綠如抹茶冰淇淋般的圓形山丘優美靜謐，並可走進「天馬塚」內部參觀出土金冠古物。</div>
                 <div class="showcase-kid-tip"><strong>👶 漫步體驗：</strong>步道極其平坦好走、樹木茂密，宛如走在大自然的巨型童話丘陵裡。</div>
               </div>
@@ -2268,7 +2292,7 @@
             </div>
           </article>
 
-          <article class="showcase-card" data-category="culture">
+          <article class="showcase-card" data-liz="true" data-category="culture">
             <div class="showcase-img-wrap">
               <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop" class="showcase-img" alt="慶州 月精橋">
               <span class="showcase-badge-top" style="background:#d35400;">🌉 絕美古蹟木造廊橋</span>
@@ -2279,7 +2303,7 @@
                 <div class="showcase-rating-row">
                   <span class="rating-stars">★ 4.6</span>
                   <span class="rating-reviews">(8,772 則 Google 評價) · 慶州</span>
-                </div>
+                 <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span></div>
                 <div class="showcase-desc">新羅時期的宏偉木造迴廊橋！橫跨在清澈河流上，傍晚夕陽西下與入夜後的金色倒影點燈令人讚嘆，是慶州拍照第一名地標。</div>
                 <div class="showcase-kid-tip"><strong>📸 拍照指南：</strong>走在河邊的石階跳石步道上，以木造廊橋為背景拍照，畫面非常優美典雅。</div>
               </div>
@@ -2308,6 +2332,98 @@
               <div class="showcase-footer">
                 <span style="font-size:0.75rem; color:#64748b;">免費參觀 ‧ 近地鐵土城站2號出口</span>
                 <button class="btn-map-jump" onclick="flyToPlaceFromCard(33)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+          <!-- Liz Recommended New Spots (ID 34 - 37) -->
+          <article class="showcase-card" data-category="viral" data-liz="true">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop" class="showcase-img" alt="白淺灘文化村">
+              <span class="showcase-badge-top" style="background:#0284c7;">🌊 影島希臘風絕壁村</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">白淺灘文化村 (흰여울문화마을)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(8,420 則 Google 評價) · 影島</span>
+                  <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span>
+                </div>
+                <div class="showcase-desc">影島懸崖邊的白色希臘風聚落！沿著海岸階梯散步，絕美海景咖啡廳一字排開，還有穿過岩石的天然海岸隧道（拍照打卡第一名）。</div>
+                <div class="showcase-kid-tip"><strong>👶 親子亮點：</strong>沿海步道寬敞好走，邊看海浪拍打礁石邊吃海景雞蛋糕，轉角彩繪階梯拍照超好看。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">免費參觀 ‧ 絕美海景咖啡廳街</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(34)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="boy-dad" data-liz="true">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&auto=format&fit=crop" class="showcase-img" alt="松島龍宮雲橋">
+              <span class="showcase-badge-top" style="background:#0d9488;">🌉 海上透視鏤空吊橋</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">松島龍宮雲橋 (송도용궁구름다리)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(3,520 則 Google 評價) · 松島</span>
+                  <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span>
+                </div>
+                <div class="showcase-desc">連接巖南公園與東島無人島的海上鋼架鏤空吊橋！360 度俯瞰壯麗海崖與波濤洶湧的大海，極具海上漫步冒險感。</div>
+                <div class="showcase-kid-tip"><strong>🦖 男寶挑戰：</strong>走在網格鋼架上低頭能直接看透海水浪花，小男生走空中小橋超勇敢！</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">門票約 KRW 1,000 ‧ 纜車站旁</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(35)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="culture" data-liz="true">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&auto=format&fit=crop" class="showcase-img" alt="冬柏島散策 ＆ APEC世峰樓">
+              <span class="showcase-badge-top" style="background:#16a34a;">🌲 廣安大橋景觀步道</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">冬柏島散策 ＆ APEC世峰樓</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.6</span>
+                  <span class="rating-reviews">(4,950 則 Google 評價) · 海雲台</span>
+                  <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span>
+                </div>
+                <div class="showcase-desc">海雲台沙灘西側的林蔭海岸半島！木棧步道平緩被茂密松林環繞，途經人魚雕像、白色燈塔，可遠眺廣安大橋與參觀 APEC 峰會紀念館。</div>
+                <div class="showcase-kid-tip"><strong>👶 推車友善：</strong>步道平順無障礙，推車極其輕鬆，樹上經常有可愛野生松鼠出沒跳躍。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">免費入場 ‧ 散步看夕陽廣安大橋</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(36)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="showcase-card" data-category="viral" data-liz="true">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&auto=format&fit=crop" class="showcase-img" alt="海理團路">
+              <span class="showcase-badge-top" style="background:#ea580c;">☕ 韓屋甜點文創聚落</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">海理團路 (해리단길 Haeridangil)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.3</span>
+                  <span class="rating-reviews">(2,180 則 Google 評價) · 海雲台</span>
+                  <span class="showcase-liz-badge" onclick="event.stopPropagation(); filterShowcase('liz-rec');" title="點擊查看 Liz 曆子精選景點">✨ Liz推薦</span>
+                </div>
+                <div class="showcase-desc">舊海雲台火車站後方的文青聚集地！韓屋改造的質感咖啡廳、日式舒芙蕾、手工漢堡與文創生活選物店林立。</div>
+                <div class="showcase-kid-tip"><strong>🍦 甜點時光：</strong>街道平緩無車流，有許多造型可愛的霜淇淋店與貓咪文具店。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">海雲台站2/4號出口 ‧ 悠閒下午茶</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(37)">🗺️ 在地圖上查看</button>
               </div>
             </div>
           </article>
@@ -3248,7 +3364,11 @@
       { id: 30, name: "皇理團路 (황리단길 慶州)", lat: 35.8377, lon: 129.2097, rating: "4.2", reviews: "7,777", category: "文青韓屋街區", color: "#f39c12", img: "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=600&auto=format&fit=crop", desc: "慶州熱門文青街區，融合傳統韓屋特色文創店家、特色咖啡館與十角拉絲起司餅。" },
       { id: 31, name: "大陵苑 (대릉원 慶州)", lat: 35.8381, lon: 129.2108, rating: "4.5", reviews: "3,708", category: "新羅古墓天馬塚", color: "#27ae60", img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600&auto=format&fit=crop", desc: "慶州知名新羅古墓公園，丘陵綠意盎然，可進入天馬塚內部參觀千年文物。" },
       { id: 32, name: "慶州 月精橋 (월정교)", lat: 35.8292, lon: 129.2181, rating: "4.6", reviews: "8,774", category: "古蹟木橋/夜景點燈", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造迴廊橋，絕美夕陽景緻與夜間金黃倒影點燈令人讚嘆。" },
-      { id: 33, name: "臨時首都紀念館 (임시수도기념관)", lat: 35.1052, lon: 129.0198, rating: "4.4", reviews: "765", category: "總統官邸/歷史博物館", color: "#475569", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop", desc: "韓戰時期臨時首都總統官邸與政務廳，日洋合璧復古洋房與清幽庭園，免費參觀，近地鐵土城站與南浦商圈。" }
+      { id: 33, name: "臨時首都紀念館 (임시수도기념관)", lat: 35.1052, lon: 129.0198, rating: "4.4", reviews: "765", category: "總統官邸/歷史博物館", color: "#475569", img: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop", desc: "韓戰時期臨時首都總統官邸與政務廳，日洋合璧復古洋房與清幽庭園，免費參觀，近地鐵土城站與南浦商圈。" },
+      { id: 34, name: "白淺灘文化村 (흰여울문화마을)", lat: 35.0782, lon: 129.0435, rating: "4.4", reviews: "8,420", category: "影島希臘風絕壁村/Liz推薦", color: "#0284c7", img: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&auto=format&fit=crop", desc: "影島懸崖海岸白色希臘風聚落！蔚藍海景第一排階梯步道、特色海景咖啡廳與彩繪海岸隧道。" },
+      { id: 35, name: "松島龍宮雲橋 (송도용궁구름다리)", lat: 35.0601, lon: 129.0205, rating: "4.4", reviews: "3,520", category: "海上透視吊橋/Liz推薦", color: "#0d9488", img: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&auto=format&fit=crop", desc: "連接巖南公園與無人島的海上鋼架鏤空吊橋！360度俯瞰壯麗海崖與浪花，低頭透視海水超震撼刺激。" },
+      { id: 36, name: "冬柏島散策 ＆ APEC世峰樓", lat: 35.1534, lon: 129.1518, rating: "4.6", reviews: "4,950", category: "廣安大橋景觀步道/Liz推薦", color: "#16a34a", img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&auto=format&fit=crop", desc: "海雲台西側松林海岸步道！平緩好走遠眺廣安大橋，途經人魚雕像與白色燈塔，可免費參觀 APEC 峰會紀念館。" },
+      { id: 37, name: "海理團路 (해리단길 Haeridangil)", lat: 35.1635, lon: 129.1585, rating: "4.3", reviews: "2,180", category: "韓屋甜點文創聚落/Liz推薦", color: "#ea580c", img: "https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=600&auto=format&fit=crop", desc: "舊海雲台車站後方文青熱門街區！特色韓屋老宅甜點、日式舒芙蕾、手工漢堡與可愛文創選物小店。" }
     ];
 
     const polygons = [
@@ -3339,7 +3459,11 @@
 
       const cards = document.querySelectorAll('#showcaseCardGrid .showcase-card');
       cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
+        if (category === 'all') {
+          card.style.display = 'flex';
+        } else if (category === 'liz-rec') {
+          card.style.display = card.getAttribute('data-liz') === 'true' ? 'flex' : 'none';
+        } else if (card.getAttribute('data-category') === category) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
