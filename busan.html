@@ -1545,12 +1545,12 @@
     // ==========================================
     const plannerCategories = [
       {
-        group: "💡 常用狀態與備註",
+        group: "💡 通用狀態",
         items: [
-          "待定 (大家共同討論安排)",
-          "自理 / 機場機上餐點",
-          "回飯店休息放鬆",
-          "自由活動 / 逛街採買"
+          "待定",
+          "自理",
+          "自由活動",
+          "回飯店休息"
         ]
       },
       {
@@ -1637,7 +1637,7 @@
         name: "D1 ‧ 12/06 (日) 抵達釜山",
         hotel: "東橫INN 釜山海雲台2號店 (兩家同住)",
         breakfast: "台灣桃園機場 / 自理",
-        morning: "待定 (大家共同討論安排)",
+        morning: "待定",
         lunch: "桃園機場第一航廈 (T1) / 機上輕食",
         afternoon: "15:40 桃機 T1 搭乘 CI186 (A321neo) 直飛釜山 (18:50 抵達金海機場)",
         dinner: "金海機場搭乘【已預約 9 人座專車】直達海雲臺飯店 (車程約 45 分)",
@@ -1767,9 +1767,9 @@
             <div class="slot-header">
               <span class="slot-title">${slot.label}</span>
               <div class="slot-chips">
-                <button type="button" class="slot-chip chip-tbd" onclick="setSlotValue('${dayKey}', '${slot.key}', '待定 (大家共同討論安排)')">待定</button>
-                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '東橫INN 免費早餐')">東橫INN早餐</button>
-                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '自理 / 機場輕食')">自理</button>
+                <button type="button" class="slot-chip chip-tbd" onclick="setSlotValue('${dayKey}', '${slot.key}', '待定')">待定</button>
+                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '自理')">自理</button>
+                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '自由活動')">自由活動</button>
                 <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '')">清空</button>
               </div>
             </div>
@@ -1933,7 +1933,7 @@
       const dayKey = currentPlannerDayKey === 'all' ? 'day1' : currentPlannerDayKey;
       if (confirm(`確定要將【${plannerData[dayKey].name}】的所有時段設為「待定」嗎？`)) {
         slotDefinitions.forEach(slot => {
-          plannerData[dayKey][slot.key] = "待定 (大家共同討論安排)";
+          plannerData[dayKey][slot.key] = "待定";
         });
         savePlannerData();
         selectPlannerDay(dayKey);
