@@ -7,13 +7,13 @@
       <altitude>0</altitude>
       <heading>0</heading>
       <tilt>0</tilt>
-      <range>22000</range>
+      <range>25000</range>
       <altitudeMode>relativeToGround</altitudeMode>
     </LookAt>
-    <name>釜山慶州精選旅遊地圖 (含四大活動區域範圍填色版)</name>
-    <description>包含圖層分區、色彩標記、星級評分、評價數、實景圖片與區域範圍填色 (海雲臺、西面、慶州古蹟、機張樂園區)</description>
+    <name>釜山慶州精選旅遊地圖 (含雙家庭 17 大熱門景點美食與分區範圍)</name>
+    <description>包含老婆與朋友最新加入的西面燒肉、活烤鰻魚、螞蟻家、市民公園與 Running Man 體驗館等 17 個精選點位與四大區域範圍填色</description>
 
-    <!-- 景點樣式 -->
+    <!-- 景點樣式定義 -->
     <Style id="gyeongju-style">
       <IconStyle>
         <color>ff00a5ff</color>
@@ -49,32 +49,33 @@
         <Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-blank.png</href></Icon>
       </IconStyle>
     </Style>
+    <Style id="food-style">
+      <IconStyle>
+        <color>ff0045ff</color>
+        <scale>1.2</scale>
+        <Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-blank.png</href></Icon>
+      </IconStyle>
+    </Style>
 
-    <!-- 區域範圍填色樣式 (AABBGGRR: 40 = 25% 標籤透明度) -->
-    <!-- 1. 海雲臺區域 (透藍色) -->
+    <!-- 區域範圍填色樣式 -->
     <Style id="poly-haeundae">
       <LineStyle><color>ff0088ff</color><width>2.5</width></LineStyle>
       <PolyStyle><color>45ff9900</color><fill>1</fill><outline>1</outline></PolyStyle>
     </Style>
-
-    <!-- 2. 西面購物區 (透珊瑚橘) -->
     <Style id="poly-seomyeon">
       <LineStyle><color>ff0055ff</color><width>2.5</width></LineStyle>
       <PolyStyle><color>450066ff</color><fill>1</fill><outline>1</outline></PolyStyle>
     </Style>
-
-    <!-- 3. 慶州古蹟區 (透森林綠) -->
     <Style id="poly-gyeongju">
       <LineStyle><color>ff00aa33</color><width>2.5</width></LineStyle>
       <PolyStyle><color>4500aa33</color><fill>1</fill><outline>1</outline></PolyStyle>
     </Style>
-
-    <!-- 4. 機張樂園區 (透紫金黃) -->
     <Style id="poly-gijang">
       <LineStyle><color>ffaa00aa</color><width>2.5</width></LineStyle>
       <PolyStyle><color>45aa00aa</color><fill>1</fill><outline>1</outline></PolyStyle>
     </Style>
 
+    <!-- 1. 慶州歷史文化與街區 -->
     <Folder>
       <name>🏯 慶州歷史文化與街區</name>
       <Placemark>
@@ -90,7 +91,7 @@
     慶州熱門文青街區 融合傳統韓屋特色文創店家
   </div>
 </div>]]></description>
-        <Point><coordinates>129.2104,35.8378,0</coordinates></Point>
+        <Point><coordinates>129.2097,35.8377,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>大陵苑 (대릉원)</name>
@@ -105,7 +106,7 @@
     慶州知名新羅古墓公園 綠意盎然丘陵景緻優美
   </div>
 </div>]]></description>
-        <Point><coordinates>129.2125,35.8373,0</coordinates></Point>
+        <Point><coordinates>129.2108,35.8381,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>慶州 月精橋 (월정교)</name>
@@ -120,12 +121,13 @@
     慶州經典傳統木造橋樑 絕美夕陽景緻與夜點燈
   </div>
 </div>]]></description>
-        <Point><coordinates>129.2181,35.8294,0</coordinates></Point>
+        <Point><coordinates>129.2181,35.8292,0</coordinates></Point>
       </Placemark>
     </Folder>
 
+    <!-- 2. 海雲臺海岸線與美食水樂園 -->
     <Folder>
-      <name>🌊 海雲臺海岸線與水樂園</name>
+      <name>🌊 海雲臺海岸線與水樂園美食</name>
       <Placemark>
         <name>海雲臺藍線公園 尾浦站</name>
         <styleUrl>#haeundae-style</styleUrl>
@@ -133,13 +135,13 @@
   <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
   <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">海雲臺藍線公園 尾浦站</div>
   <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
-    4.5 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(8,997 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">旅遊景點</span>
+    4.5 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(8,997 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">膠囊列車</span>
   </div>
   <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
-    膠囊列車尾浦站風景最美 路線延伸至青沙浦站
+    膠囊列車 尾浦站出發風景最漂亮 終點站在青沙浦
   </div>
 </div>]]></description>
-        <Point><coordinates>129.1675,35.1599,0</coordinates></Point>
+        <Point><coordinates>129.1728,35.1583,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>SEA LIFE 釜山水族館</name>
@@ -154,7 +156,7 @@
     海雲臺沙灘旁邊水族館 適合親子探索海底世界
   </div>
 </div>]]></description>
-        <Point><coordinates>129.1610,35.1592,0</coordinates></Point>
+        <Point><coordinates>129.1610,35.1593,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>Club D Oasis</name>
@@ -163,13 +165,13 @@
   <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
   <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">Club D Oasis</div>
   <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
-    4.4 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(1,157 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">水上樂園</span>
+    4.4 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(1,157 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">水上樂園/汗蒸幕</span>
   </div>
   <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
     海雲臺高空無邊際泳池 享受水樂園奢華汗蒸幕
   </div>
 </div>]]></description>
-        <Point><coordinates>129.1678,35.1601,0</coordinates></Point>
+        <Point><coordinates>129.1685,35.1601,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>東橫INN 釜山海雲台2號店</name>
@@ -181,15 +183,31 @@
     4.2 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(2,195 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">3 星級飯店</span>
   </div>
   <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
-    海雲臺熱門三星飯店 距離美麗海景沙灘非常近
+    海雲臺熱門三星飯店 前 4 晚雙家庭同住海景第一排
   </div>
 </div>]]></description>
         <Point><coordinates>129.1627,35.1593,0</coordinates></Point>
       </Placemark>
+      <Placemark>
+        <name>풍천만민물장어 해운대본점 (豐川鰻魚 海雲臺總店)</name>
+        <styleUrl>#food-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">풍천만민物장어 해운대본점</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.6 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(860 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">美食餐廳</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    海雲臺迎月路炭火烤淡水鰻魚 肉質厚實肥美滋補
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.1674,35.1619,0</coordinates></Point>
+      </Placemark>
     </Folder>
 
+    <!-- 3. 機張樂園與特色展覽 -->
     <Folder>
-      <name>🎡 釜山特色展覽與主題樂園</name>
+      <name>🎡 機張樂園與特色展覽</name>
       <Placemark>
         <name>ARTE MUSEUM Busan</name>
         <styleUrl>#attraction-style</styleUrl>
@@ -203,7 +221,7 @@
     影島沉浸光影展覽 展現震撼數位媒體視覺效果
   </div>
 </div>]]></description>
-        <Point><coordinates>129.0759,35.0865,0</coordinates></Point>
+        <Point><coordinates>129.0764,35.0871,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>釜山樂天世界冒險樂園</name>
@@ -218,7 +236,7 @@
     釜山大型戶外城堡樂園 提供各類刺激遊樂設施
   </div>
 </div>]]></description>
-        <Point><coordinates>129.2144,35.1963,0</coordinates></Point>
+        <Point><coordinates>129.2149,35.1962,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>海東龍宮寺</name>
@@ -233,7 +251,7 @@
     韓國罕見建於海邊峭壁 景色極佳古老歷史寺廟
   </div>
 </div>]]></description>
-        <Point><coordinates>129.2233,35.1884,0</coordinates></Point>
+        <Point><coordinates>129.2231,35.1885,0</coordinates></Point>
       </Placemark>
       <Placemark>
         <name>新世界百貨公司 Centum City店</name>
@@ -242,17 +260,97 @@
   <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
   <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">新世界百貨公司 Centum City店</div>
   <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
-    4.6 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(2,806 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">百貨公司</span>
+    4.6 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(2,806 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">百貨公司/汗蒸幕</span>
   </div>
   <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
-    金氏紀錄全球最大百貨公司 內有熱門汗蒸幕店
+    金氏紀錄全球最大百貨公司 內有熱門 Spa Land 汗蒸幕
   </div>
 </div>]]></description>
-        <Point><coordinates>129.1306,35.1691,0</coordinates></Point>
+        <Point><coordinates>129.1296,35.1689,0</coordinates></Point>
       </Placemark>
     </Folder>
 
-    <!-- 圖層 4: 🗺️ 主要活動區域範圍 (Polygons) -->
+    <!-- 4. 西面商圈・親子公園與人氣美食 -->
+    <Folder>
+      <name>🛍️ 西面商圈・親子遊樂與人氣美食</name>
+      <Placemark>
+        <name>Jangduk Eels (장덕장어 西面直營店)</name>
+        <styleUrl>#food-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">Jangduk Eels (장덕장어)</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.7 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(1,320 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">活烤鰻魚料理</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    西面知名活烤海鰻名店 專人桌邊代烤外酥內嫩
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.0575,35.1536,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>老宅邸 燒肉 (Jeonpo)</name>
+        <styleUrl>#food-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">老宅邸 燒肉 (고택)</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.8 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(980 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">韓屋烤肉</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    田浦咖啡街人氣老宅韓屋 炭火熟成黑豬肉與韓牛
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.0645,35.1552,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>螞蟻家（西面店）(개미집)</name>
+        <styleUrl>#food-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">螞蟻家（西面店）개미집</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.3 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(4,520 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">辣炒章腸蝦</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    釜山傳奇辣炒章腸蝦名店 拌入白飯海苔香辣過癮
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.0583,35.1540,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>釜山市民公園</name>
+        <styleUrl>#shopping-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">釜山市民公園 (Busan Citizens Park)</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.6 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(11,400 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">親子公園</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    釜山最大親子綠地公園 擁有超大草坪與兒童遊樂區
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.0574,35.1682,0</coordinates></Point>
+      </Placemark>
+      <Placemark>
+        <name>Running Man Busan (三井塔10F)</name>
+        <styleUrl>#attraction-style</styleUrl>
+        <description><![CDATA[<div style="font-family: Arial, sans-serif; padding: 4px;">
+  <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop" style="width: 100%; max-width: 320px; border-radius: 8px; margin-bottom: 8px; height: 160px; object-fit: cover;" />
+  <div style="font-size: 15px; font-weight: bold; color: #202124; margin-bottom: 4px;">Running Man Busan 體驗館</div>
+  <div style="font-size: 13px; color: #e67e22; font-weight: bold; margin-bottom: 6px;">
+    4.4 <span style="color: #f39c12;">★</span> <span style="color: #70757a; font-weight: normal;">(3,150 則評價)</span> · <span style="color: #1a73e8; font-weight: normal;">室內體驗樂園</span>
+  </div>
+  <div style="font-size: 13px; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 6px;">
+    西面三井塔室內闖關樂園 適合全家挑戰互動任務
+  </div>
+</div>]]></description>
+        <Point><coordinates>129.0597,35.1529,0</coordinates></Point>
+      </Placemark>
+    </Folder>
+
+    <!-- 5. 主要活動區域範圍 (Polygons) -->
     <Folder>
       <name>🗺️ 主要活動區域範圍</name>
       <description>包含海雲臺觀光海景區、西面熱門購物區、慶州古蹟區與機張遊樂園區</description>
@@ -261,7 +359,7 @@
       <Placemark>
         <name>🌊 海雲臺觀光海景區 (Haeundae Zone)</name>
         <styleUrl>#poly-haeundae</styleUrl>
-        <description><![CDATA[<b>區域重點：</b>海雲臺沙灘、LCT 高空泳池、藍線公園海岸膠囊列車、SEA LIFE 水族館。]]></description>
+        <description><![CDATA[<b>區域重點：</b>海雲臺沙灘、LCT 高空泳池、藍線公園海岸膠囊列車、SEA LIFE 水族館、豐川鰻魚。]]></description>
         <Polygon>
           <outerBoundaryIs>
             <LinearRing>
@@ -281,16 +379,16 @@
       <Placemark>
         <name>🛍️ 西面熱門商圈與美食區 (Seomyeon Zone)</name>
         <styleUrl>#poly-seomyeon</styleUrl>
-        <description><![CDATA[<b>區域重點：</b>釜山心臟樞紐、西面地下街、樂天百貨、田浦咖啡街、美食巷弄。]]></description>
+        <description><![CDATA[<b>區域重點：</b>西面地下街、老宅邸燒肉、Jangduk Eels 活鰻、螞蟻家章腸蝦、Running Man、市民公園。]]></description>
         <Polygon>
           <outerBoundaryIs>
             <LinearRing>
               <coordinates>
-                129.0520,35.1630,0
-                129.0680,35.1630,0
-                129.0680,35.1500,0
-                129.0520,35.1500,0
-                129.0520,35.1630,0
+                129.0500,35.1720,0
+                129.0720,35.1720,0
+                129.0720,35.1480,0
+                129.0500,35.1480,0
+                129.0500,35.1720,0
               </coordinates>
             </LinearRing>
           </outerBoundaryIs>

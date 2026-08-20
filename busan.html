@@ -117,20 +117,24 @@
 
     .tab-bar {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
-      gap: 0.2rem;
+      gap: 0.25rem;
       background: #e2e8f0;
-      padding: 0.3rem;
+      padding: 0.35rem;
       border-radius: var(--radius-md);
       width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+    .tab-bar::-webkit-scrollbar { display: none; }
 
     .tab-btn {
-      flex: 1 1 0%;
+      flex: 1 0 auto;
       background: transparent;
       border: none;
-      padding: 0.55rem 0.2rem;
+      padding: 0.55rem 0.5rem;
       border-radius: var(--radius-sm);
       font-size: 0.825rem;
       font-weight: 700;
@@ -154,8 +158,8 @@
 
     @media (max-width: 640px) {
       .tab-btn {
-        font-size: 0.725rem;
-        padding: 0.45rem 0.1rem;
+        font-size: 0.75rem;
+        padding: 0.45rem 0.4rem;
       }
     }
 
@@ -166,6 +170,262 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(3px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Planner Component Styling */
+    .planner-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 960px) {
+      .planner-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .planner-day-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 1.25rem;
+      background: #f1f5f9;
+      padding: 0.4rem;
+      border-radius: var(--radius-md);
+    }
+    .planner-day-btn {
+      flex: 1 1 auto;
+      min-width: 65px;
+      padding: 0.45rem 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--c-ink-2);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+    .planner-day-btn:hover {
+      background: rgba(255,255,255,0.7);
+      color: var(--c-ink);
+    }
+    .planner-day-btn.active {
+      background: var(--c-paper-raised);
+      color: var(--c-ocean-dark);
+      border-color: var(--c-hairline);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    .slot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .slot-item {
+      background: var(--c-paper);
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      transition: border-color 0.15s;
+    }
+    .slot-item:focus-within {
+      border-color: var(--c-ocean);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.1);
+    }
+
+    .slot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.45rem;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .slot-title {
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: var(--c-ink);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .slot-chips {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .slot-chip {
+      background: #e2e8f0;
+      color: var(--c-ink-2);
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      transition: background 0.15s;
+    }
+    .slot-chip:hover {
+      background: #cbd5e1;
+      color: var(--c-ink);
+    }
+    .slot-chip.chip-tbd {
+      background: var(--c-coral-wash);
+      color: var(--c-coral);
+    }
+
+    .slot-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    @media (max-width: 580px) {
+      .slot-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slot-select, .slot-input {
+      width: 100%;
+      padding: 0.45rem 0.65rem;
+      font-size: 0.85rem;
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      color: var(--c-ink);
+      font-family: inherit;
+      outline: none;
+    }
+    .slot-select:focus, .slot-input:focus {
+      border-color: var(--c-ocean);
+    }
+
+    /* Output & Copy Area */
+    .preview-card {
+      background: #1e293b;
+      color: #f8fafc;
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      position: sticky;
+      top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 0.65rem;
+    }
+    .preview-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .preview-text-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: var(--radius-sm);
+      padding: 0.9rem;
+      font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+      font-size: 0.825rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      max-height: 440px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      user-select: all;
+    }
+
+    .preview-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .action-btn-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-copy {
+      flex: 1;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.875rem;
+      font-weight: 800;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.15s ease;
+    }
+    .btn-copy-primary {
+      background: #2563eb;
+      color: #ffffff;
+    }
+    .btn-copy-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    .btn-copy-secondary {
+      background: #059669;
+      color: #ffffff;
+    }
+    .btn-copy-secondary:hover {
+      background: #047857;
+      transform: translateY(-1px);
+    }
+    .btn-copy-outline {
+      background: transparent;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      padding: 0.45rem 0.6rem;
+    }
+    .btn-copy-outline:hover {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    /* Floating Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f172a;
+      color: #10b981;
+      border: 1px solid #10b981;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toast-msg.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* Section Card Box */
@@ -190,13 +450,98 @@
       padding-bottom: 0.6rem;
     }
 
-    /* Flight & Hotel Info Grid */
-    .info-grid {
+    /* Flight Alert & Notice Banner */
+    .flight-notice-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 5px solid var(--c-ocean);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .flight-notice-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--c-ocean-dark);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .flight-notice-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 1.1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.75rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--c-ink-2);
+    }
+    .flight-notice-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      line-height: 1.45;
+    }
+    .flight-notice-item strong {
+      color: var(--c-ink);
     }
 
+    /* 2-Column Side-by-Side Family Overview Container */
+    .family-columns-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .family-col-card {
+      background: var(--c-paper);
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      border-left: 6px solid var(--c-ocean);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .family-col-card-coral {
+      border-left-color: var(--c-coral);
+    }
+
+    .family-col-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px dashed var(--c-hairline);
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .family-col-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--c-ink);
+    }
+
+    .family-section-box {
+      background: #ffffff;
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-sm);
+      padding: 0.95rem;
+    }
+
+    .family-sub-block-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--c-ink-2);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Flight & Hotel Info Elements */
     .info-card {
       background: var(--c-paper);
       border: 1px solid var(--c-hairline);
@@ -249,6 +594,7 @@
       white-space: nowrap;
     }
     .hotel-dates-tbd { background: var(--c-coral-wash); color: var(--c-coral); }
+    .hotel-dates-yan { background: #fef2f2; color: #dc2626; }
     .hotel-details { font-size: 0.9rem; }
     .hotel-name { font-weight: 700; font-size: 0.95rem; }
 
@@ -410,6 +756,48 @@
     .tip-box-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--c-ink); }
     .tip-box-list { font-size: 0.875rem; color: var(--c-ink-2); padding-left: 1.1rem; }
     .tip-box-list li { margin-bottom: 0.3rem; }
+
+    /* Budget Table */
+    .budget-table-wrap { overflow-x: auto; margin-top: 1rem; }
+    .budget-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+    .budget-table th, .budget-table td { padding: 0.65rem 0.85rem; border-bottom: 1px solid var(--c-hairline); text-align: left; }
+    .budget-table th { background: var(--c-ocean-wash); color: var(--c-ocean-dark); font-weight: 700; font-size: 0.8rem; }
+    .budget-table tr:last-child td { border-bottom: none; font-weight: 800; background: #f1f5f9; }
+    .budget-table td:first-child { font-weight: 600; color: var(--c-ink-2); }
+
+    /* Transport Info Cards */
+    .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .transport-card { background: var(--c-paper); border: 1px solid var(--c-hairline); border-radius: var(--radius-md); padding: 1rem; }
+    .transport-card-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--c-ink); display: flex; align-items: center; gap: 0.35rem; }
+    .transport-card-list { font-size: 0.85rem; color: var(--c-ink-2); padding-left: 1.1rem; }
+    .transport-card-list li { margin-bottom: 0.3rem; }
+    .transport-highlight { background: var(--c-ocean-wash); color: var(--c-ocean-dark); font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.8rem; }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--c-ocean);
+      color: #fff;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { background: var(--c-ocean-dark); transform: translateY(-2px); }
   </style>
 </head>
 <body>
@@ -431,6 +819,7 @@
     <div class="tab-nav-container">
       <div class="tab-bar">
         <button class="tab-btn active" onclick="switchTab('overview')">📌 總覽</button>
+        <button class="tab-btn" onclick="switchTab('planner')">✨ 行程挑選器</button>
         <button class="tab-btn" onclick="switchTab('map-page')">🗺️ 地圖</button>
         <button class="tab-btn" onclick="switchTab('day1')">D1 (12/06)</button>
         <button class="tab-btn" onclick="switchTab('day2')">D2 (12/07)</button>
@@ -447,63 +836,158 @@
     <div id="tab-overview" class="tab-content active">
       <section class="section-box">
         <div class="section-title">✈️ 雙家庭航班時間對照與 7 天住宿階段</div>
-        <div class="info-grid">
-          <!-- Kai Kai Family Flight -->
-          <div class="info-card">
-            <div class="card-header-title">
-              <span>✈️ 凱凱家庭 (晚班機回)</span>
+
+        <!-- Quick Launcher to Itinerary Planner -->
+        <div style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border:1px solid #bfdbfe; border-radius:var(--radius-md); padding:0.9rem 1.2rem; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.75rem;">
+          <div>
+            <div style="font-weight:800; font-size:1rem; color:var(--c-ocean-dark); margin-bottom:0.2rem;">✨ 智能行程挑選器 ＆ LINE 一鍵轉傳工具已就緒！</div>
+            <div style="font-size:0.85rem; color:var(--c-ink-2);">支援從 KML 挑選景點美食、自由手打備註、各時段預設待定，即時自動排版支援一鍵複製轉傳 LINE 群組！</div>
+          </div>
+          <button class="btn-copy btn-copy-primary" style="padding:0.55rem 1.1rem; font-size:0.875rem; flex:0 0 auto;" onclick="switchTab('planner')">
+            🎛️ 開啟行程挑選器
+          </button>
+        </div>
+
+        <!-- Flight & Airport Important Notice Banner -->
+        <div class="flight-notice-banner">
+          <div class="flight-notice-title">
+            <span>📢 機場航廈、航班機型、報到時間與 48 小時免費選位重要提醒</span>
+          </div>
+          <div class="flight-notice-grid">
+            <div class="flight-notice-item">
+              <span>🏢</span>
+              <div><strong>桃園機場航廈：</strong><strong>第一航廈 (Terminal 1 / T1)</strong>（中華航空 CI186 / CI187 釜山航線）</div>
             </div>
-            <div class="flight-row">
-              <span class="flight-tag">去程 ‧ 12/06 (日)</span>
-              <div class="flight-time">15:40 TPE ➔ 18:50 PUS</div>
-              <div style="font-size: 0.8rem; color: var(--c-ink-3);">華航/大韓 CI/KE ‧ 2h 10m 直達</div>
+            <div class="flight-notice-item">
+              <span>✈️</span>
+              <div><strong>執飛主要機型：</strong><strong>空中巴士 Airbus A321neo</strong>（華航最新客機，全機配備 4K 螢幕與免費 WiFi 傳訊）</div>
             </div>
-            <hr style="border: 0; border-top: 1px dashed var(--c-hairline); margin: 0.55rem 0;">
-            <div class="flight-row">
-              <span class="flight-tag">回程 ‧ 12/12 (六)</span>
-              <div class="flight-time">19:50 PUS ➔ 21:30 TPE</div>
-              <div style="font-size: 0.8rem; color: var(--c-ink-3);">華航/大韓 CI/KE ‧ 2h 40m 直達</div>
+            <div class="flight-notice-item">
+              <span>💺</span>
+              <div><strong>48小時開放免費選位：</strong>起飛前 <strong>48 小時</strong> 開放網路預辦登機與劃位！<br><span style="color:var(--c-ocean-dark); font-weight:700;">去程 12/04 (五) 15:40 開放選位</span>（回程各自起飛前 48hr 開放）</div>
+            </div>
+            <div class="flight-notice-item">
+              <span>⏰</span>
+              <div><strong>機場現場 Check-in 時間：</strong>起飛前 <strong>2.5 ~ 3 小時</strong> 開櫃（去程約 <strong>12:40 ~ 13:10</strong> 開放現場報到），<strong>起飛前 60 分鐘截止報到/行李託運</strong></div>
             </div>
           </div>
+        </div>
 
-          <!-- Yan Yan Family Flight -->
-          <div class="info-card info-card-coral">
-            <div class="card-header-title">
-              <span>✈️ 妍妍家庭 (早班機回)</span>
+        <!-- 2-Column Side-by-Side Layout for Kai Kai & Yan Yan Families -->
+        <div class="family-columns-container">
+          <!-- Column 1: Kai Kai Family (Left Column) -->
+          <div class="family-col-card">
+            <div class="family-col-header">
+              <div class="family-col-title">
+                <span>👨‍👩‍👧‍👦 凱凱家庭 (晚班機回)</span>
+              </div>
+              <span class="badge badge-blue" style="font-size:0.75rem;">直飛華航 ‧ 2大1小</span>
             </div>
-            <div class="flight-row">
-              <span class="flight-tag">去程 ‧ 12/06 (日)</span>
-              <div class="flight-time">15:40 TPE ➔ 18:50 PUS</div>
-              <div style="font-size: 0.8rem; color: var(--c-ink-3);">華航/大韓 CI/KE ‧ 2h 10m 直達</div>
-            </div>
-            <hr style="border: 0; border-top: 1px dashed var(--c-hairline); margin: 0.55rem 0;">
-            <div class="flight-row">
-              <span class="flight-tag">回程 ‧ 12/12 (六)</span>
-              <div class="flight-time flight-time-coral">11:50 PUS ➔ 13:30 TPE</div>
-              <div style="font-size: 0.8rem; color: var(--c-ink-3);">華航/大韓 CI/KE ‧ 2h 40m 直達 (09:30 到機場)</div>
-            </div>
-          </div>
-
-          <!-- Hotel Card -->
-          <div class="info-card info-card-purple" style="grid-column: 1 / -1;">
-            <div class="card-header-title">
-              <span>🏨 7 天住宿兩階段規劃 (兩家相同)</span>
-            </div>
-            <div class="hotel-timeline" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem;">
-              <div class="hotel-item">
-                <div class="hotel-dates">12/06 - 12/10<br>(前 4 晚)</div>
-                <div class="hotel-details">
-                  <div class="hotel-name">東橫INN 釜山海雲台2號店</div>
-                  <div style="font-size: 0.825rem; color: var(--c-ink-2);">Toyoko Inn Busan Haeundae 2 (已預訂)</div>
-                  <div style="font-size: 0.775rem; color: var(--c-ink-3);">便利海景飯店，步行直達海雲臺沙灘與商圈</div>
+            
+            <!-- Flight Section Box -->
+            <div class="family-section-box">
+              <div class="family-sub-block-title">✈️ 航班規劃 (中華航空 ‧ 桃園機場 T1)</div>
+              <div class="flight-row">
+                <span class="flight-tag">去程 ‧ 12/06 (日) CI186</span>
+                <div class="flight-time">15:40 TPE (T1) ➔ 18:50 PUS</div>
+                <div style="font-size: 0.8rem; color: var(--c-ink-3);">
+                  機型：<strong>空中巴士 A321neo</strong> (2h 10m 直達)<br>
+                  <span style="color:var(--c-ocean-dark); font-weight:700;">12/04 15:40 開放 48hr 線上免費選位</span>
                 </div>
               </div>
-              <div class="hotel-item">
-                <div class="hotel-dates hotel-dates-tbd">12/10 - 12/12<br>(後 2 晚)</div>
-                <div class="hotel-details">
-                  <div class="hotel-name" style="color: var(--c-coral);">第二階段飯店</div>
-                  <div style="font-size: 0.825rem; color: var(--c-ink-2);">建議選西面或南浦商圈飯店</div>
-                  <div style="font-size: 0.775rem; color: var(--c-ink-3);">便利妍妍家早班機搭機場巴士/地鐵，也方便採買</div>
+              <hr style="border: 0; border-top: 1px dashed var(--c-hairline); margin: 0.5rem 0;">
+              <div class="flight-row">
+                <span class="flight-tag" style="background:#e0f2fe; color:#0369a1;">回程 ‧ 12/12 (六) CI187 (晚班機)</span>
+                <div class="flight-time">19:50 PUS ➔ 21:30 TPE (T1)</div>
+                <div style="font-size: 0.8rem; color: var(--c-ink-3);">
+                  機型：<strong>空中巴士 A321neo</strong> (2h 40m 直達)<br>
+                  <span style="color:var(--c-ocean-dark); font-weight:700;">12/10 19:50 開放選位 ‧ 17:00 抵達金海機場報到</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Section Box -->
+            <div class="family-section-box">
+              <div class="family-sub-block-title">🏨 7 天住宿規劃 (凱凱家 ‧ 共 6 晚)</div>
+              <div class="hotel-timeline">
+                <div class="hotel-item">
+                  <div class="hotel-dates">12/06 - 12/10<br>(前 4 晚)</div>
+                  <div class="hotel-details">
+                    <div class="hotel-name">東橫INN 釜山海雲台2號店</div>
+                    <div style="font-size: 0.8rem; color: var(--c-ink-2);">Toyoko Inn Busan Haeundae 2 (已預訂 ‧ 兩家同住)</div>
+                    <div style="font-size: 0.75rem; color: var(--c-ink-3);">海景第一排，步行直達沙灘與商圈</div>
+                  </div>
+                </div>
+                <div class="hotel-item">
+                  <div class="hotel-dates hotel-dates-tbd">12/10 - 12/12<br>(後 2 晚)</div>
+                  <div class="hotel-details">
+                    <div class="hotel-name" style="color: var(--c-coral);">市區飯店 (西面/南浦商圈)</div>
+                    <div style="font-size: 0.8rem; color: var(--c-ink-2);">凱凱家市區住宿 (待訂 ‧ 第5晚兩家同住，第6晚續住)</div>
+                    <div style="font-size: 0.75rem; color: var(--c-ink-3);">方便 D7 白天逛街採買，傍晚 17:00 前往機場搭 CI187</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Yan Yan Family (Right Column) -->
+          <div class="family-col-card family-col-card-coral">
+            <div class="family-col-header">
+              <div class="family-col-title">
+                <span style="color: #c2410c;">👨‍👩‍👧‍👦 妍妍家庭 (早班機回 ‧ 最後一晚自己住)</span>
+              </div>
+              <span class="badge badge-coral" style="font-size:0.75rem;">直飛 ‧ 2大1小</span>
+            </div>
+            
+            <!-- Flight Section Box -->
+            <div class="family-section-box">
+              <div class="family-sub-block-title" style="color:#c2410c;">✈️ 航班規劃 (去程 CI186 / 回程待確認)</div>
+              <div class="flight-row">
+                <span class="flight-tag">去程 ‧ 12/06 (日) CI186</span>
+                <div class="flight-time">15:40 TPE (T1) ➔ 18:50 PUS</div>
+                <div style="font-size: 0.8rem; color: var(--c-ink-3);">
+                  機型：<strong>空中巴士 A321neo</strong> (2h 10m 直達)<br>
+                  <span style="color:var(--c-ocean-dark); font-weight:700;">12/04 15:40 開放 48hr 線上免費選位</span>
+                </div>
+              </div>
+              <hr style="border: 0; border-top: 1px dashed var(--c-hairline); margin: 0.5rem 0;">
+              <div class="flight-row">
+                <span class="flight-tag" style="background:#fed7aa; color:#9a3412;">回程 ‧ 12/12 (六) 早班機 (班號待確認)</span>
+                <div class="flight-time flight-time-coral">11:50 PUS ➔ 13:30 TPE</div>
+                <div style="font-size: 0.8rem; color: var(--c-ink-3);">
+                  機型：<strong>待確認 TBD</strong> (常見 A321neo / B737 等 ‧ 2h 40m 直達)<br>
+                  <span style="color:#c2410c; font-weight:700;">12/10 11:50 開放選位 ‧ 08:30 退房 09:30 到金海機場</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hotel Section Box -->
+            <div class="family-section-box">
+              <div class="family-sub-block-title" style="color:#c2410c;">🏨 7 天住宿規劃 (妍妍家 ‧ 3 階段)</div>
+              <div class="hotel-timeline">
+                <div class="hotel-item">
+                  <div class="hotel-dates">12/06 - 12/10<br>(前 4 晚)</div>
+                  <div class="hotel-details">
+                    <div class="hotel-name">東橫INN 釜山海雲台2號店</div>
+                    <div style="font-size: 0.8rem; color: var(--c-ink-2);">Toyoko Inn Busan Haeundae 2 (已預訂 ‧ 兩家同住)</div>
+                    <div style="font-size: 0.75rem; color: var(--c-ink-3);">海景第一排，步行直達沙灘與商圈</div>
+                  </div>
+                </div>
+                <div class="hotel-item">
+                  <div class="hotel-dates hotel-dates-tbd">12/10 - 12/11<br>(第 5 晚)</div>
+                  <div class="hotel-details">
+                    <div class="hotel-name" style="color: var(--c-coral);">市區飯店 (西面/南浦商圈)</div>
+                    <div style="font-size: 0.8rem; color: var(--c-ink-2);">市區飯店 (待訂 ‧ 與凱凱家同住)</div>
+                    <div style="font-size: 0.75rem; color: var(--c-ink-3);">後兩晚的第一晚跟凱凱家一起住市區飯店</div>
+                  </div>
+                </div>
+                <div class="hotel-item">
+                  <div class="hotel-dates hotel-dates-yan">12/11 - 12/12<br>(第 6 晚)</div>
+                  <div class="hotel-details">
+                    <div class="hotel-name" style="color: #dc2626;">妍妍家自選獨立飯店 (最後一晚自己住)</div>
+                    <div style="font-size: 0.8rem; color: var(--c-ink-2);">妍妍家自選飯店 (待訂 ‧ 最後一晚分開自己住)</div>
+                    <div style="font-size: 0.75rem; color: var(--c-ink-3);">方便 12/12 早上 08:30 輕鬆退房出發前往金海機場</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -517,7 +1001,7 @@
         <div class="overview-days-grid">
           <div class="overview-day-card" onclick="switchTab('day1')">
             <div class="overview-day-title">D1 ‧ 12/06 (日)</div>
-            <div class="overview-day-bullets">18:50 抵達金海機場 ➔ 前往海雲臺入住東橫INN 2 ➔ 宵夜</div>
+            <div class="overview-day-bullets">18:50 抵達金海機場 ➔ 搭乘已預約 9 人座專車直達海雲臺 ➔ 入住東橫INN 2 ➔ 宵夜</div>
           </div>
           <div class="overview-day-card" onclick="switchTab('day2')">
             <div class="overview-day-title">D2 ‧ 12/07 (一)</div>
@@ -533,15 +1017,164 @@
           </div>
           <div class="overview-day-card" onclick="switchTab('day5')">
             <div class="overview-day-title">D5 ‧ 12/10 (四)</div>
-            <div class="overview-day-bullets">東橫INN 2 退房 ➔ 移動第二階段飯店 Check-in ➔ 市區景點待安排</div>
+            <div class="overview-day-bullets">東橫INN 2 退房 ➔ 兩家一同移動至市區飯店 Check-in 寄放行李 ➔ 市區景點</div>
           </div>
           <div class="overview-day-card" onclick="switchTab('day6')">
             <div class="overview-day-title">D6 ‧ 12/11 (五)</div>
-            <div class="overview-day-bullets">景點待討論安排（可參考「地圖」Tab 選擇甘川洞/松島/南浦）</div>
+            <div class="overview-day-bullets">市區景點待安排 ➔ 傍晚：妍妍家前往最後一晚獨立飯店入住（最後一晚自己住）</div>
           </div>
           <div class="overview-day-card" onclick="switchTab('day7')">
             <div class="overview-day-title">D7 ‧ 12/12 (六)</div>
-            <div class="overview-day-bullets">妍妍家: 08:30 退房 / 11:50 班機返台<br>凱凱家: 白天市區採買 / 19:50 班機返台</div>
+            <div class="overview-day-bullets">妍妍家: 08:30 退房 / 11:50 班機返台<br>凱凱家: 白天市區採買 / 19:50 CI187 返台</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Budget Overview Section -->
+      <section class="section-box">
+        <div class="section-title">💰 雙家庭旅費預算概估 (每家 2 大 1 小)</div>
+        <p style="margin-bottom: 0.75rem; color: var(--c-ink-2); font-size: 0.875rem;">
+          以下為粗估參考，實際價格依訂購時間與匯率浮動。匯率以 1 KRW ≈ 0.025 TWD 概估。
+        </p>
+        <div class="budget-table-wrap">
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>凱凱家庭 (估)</th>
+                <th>妍妍家庭 (估)</th>
+                <th>備註</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>✈️ 機票 (來回)</td>
+                <td>NT$30,000 ~ 36,000</td>
+                <td>NT$30,000 ~ 36,000</td>
+                <td>華航/大韓 直飛 ‧ 2大1小</td>
+              </tr>
+              <tr>
+                <td>🏨 住宿 前4晚 (東橫INN 2)</td>
+                <td>NT$6,500 ~ 7,800</td>
+                <td>NT$6,500 ~ 7,800</td>
+                <td>已預訂 ‧ 含免費早餐</td>
+              </tr>
+              <tr>
+                <td>🏨 住宿 後2晚 (西面/南浦)</td>
+                <td>NT$3,500 ~ 5,000</td>
+                <td>NT$3,500 ~ 5,000</td>
+                <td>待訂 ‧ 依飯店選擇而定</td>
+              </tr>
+              <tr>
+                <td>🚋 交通 (D1接送+T-money+地鐵)</td>
+                <td>NT$2,500 ~ 3,500</td>
+                <td>NT$2,500 ~ 3,500</td>
+                <td>含 D1 9人座專車分攤(約NT$1,000/家)+市區地鐵</td>
+              </tr>
+              <tr>
+                <td>🎡 門票 (樂天/水族館/膠囊列車)</td>
+                <td>NT$3,000 ~ 5,000</td>
+                <td>NT$3,000 ~ 5,000</td>
+                <td>依選擇景點調整</td>
+              </tr>
+              <tr>
+                <td>🍲 餐費 (7天 ‧ 3餐/日)</td>
+                <td>NT$7,000 ~ 10,000</td>
+                <td>NT$7,000 ~ 10,000</td>
+                <td>每餐約 NT$300~500/家</td>
+              </tr>
+              <tr>
+                <td>🛍️ 購物/伴手禮/零食</td>
+                <td>NT$3,000 ~ 5,000</td>
+                <td>NT$3,000 ~ 5,000</td>
+                <td>依個人需求</td>
+              </tr>
+              <tr>
+                <td>📱 通訊 (eSIM/WiFi)</td>
+                <td>NT$300 ~ 500</td>
+                <td>NT$300 ~ 500</td>
+                <td>7天 eSIM 吃到飽</td>
+              </tr>
+              <tr>
+                <td>💰 每家合計估算</td>
+                <td style="color: var(--c-ocean-dark);">NT$55,300 ~ 72,300</td>
+                <td style="color: var(--c-coral);">NT$55,300 ~ 72,300</td>
+                <td>妍妍家回程較早可省半天餐費</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: ITINERARY PLANNER & LINE COPY TOOL -->
+    <div id="tab-planner" class="tab-content">
+      <section class="section-box">
+        <div class="section-title">
+          <span>✨ 7 日親子自由行 ‧ 智能行程挑選器 ＆ LINE 文字轉傳工具</span>
+        </div>
+        <p style="margin-bottom: 1.25rem; color: var(--c-ink-2); font-size: 0.9rem;">
+          點擊上方天數切換，從下拉選單直接挑選 <strong>11 大 KML 景點、必吃美食與交通節點</strong>，或直接於文字框打字修改！右側即時自動排版，點擊按鈕即可<strong>一鍵複製完整 LINE 訊息</strong>轉傳至群組！每個項目均可自由設為「待定」。
+        </p>
+
+        <div class="planner-grid">
+          <!-- Left Column: Form & Pickers -->
+          <div>
+            <!-- Day Selector Bar -->
+            <div class="planner-day-nav" id="plannerDayNav">
+              <button class="planner-day-btn active" onclick="selectPlannerDay('day1')">D1 (12/06)</button>
+              <button class="planner-day-btn" onclick="selectPlannerDay('day2')">D2 (12/07)</button>
+              <button class="planner-day-btn" onclick="selectPlannerDay('day3')">D3 (12/08)</button>
+              <button class="planner-day-btn" onclick="selectPlannerDay('day4')">D4 (12/09)</button>
+              <button class="planner-day-btn" onclick="selectPlannerDay('day5')">D5 (12/10)</button>
+              <button class="planner-day-btn" onclick="selectPlannerDay('day6')">D6 (12/11)</button>
+              <button class="planner-day-btn" onclick="selectPlannerDay('day7')">D7 (12/12)</button>
+              <button class="planner-day-btn" style="background:#e0f2fe; color:#0369a1;" onclick="selectPlannerDay('all')">📅 7天總覽</button>
+            </div>
+
+            <!-- Current Day Title & Hotel Tag -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem; padding:0.6rem 0.85rem; background:#ffffff; border:1px solid var(--c-hairline); border-radius:var(--radius-sm); flex-wrap:wrap; gap:0.4rem;">
+              <div style="font-weight:800; font-size:0.95rem; color:var(--c-ink);" id="currentDayTitleDisplay">D1 (12/06 週日) ‧ 抵達釜山</div>
+              <div style="font-size:0.8rem; font-weight:700; color:var(--c-ocean-dark);" id="currentDayHotelDisplay">🏨 東橫INN 釜山海雲台2號店</div>
+            </div>
+
+            <!-- 6 Slots Form -->
+            <div class="slot-list" id="slotListContainer">
+              <!-- Rendered dynamically by JS for smooth updates -->
+            </div>
+          </div>
+
+          <!-- Right Column: Live Formatted Text Preview & Copy Actions -->
+          <div>
+            <div class="preview-card">
+              <div class="preview-header">
+                <div class="preview-title">
+                  <span>📱 LINE 轉傳文字預覽</span>
+                </div>
+                <span style="font-size:0.75rem; color:#94a3b8;">即時同步更新</span>
+              </div>
+
+              <div class="preview-text-box" id="plannerLivePreviewText">
+                <!-- Live generated preview text -->
+              </div>
+
+              <div class="preview-actions">
+                <button class="btn-copy btn-copy-primary" onclick="copyPlannerText('current')">
+                  📋 複製當日行程文字 (LINE 轉傳)
+                </button>
+                <button class="btn-copy btn-copy-secondary" onclick="copyPlannerText('all')">
+                  📑 複製 7 天完整行程文字 (LINE 轉傳)
+                </button>
+                <div class="action-btn-row">
+                  <button class="btn-copy btn-copy-outline" onclick="loadPlannerPreset()">
+                    💡 載入精選行程範本
+                  </button>
+                  <button class="btn-copy btn-copy-outline" onclick="clearPlannerCurrentDay()">
+                    🔄 重設當日為待定
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -550,9 +1183,9 @@
     <!-- TAB 2: KML MAP -->
     <div id="tab-map-page" class="tab-content">
       <section class="section-box">
-        <div class="section-title">🗺️ 釜山慶州 KML 實景互動地圖</div>
+        <div class="section-title">🗺️ 釜山慶州 KML 實景互動地圖 (雙家庭 17 大精選點位)</div>
         <p style="margin-bottom: 1rem; color: var(--c-ink-2); font-size: 0.9rem;">
-          地圖已匯入我們的 **11 個精選景點**（附帶星級評分、實景圖片與 20 字介紹）以及 **4 大半透明彩色活動區域**。點擊左側卡片地圖會自動飛躍！
+          地圖已同步匯入<strong>老婆與朋友新增的 17 個精選點位</strong>（包含西面活烤海鰻、老宅邸燒肉、螞蟻家章腸蝦、市民公園與 Running Man 體驗館等，附帶星級評分、實景圖片與介紹）以及 <strong>4 大半透明彩色活動區域</strong>。點擊左側卡片地圖會自動飛躍！
         </p>
         <div class="map-grid">
           <div class="sidebar" id="place-sidebar"></div>
@@ -570,15 +1203,28 @@
         <div class="timeline">
           <article class="timeline-card">
             <div class="timeline-step">☀️</div>
-            <div class="timeline-time">下午 (Afternoon) ‧ 15:40 - 18:50</div>
-            <div class="timeline-title">搭機前往釜山金海機場 (CI/KE)</div>
-            <div class="timeline-desc">15:40 桃園起飛，18:50 抵達金海機場，辦理入境與領取交通卡。</div>
+            <div class="timeline-time">下午 (Afternoon) ‧ 12:40 - 18:50</div>
+            <div class="timeline-title">桃園機場第一航廈 (T1) 報到 ➔ 搭乘 CI186 (A321neo) 抵達釜山</div>
+            <div class="timeline-desc">
+              <strong>12:40 ~ 13:10</strong> 抵達桃園機場<strong>第一航廈 (T1)</strong> 辦理櫃台報到託運（48hr 前 12/04 15:40 已開放線上選位；起飛前 60 分鐘 14:40 截止櫃台報到）。搭乘華航最新<strong>空中巴士 A321neo</strong> 客機。<br>
+              <strong>15:40</strong> 起飛 ➔ <strong>18:50</strong> 抵達金海機場國際線航廈，辦理入境通關。
+            </div>
+          </article>
+          <article class="timeline-card">
+            <div class="timeline-step">🚐</div>
+            <div class="timeline-time">晚上 (Evening) ‧ 19:30 - 20:30</div>
+            <div class="timeline-title">搭乘【已預約 9 人座專車】直達海雲臺飯店</div>
+            <div class="timeline-desc">
+              <strong>已完成機場接送預約</strong>（車型：Hyundai Grand Starex 9 人座廂型車）。<br>
+              司機於金海機場接機，雙家庭（4大2小）直達【東橫INN 釜山海雲台2號店】門口，省去帶小孩與大行李轉乘地鐵的辛苦（車程約 45~50 分鐘）。<br>
+              <span style="font-size:0.8rem; color:var(--c-coral); font-weight:700;">⚠️ 行李提醒：後車廂可載 6 件行李（行李超過 28 吋算 2 件，建議大家行李箱控制在 24~28 吋內）。</span>
+            </div>
           </article>
           <article class="timeline-card">
             <div class="timeline-step">🌙</div>
-            <div class="timeline-time">晚上 (Evening) ‧ 19:30 - 22:00</div>
-            <div class="timeline-title">前往海雲臺入住東橫INN 2 飯店</div>
-            <div class="timeline-desc">入住【東橫INN 釜山海雲台2號店】，享用海雲臺豬肉湯飯宵夜。</div>
+            <div class="timeline-time">晚上 (Night) ‧ 20:30 - 22:30</div>
+            <div class="timeline-title">入住東橫INN 2 ➔ 享用海雲臺豬肉湯飯宵夜</div>
+            <div class="timeline-desc">辦理入住放好行李後，步行至海雲臺大街商圈或傳統市場享用道地釜山豬肉湯飯、糖餅與宵夜美食。</div>
           </article>
         </div>
 
@@ -600,8 +1246,11 @@
           D2 (12/07 週一) ‧ 海雲臺周邊
         </div>
         <div class="clean-placeholder-box">
-          💬 本日行程尚待大家共同討論安排<br>
-          <span style="font-size:0.825rem; color:var(--c-ink-3);">（可切換至「🗺️ 地圖」Tab 查看海雲臺膠囊列車、水族館與 Club D Oasis 景點卡片）</span>
+          <div style="font-weight:700; color:var(--c-ink); margin-bottom:0.4rem;">💬 本日景點行程尚待大家共同討論安排</div>
+          <p style="font-size:0.825rem; color:var(--c-ink-3); margin-bottom:0.75rem;">（可參考「🗺️ 地圖」查看膠囊列車、水族館與 Club D Oasis 高空泳池）</p>
+          <button class="btn-copy btn-copy-primary" style="padding:0.45rem 1rem; font-size:0.8rem; margin: 0 auto; display:inline-flex;" onclick="switchTab('planner'); selectPlannerDay('day2');">
+            ✨ 開啟挑選器安排 D2 行程 ＆ 複製文字
+          </button>
         </div>
       </section>
     </div>
@@ -613,8 +1262,11 @@
           D3 (12/08 週二) ‧ 慶州古都
         </div>
         <div class="clean-placeholder-box">
-          💬 本日行程尚待大家共同討論安排<br>
-          <span style="font-size:0.825rem; color:var(--c-ink-3);">（可切換至「🗺️ 地圖」Tab 查看皇理團路、大陵苑與月精橋景點卡片）</span>
+          <div style="font-weight:700; color:var(--c-ink); margin-bottom:0.4rem;">💬 本日景點行程尚待大家共同討論安排</div>
+          <p style="font-size:0.825rem; color:var(--c-ink-3); margin-bottom:0.75rem;">（可參考「🗺️ 地圖」查看皇理團路文青街、大陵苑新羅古墓與月精橋夕陽點燈）</p>
+          <button class="btn-copy btn-copy-primary" style="padding:0.45rem 1rem; font-size:0.8rem; margin: 0 auto; display:inline-flex;" onclick="switchTab('planner'); selectPlannerDay('day3');">
+            ✨ 開啟挑選器安排 D3 行程 ＆ 複製文字
+          </button>
         </div>
       </section>
     </div>
@@ -626,8 +1278,11 @@
           D4 (12/09 週三) ‧ 機張 / 主題樂園
         </div>
         <div class="clean-placeholder-box">
-          💬 本日行程尚待大家共同討論安排<br>
-          <span style="font-size:0.825rem; color:var(--c-ink-3);">（可切換至「🗺️ 地圖」Tab 查看釜山樂天世界、龍宮寺與 Centum City 景點卡片）</span>
+          <div style="font-weight:700; color:var(--c-ink); margin-bottom:0.4rem;">💬 本日景點行程尚待大家共同討論安排</div>
+          <p style="font-size:0.825rem; color:var(--c-ink-3); margin-bottom:0.75rem;">（可參考「🗺️ 地圖」查看釜山樂天世界、海東龍宮寺與 Centum City 百貨）</p>
+          <button class="btn-copy btn-copy-primary" style="padding:0.45rem 1rem; font-size:0.8rem; margin: 0 auto; display:inline-flex;" onclick="switchTab('planner'); selectPlannerDay('day4');">
+            ✨ 開啟挑選器安排 D4 行程 ＆ 複製文字
+          </button>
         </div>
       </section>
     </div>
@@ -636,18 +1291,21 @@
     <div id="tab-day5" class="tab-content">
       <section class="section-box">
         <div class="section-title">
-          D5 (12/10 週四) ‧ 退房換飯店 ➔ 市區
+          D5 (12/10 週四) ‧ 退房海雲臺 ➔ 兩家同住市區飯店 Check-in
         </div>
         <div class="timeline">
           <article class="timeline-card">
             <div class="timeline-step">🌅</div>
             <div class="timeline-time">早上 (Morning) ‧ 10:00 - 12:00</div>
-            <div class="timeline-title">退房東橫INN 2 ➔ 移動至市區第二階段飯店</div>
-            <div class="timeline-desc">辦理東橫INN 2 退房，移動至第二階段飯店（建議西面或南浦商圈）Check-in 寄放行李。</div>
+            <div class="timeline-title">退房東橫INN 2 ➔ 雙家庭一同前往市區第二階段飯店</div>
+            <div class="timeline-desc">辦理東橫INN 2 退房。雙家庭一同前往市區飯店（建議西面或南浦商圈）Check-in 寄放行李（第 5 晚兩家同住市區飯店）。</div>
           </article>
         </div>
         <div class="clean-placeholder-box" style="margin-top: 1rem;">
-          💬 午後與晚上行程尚待大家共同討論安排
+          <div style="font-weight:700; color:var(--c-ink); margin-bottom:0.4rem;">💬 午後與晚上市區景點尚待大家共同討論安排</div>
+          <button class="btn-copy btn-copy-primary" style="padding:0.45rem 1rem; font-size:0.8rem; margin: 0 auto; display:inline-flex;" onclick="switchTab('planner'); selectPlannerDay('day5');">
+            ✨ 開啟挑選器安排 D5 行程 ＆ 複製文字
+          </button>
         </div>
       </section>
     </div>
@@ -656,11 +1314,24 @@
     <div id="tab-day6" class="tab-content">
       <section class="section-box">
         <div class="section-title">
-          D6 (12/11 週五) ‧ 釜山市區 / 老街
+          D6 (12/11 週五) ‧ 釜山市區景點 ➔ 妍妍家分流換最後一晚飯店
         </div>
         <div class="clean-placeholder-box">
-          💬 本日行程尚待大家共同討論安排<br>
-          <span style="font-size:0.825rem; color:var(--c-ink-3);">（可切換至「🗺️ 地圖」Tab 查看甘川洞文化村、松島纜車與南浦洞景點卡片）</span>
+          <div style="font-weight:700; color:var(--c-ink); margin-bottom:0.4rem;">💬 白天行程尚待大家共同討論安排</div>
+          <p style="font-size:0.825rem; color:var(--c-ink-3); margin-bottom:0.75rem;">（可參考「🗺️ 地圖」查看甘川洞文化村、松島海上纜車與南浦洞商圈）</p>
+          <button class="btn-copy btn-copy-primary" style="padding:0.45rem 1rem; font-size:0.8rem; margin: 0 auto; display:inline-flex;" onclick="switchTab('planner'); selectPlannerDay('day6');">
+            ✨ 開啟挑選器安排 D6 行程 ＆ 複製文字
+          </button>
+        </div>
+        <div class="timeline" style="margin-top: 1rem;">
+          <article class="timeline-card" style="border-left: 4px solid var(--c-coral);">
+            <div class="timeline-step" style="background:var(--c-coral);">🏨</div>
+            <div class="timeline-time">傍晚/晚上 ‧ 17:30 - 19:00</div>
+            <div class="timeline-title">妍妍家分流換飯店（最後一晚自己住）</div>
+            <div class="timeline-desc">
+              妍妍家前往最後一晚自選獨立飯店辦理 Check-in（方便明日 D7 早上 08:30 輕鬆退房前往機場）；凱凱家續住原市區飯店。
+            </div>
+          </article>
         </div>
       </section>
     </div>
@@ -676,22 +1347,22 @@
           <!-- Yan Yan Family Day 7 -->
           <div class="family-split-box family-yan">
             <div style="font-weight: 800; font-size: 1.05rem; color: #c2410c; margin-bottom: 0.65rem;">
-              👨‍👩‍👧‍👦 妍妍家庭 (早班機行程 11:50 起飛)
+              👨‍👩‍👧‍👦 妍妍家庭 (早班機 11:50 ‧ 最後一晚自己住)
             </div>
             <div class="timeline" style="padding-left: 1.5rem;">
               <article class="timeline-card" style="padding: 0.8rem;">
                 <div class="timeline-time">🌅 08:30 AM ‧ 早上</div>
-                <div class="timeline-title" style="font-size: 0.95rem;">飯店辦理退房</div>
-                <div class="timeline-desc">整理行李與退稅單據，搭車前往金海機場</div>
+                <div class="timeline-title" style="font-size: 0.95rem;">妍妍家飯店辦理退房</div>
+                <div class="timeline-desc">整理行李與退稅單據，從最後一晚自選飯店出發前往金海機場</div>
               </article>
               <article class="timeline-card" style="padding: 0.8rem;">
                 <div class="timeline-time">☀️ 09:30 AM - 11:50 AM ‧ 上午</div>
-                <div class="timeline-title" style="font-size: 0.95rem;">機場報到 ➔ 11:50 起飛</div>
-                <div class="timeline-desc">辦理報到退稅，搭乘 CI/KE 航班返台</div>
+                <div class="timeline-title" style="font-size: 0.95rem;">國際線航廈報到 ➔ 11:50 起飛</div>
+                <div class="timeline-desc">09:30 抵達辦理報到託運與退稅，搭乘早班班機返台</div>
               </article>
               <article class="timeline-card" style="padding: 0.8rem;">
                 <div class="timeline-time">🌙 13:30 PM ‧ 下午</div>
-                <div class="timeline-title" style="font-size: 0.95rem;">抵達桃園國際機場</div>
+                <div class="timeline-title" style="font-size: 0.95rem;">抵達台灣桃園國際機場</div>
                 <div class="timeline-desc">順利返抵台灣回到溫馨的家</div>
               </article>
             </div>
@@ -700,18 +1371,18 @@
           <!-- Kai Kai Family Day 7 -->
           <div class="family-split-box family-kai">
             <div style="font-weight: 800; font-size: 1.05rem; color: #1e40af; margin-bottom: 0.65rem;">
-              👨‍👩‍👧‍👦 凱凱家庭 (晚班機行程 19:50 起飛)
+              👨‍👩‍👧‍👦 凱凱家庭 (晚班機 19:50 CI187 ‧ 市區採買)
             </div>
             <div class="timeline" style="padding-left: 1.5rem;">
               <article class="timeline-card" style="padding: 0.8rem;">
                 <div class="timeline-time">🌅 10:00 AM - 16:30 PM ‧ 白天</div>
-                <div class="timeline-title" style="font-size: 0.95rem;">飯店寄行李 ➔ 市區採買/享用午餐</div>
-                <div class="timeline-desc">最後市區逛街採買，下午取行李前往機場</div>
+                <div class="timeline-title" style="font-size: 0.95rem;">市區飯店寄行李 ➔ 市區採買/午餐</div>
+                <div class="timeline-desc">最後市區逛街採買，下午 16:30 取行李前往金海機場</div>
               </article>
               <article class="timeline-card" style="padding: 0.8rem;">
                 <div class="timeline-time">🌙 17:00 PM - 19:50 PM ‧ 晚上</div>
-                <div class="timeline-title" style="font-size: 0.95rem;">機場報到 ➔ 19:50 起飛</div>
-                <div class="timeline-desc">21:30 順利返抵桃園國際機場</div>
+                <div class="timeline-title" style="font-size: 0.95rem;">金海機場報到 ➔ 19:50 搭乘 CI187 (A321neo) 起飛</div>
+                <div class="timeline-desc">21:30 順利返抵桃園國際機場<strong>第一航廈 (T1)</strong></div>
               </article>
             </div>
           </div>
@@ -771,9 +1442,87 @@
           </div>
         </div>
       </section>
+
+        <!-- Transportation Guide Section -->
+      <section class="section-box">
+        <div class="section-title">🚍 機場報到與交通路線指南</div>
+        <div class="transport-grid">
+          <div class="transport-card">
+            <div class="transport-card-title">✈️ 航廈、機型與 Check-in 須知</div>
+            <ul class="transport-card-list">
+              <li><strong>桃園機場航廈：</strong><span class="transport-highlight">第一航廈 (Terminal 1 / T1)</span>（華航 CI186 / CI187）</li>
+              <li><strong>執飛主力機型：</strong><span class="transport-highlight">空中巴士 A321neo</span>（華航最新客機，全機 4K 螢幕/免費 WiFi 傳訊）</li>
+              <li><strong>48hr 線上選位：</strong>起飛前 <span class="transport-highlight">48 小時</span> 開放免費預辦登機與劃位（去程 12/04 15:40 開跑）</li>
+              <li><strong>現場開櫃時間：</strong>起飛前 <span class="transport-highlight">2.5 ~ 3 小時</span> 開放報到（去程約 12:40~13:10）</li>
+              <li><strong>報到截止時間：</strong>起飛前 <span class="transport-highlight">60 分鐘</span> 截止報到與行李託運（登機門起飛前 20 分鐘關閉）</li>
+              <li><strong>釜山金海機場：</strong><span class="transport-highlight">國際線航廈</span>（出境大廳 2 樓）</li>
+            </ul>
+          </div>
+
+          <div class="transport-card" style="border-left: 4px solid var(--c-ocean);">
+            <div class="transport-card-title">🚐 金海機場 → 海雲臺 (已預約 9 人座專車)</div>
+            <ul class="transport-card-list">
+              <li><strong>專車接送 (已預約)：</strong><span class="transport-highlight">約 45~50 分 ‧ 直達東橫INN 2 門口</span></li>
+              <li><strong>預約車型：</strong>Hyundai Grand Starex 9 人座（限乘 8 人含兒童，雙家庭共 6 人座乘空間超寬敞）</li>
+              <li><strong>行李額度：</strong>後車廂限載 <span class="transport-highlight">6 件行李</span>（⚠️ 超過 28 吋算 2 件，建議帶 24~28 吋）</li>
+              <li><strong>費用：</strong>約 NT$ 2,000（2 家分攤每家僅約 NT$ 1,000，免去帶長輩小孩拖行李擠地鐵）</li>
+              <li>💡 替代方式參考：地鐵約 70 分 (需轉線)、機場巴士約 60 分</li>
+            </ul>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-card-title">🚅 海雲臺 → 慶州 (一日遊)</div>
+            <ul class="transport-card-list">
+              <li><strong>KTX (最快)：</strong>釜山站 → 新慶州站，<span class="transport-highlight">約 30 分 ‧ ₩11,900</span></li>
+              <li><strong>高速巴士：</strong>釜山綜合巴士站 → 慶州巴士站，<span class="transport-highlight">約 50 分 ‧ ₩5,600</span></li>
+              <li>💡 KTX 可用 Korail App 提前訂票，新慶州站到市區需轉巴士約 20 分</li>
+              <li>💡 慶州市區景點集中，到站後可步行或搭公車/計程車</li>
+            </ul>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-card-title">🚇 釜山市區地鐵常用路線</div>
+            <ul class="transport-card-list">
+              <li><strong>海雲臺 → 西面：</strong>2 號線直達，<span class="transport-highlight">約 25 分 ‧ ₩1,500</span></li>
+              <li><strong>海雲臺 → 南浦洞：</strong>2 號線 → 1 號線 (西面轉)，<span class="transport-highlight">約 40 分 ‧ ₩1,500</span></li>
+              <li><strong>海雲臺 → Centum City：</strong>2 號線直達 1 站，<span class="transport-highlight">約 5 分 ‧ ₩1,400</span></li>
+              <li><strong>西面 → 甘川洞文化村：</strong>1 號線 → 土城站轉公車，<span class="transport-highlight">約 35 分</span></li>
+            </ul>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-card-title">💳 T-money 交通卡須知</div>
+            <ul class="transport-card-list">
+              <li><strong>購卡地點：</strong>機場便利商店 (CU/GS25)、地鐵站售票機</li>
+              <li><strong>卡片費用：</strong><span class="transport-highlight">₩2,500 (空卡)</span>，另外加值</li>
+              <li><strong>建議加值：</strong>每人 7 天建議加值 <span class="transport-highlight">₩50,000 ~ 70,000</span></li>
+              <li><strong>適用範圍：</strong>地鐵、公車、計程車、便利商店皆可使用</li>
+              <li>💡 6 歲以下兒童免費搭乘地鐵/公車（需出示護照）</li>
+              <li>💡 離境前可在便利商店退還餘額</li>
+            </ul>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-card-title">🏨 退房日：飯店 → 金海機場</div>
+            <ul class="transport-card-list">
+              <li><strong>妍妍家 (早班 11:50)：</strong>建議 08:30 退房 → 09:30 前抵達機場</li>
+              <li>　路線：飯店 → 地鐵/巴士 → 金海機場 (預留 60~90 分)</li>
+              <li><strong>凱凱家 (晚班 19:50)：</strong>建議 16:30 退房 → 17:30 前抵達機場</li>
+              <li>　路線：飯店寄行李逛市區 → 取行李 → 機場</li>
+              <li>💡 西面/南浦飯店搭地鐵到機場約 40~50 分</li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </div>
 
   </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到頂部">↑</button>
+
+  <!-- Floating Toast Notification -->
+  <div id="toastMessage" class="toast-msg">✅ 行程文字已複製到剪貼簿！可直接貼上 LINE 轉傳</div>
 
   <script>
     function switchTab(tabId) {
@@ -791,18 +1540,428 @@
       }
     }
 
+    // ==========================================
+    // 🎛️ ITINERARY PLANNER & LINE TEXT GENERATOR
+    // ==========================================
+    const plannerCategories = [
+      {
+        group: "💡 常用狀態與備註",
+        items: [
+          "待定 (大家共同討論安排)",
+          "自理 / 機場機上餐點",
+          "回飯店休息放鬆",
+          "自由活動 / 逛街採買"
+        ]
+      },
+      {
+        group: "🌊 海雲臺海岸線 (KML 景點 & 美食)",
+        items: [
+          "海雲臺藍線公園 尾浦站 (膠囊列車 尾浦➔青沙浦)",
+          "SEA LIFE 釜山水族館",
+          "Club D Oasis (高空無邊際泳池 & 奢華汗蒸幕)",
+          "풍천만민물장어 海雲臺總店 (迎月路炭火烤鰻魚)",
+          "海雲臺海水浴場沙灘漫步",
+          "The Bay 101 絕美夜景",
+          "冬柏島海邊木棧道步道"
+        ]
+      },
+      {
+        group: "🏯 慶州歷史古蹟 (KML 景點)",
+        items: [
+          "皇理團路 (文青韓屋街區散策)",
+          "大陵苑 (新羅古墓公園 & 天馬塚)",
+          "慶州 月精橋 (絕美夕陽與夜間點燈)",
+          "瞻星台 & 東宮與月池 (雁鴨池夜景)",
+          "佛國寺 & 石窟庵"
+        ]
+      },
+      {
+        group: "🎡 機張 / 主題樂園 (KML 景點)",
+        items: [
+          "釜山樂天世界冒險樂園 (城堡戶外樂園)",
+          "海東龍宮寺 (韓國海邊峭壁歷史古剎)",
+          "樂天 Premium Outlets 機張店",
+          "Skyline Luge 釜山斜坡滑車",
+          "機張市場 (現挑現蒸雪蟹海鮮街)"
+        ]
+      },
+      {
+        group: "🛍️ 西面 / 南浦 / 影島 / 市區 (KML 景點 & 親子樂園)",
+        items: [
+          "Running Man Busan (西面三井塔室內闖關樂園)",
+          "釜山市民公園 (超大親子綠地草坪與兒童遊樂區)",
+          "新世界百貨 Centum City店 (Spa Land 頂級汗蒸幕)",
+          "ARTE MUSEUM Busan (影島沉浸式光影展)",
+          "甘川洞文化村 (小王子彩繪村)",
+          "松島海上纜車 & 松島龍宮雲橋",
+          "西面商圈地下街 & 田浦咖啡街",
+          "南浦洞商圈 & BIFF 廣場",
+          "札嘎其海鮮市場",
+          "釜山鑽石塔 / 龍頭山公園",
+          "影島白淺灘文化村"
+        ]
+      },
+      {
+        group: "🍲 釜山必吃道地美食 (含老婆朋友精選)",
+        items: [
+          "Jangduk Eels (장덕장어 西面直營店 活烤海鰻)",
+          "老宅邸 燒肉 (田浦人氣老宅韓屋熟成烤肉)",
+          "螞蟻家（西面店）개미집 (傳奇辣炒章腸蝦)",
+          "東橫INN 免費豐富早餐",
+          "海雲臺極品豬肉湯飯 / 密陽純豆腐",
+          "海雲臺烤盲鰻 / 韓牛烤肉",
+          "海雲臺傳統市場小吃 (黑糖餅/魚板串)",
+          "青沙浦海邊烤貝 / 烤蛤蜊拉麵",
+          "慶州十角餅 (超濃郁拉絲起司餡)",
+          "西面松亭三代豬肉湯飯 (豬肉湯飯一條街)",
+          "機張市場現蒸大蟹海鮮大餐",
+          "札嘎其市場現切新鮮生魚片",
+          "橋村炸雞 (Kyochon) / BHC 炸雞宵夜"
+        ]
+      },
+      {
+        group: "✈️ 機場交通與飯店入住",
+        items: [
+          "桃園機場第一航廈 (T1) 報到 ➔ 搭乘 CI186 (A321neo)",
+          "金海機場搭乘【已預約 9 人座專車】直達海雲臺飯店",
+          "東橫INN 2 辦理退房 ➔ 移動至市區飯店 Check-in 寄放行李",
+          "妍妍家分流換最後一晚自選飯店 Check-in (自己住)",
+          "妍妍家 08:30 退房 ➔ 09:30 抵達金海機場 ➔ 11:50 早班機返台",
+          "凱凱家市區採買 ➔ 17:00 抵達金海機場 ➔ 19:50 CI187 返台"
+        ]
+      }
+    ];
+
+    const plannerPresetTemplate = {
+      day1: {
+        name: "D1 ‧ 12/06 (日) 抵達釜山",
+        hotel: "東橫INN 釜山海雲台2號店 (兩家同住)",
+        breakfast: "台灣桃園機場 / 自理",
+        morning: "待定 (大家共同討論安排)",
+        lunch: "桃園機場第一航廈 (T1) / 機上輕食",
+        afternoon: "15:40 桃機 T1 搭乘 CI186 (A321neo) 直飛釜山 (18:50 抵達金海機場)",
+        dinner: "金海機場搭乘【已預約 9 人座專車】直達海雲臺飯店 (車程約 45 分)",
+        evening: "入住東橫INN 2 ➔ 海雲臺極品豬肉湯飯 / 市場宵夜"
+      },
+      day2: {
+        name: "D2 ‧ 12/07 (一) 海雲臺周邊",
+        hotel: "東橫INN 釜山海雲台2號店 (兩家同住)",
+        breakfast: "東橫INN 免費豐富早餐",
+        morning: "海雲臺藍線公園 尾浦站 (膠囊列車 尾浦➔青沙浦)",
+        lunch: "青沙浦海邊烤貝 / 烤蛤蜊拉麵",
+        afternoon: "SEA LIFE 釜山水族館 / Club D Oasis 高空泳池",
+        dinner: "海雲臺烤盲鰻 / 韓牛烤肉",
+        evening: "The Bay 101 絕美夜景 / 海雲臺沙灘散步"
+      },
+      day3: {
+        name: "D3 ‧ 12/08 (二) 慶州古都一日遊",
+        hotel: "東橫INN 釜山海雲台2號店 (兩家同住)",
+        breakfast: "東橫INN 免費豐富早餐",
+        morning: "搭乘 KTX/包車前往慶州 ➔ 大陵苑 (新羅古墓天馬塚)",
+        lunch: "皇理團路文青韓屋美食 / 慶州十角餅 (拉絲起司餡)",
+        afternoon: "皇理團路散策 ➔ 瞻星台 & 東宮與月池",
+        dinner: "慶州傳統韓定食料理",
+        evening: "慶州 月精橋 (夕陽與夜間點燈) ➔ 返回海雲臺"
+      },
+      day4: {
+        name: "D4 ‧ 12/09 (三) 機張樂園 / 東釜山",
+        hotel: "東橫INN 釜山海雲台2號店 (兩家同住)",
+        breakfast: "東橫INN 免費豐富早餐",
+        morning: "釜山樂天世界冒險樂園 / Skyline Luge 滑車",
+        lunch: "機張市場現蒸大蟹海鮮大餐",
+        afternoon: "海東龍宮寺 (海邊峭壁古剎) / 樂天 Premium Outlet 購物",
+        dinner: "新世界百貨 Centum City 美食街",
+        evening: "Spa Land 頂級汗蒸幕體驗 ➔ 回飯店休息"
+      },
+      day5: {
+        name: "D5 ‧ 12/10 (四) 海雲臺退房 ➔ 市區同住",
+        hotel: "市區飯店 (西面/南浦商圈 ‧ 兩家同住)",
+        breakfast: "東橫INN 免費豐富早餐 ➔ 10:00 退房",
+        morning: "雙家庭一同前往市區飯店 Check-in 寄放行李 (第5晚兩家同住)",
+        lunch: "西面松亭三代豬肉湯飯 (豬肉湯飯一條街)",
+        afternoon: "甘川洞文化村 (小王子彩繪村) / 松島海上纜車",
+        dinner: "南浦洞商圈美食 / BIFF 廣場黑糖餅 & 魚板串",
+        evening: "札嘎其海鮮市場 / 釜山鑽石塔夜景"
+      },
+      day6: {
+        name: "D6 ‧ 12/11 (五) 釜山市區 ➔ 妍妍家分流換飯店",
+        hotel: "凱凱家: 市區飯店續住 | 妍妍家: 最後一晚自選飯店 (自己住)",
+        breakfast: "市區飯店早餐 / 西面早午餐",
+        morning: "ARTE MUSEUM Busan (影島光影展) / 白淺灘文化村",
+        lunch: "影島海景咖啡廳輕食 / 韓式烤肉",
+        afternoon: "西面商圈地下街採買 / 田浦咖啡街漫步",
+        dinner: "韓式烤五花肉 / 人蔘雞湯",
+        evening: "妍妍家前往最後一晚自選飯店 Check-in (自己住)；凱凱家續住市區 ➔ 橋村炸雞宵夜"
+      },
+      day7: {
+        name: "D7 ‧ 12/12 (六) 雙家庭分流退房返台",
+        hotel: "溫暖的家 (台灣)",
+        breakfast: "妍妍家: 08:30 退房往機場 | 凱凱家: 市區早午餐",
+        morning: "【妍妍家】09:30 抵達金海機場報到 ➔ 11:50 早班機返台\n【凱凱家】市區飯店退房寄行李 ➔ 西面/南浦最後採買",
+        lunch: "【妍妍家】機上餐點 | 【凱凱家】市區道地韓式午餐",
+        afternoon: "【凱凱家】16:30 取行李 ➔ 17:00 抵達金海機場國際線航廈報到託運",
+        dinner: "【妍妍家】台灣溫馨晚餐 | 【凱凱家】19:50 搭乘 CI187 (A321neo) 起飛 ➔ 21:30 抵達桃機 T1",
+        evening: "雙家庭順利返抵台灣回到溫馨的家！"
+      }
+    };
+
+    let plannerData = JSON.parse(localStorage.getItem('chengFamilyBusanPlanner')) || JSON.parse(JSON.stringify(plannerPresetTemplate));
+    let currentPlannerDayKey = 'day1';
+
+    const slotDefinitions = [
+      { key: "breakfast", label: "🌅 早餐", icon: "🌅", placeholder: "例如：東橫INN 免費早餐 / 機場自理 / 待定" },
+      { key: "morning", label: "☀️ 上午行程", icon: "☀️", placeholder: "例如：海雲臺藍線公園 尾浦站 (膠囊列車) / 待定" },
+      { key: "lunch", label: "🍱 午餐", icon: "🍱", placeholder: "例如：海雲臺極品豬肉湯飯 / 青沙浦烤貝 / 待定" },
+      { key: "afternoon", label: "🌤️ 下午行程", icon: "🌤️", placeholder: "例如：SEA LIFE 水族館 / 樂天世界 / 待定" },
+      { key: "dinner", label: "🍲 晚餐", icon: "🍲", placeholder: "例如：海雲臺烤盲鰻 / 慶州傳統韓定食 / 待定" },
+      { key: "evening", label: "🌙 晚上行程 / 宵夜", icon: "🌙", placeholder: "例如：The Bay 101 夜景 / 市場黑糖餅 / 待定" }
+    ];
+
+    function savePlannerData() {
+      localStorage.setItem('chengFamilyBusanPlanner', JSON.stringify(plannerData));
+      updatePlannerLivePreview();
+    }
+
+    function selectPlannerDay(dayKey) {
+      currentPlannerDayKey = dayKey;
+      document.querySelectorAll('.planner-day-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${dayKey}'`));
+      });
+
+      const dayObj = plannerData[dayKey] || plannerData['day1'];
+      const titleEl = document.getElementById('currentDayTitleDisplay');
+      const hotelEl = document.getElementById('currentDayHotelDisplay');
+
+      if (dayKey === 'all') {
+        if (titleEl) titleEl.innerText = "📅 7 天行程完整總覽";
+        if (hotelEl) hotelEl.innerText = "雙家庭分流對照";
+        renderAllDaysPlannerView();
+      } else {
+        if (titleEl) titleEl.innerText = dayObj.name;
+        if (hotelEl) hotelEl.innerText = "🏨 " + (dayObj.hotel || "住宿規劃");
+        renderSingleDayPlannerForm(dayKey);
+      }
+      updatePlannerLivePreview();
+    }
+
+    function renderSingleDayPlannerForm(dayKey) {
+      const container = document.getElementById('slotListContainer');
+      if (!container) return;
+      const dayData = plannerData[dayKey];
+
+      let html = '';
+      slotDefinitions.forEach(slot => {
+        const currentVal = dayData[slot.key] || '';
+        
+        let selectOptions = `<option value="">💡 點擊快速挑選 KML 景點 / 美食...</option>`;
+        plannerCategories.forEach(cat => {
+          selectOptions += `<optgroup label="${cat.group}">`;
+          cat.items.forEach(item => {
+            selectOptions += `<option value="${item}">${item}</option>`;
+          });
+          selectOptions += `</optgroup>`;
+        });
+
+        html += `
+          <div class="slot-item">
+            <div class="slot-header">
+              <span class="slot-title">${slot.label}</span>
+              <div class="slot-chips">
+                <button type="button" class="slot-chip chip-tbd" onclick="setSlotValue('${dayKey}', '${slot.key}', '待定 (大家共同討論安排)')">待定</button>
+                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '東橫INN 免費早餐')">東橫INN早餐</button>
+                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '自理 / 機場輕食')">自理</button>
+                <button type="button" class="slot-chip" onclick="setSlotValue('${dayKey}', '${slot.key}', '')">清空</button>
+              </div>
+            </div>
+            <div class="slot-controls">
+              <select class="slot-select" onchange="handleSelectSlot('${dayKey}', '${slot.key}', this.value)">
+                ${selectOptions}
+              </select>
+              <input type="text" class="slot-input" id="input_${dayKey}_${slot.key}" 
+                     value="${currentVal.replace(/"/g, '&quot;')}" 
+                     placeholder="${slot.placeholder}" 
+                     oninput="handleInputSlot('${dayKey}', '${slot.key}', this.value)">
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function renderAllDaysPlannerView() {
+      const container = document.getElementById('slotListContainer');
+      if (!container) return;
+
+      let html = `
+        <div style="background:#ffffff; padding:1rem; border-radius:var(--radius-md); border:1px solid var(--c-hairline);">
+          <div style="font-weight:800; color:var(--c-ocean-dark); margin-bottom:0.6rem; font-size:0.95rem;">
+            📌 7 天快速切換與編輯提示
+          </div>
+          <p style="font-size:0.85rem; color:var(--c-ink-2); line-height:1.5; margin-bottom:0.8rem;">
+            您目前正在檢視 7 天全行程總覽。請點擊上方天數按鈕（D1 ~ D7）即可快速編輯特定天數的 6 大時間區塊（早餐、上午、午餐、下午、晚餐、晚上）。
+          </p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:0.6rem;">
+            ${['day1','day2','day3','day4','day5','day6','day7'].map(dk => `
+              <button class="planner-day-btn" style="border:1px solid var(--c-hairline); background:#f8fafc; padding:0.65rem; text-align:left;" onclick="selectPlannerDay('${dk}')">
+                <strong>${plannerData[dk].name}</strong><br>
+                <span style="font-size:0.75rem; color:var(--c-ink-3);">上午: ${plannerData[dk].morning.substring(0, 14)}...</span>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      container.innerHTML = html;
+    }
+
+    function handleSelectSlot(dayKey, slotKey, value) {
+      if (!value) return;
+      plannerData[dayKey][slotKey] = value;
+      const inputEl = document.getElementById(`input_${dayKey}_${slotKey}`);
+      if (inputEl) inputEl.value = value;
+      savePlannerData();
+    }
+
+    function handleInputSlot(dayKey, slotKey, value) {
+      plannerData[dayKey][slotKey] = value;
+      savePlannerData();
+    }
+
+    function setSlotValue(dayKey, slotKey, value) {
+      plannerData[dayKey][slotKey] = value;
+      const inputEl = document.getElementById(`input_${dayKey}_${slotKey}`);
+      if (inputEl) inputEl.value = value;
+      savePlannerData();
+    }
+
+    function generateFormattedDayText(dayKey) {
+      const d = plannerData[dayKey];
+      return `📍 【${d.name}】
+🌅 早餐：${d.breakfast || '待定'}
+☀️ 上午：${d.morning || '待定'}
+🍱 午餐：${d.lunch || '待定'}
+🌤️ 下午：${d.afternoon || '待定'}
+🍲 晚餐：${d.dinner || '待定'}
+🌙 晚上：${d.evening || '待定'}
+🏨 住宿：${d.hotel || '待定'}`;
+    }
+
+    function updatePlannerLivePreview() {
+      const previewEl = document.getElementById('plannerLivePreviewText');
+      if (!previewEl) return;
+
+      if (currentPlannerDayKey === 'all') {
+        let fullText = `📅 2026 釜山慶州 7 日親子自由行 ‧ 完整 7 天行程總覽\n`;
+        fullText += `👨‍👩‍👧‍👦 凱凱家 (晚班機回 CI187) ‧ 妍妍家 (早班機回 ‧ 最後一晚分開)\n`;
+        fullText += `✈️ 去程 12/06 15:40 CI186 (T1) ➔ 18:50 PUS (已預約9人座專車接送)\n`;
+        fullText += `━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+        ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'].forEach((dk, idx) => {
+          fullText += generateFormattedDayText(dk);
+          if (idx < 6) fullText += `\n\n───────────────────────\n\n`;
+        });
+
+        fullText += `\n\n━━━━━━━━━━━━━━━━━━━━━━━\n💡 雙家庭備忘：起飛前48小時 (12/04 15:40) 開放線上免費選位！`;
+        previewEl.innerText = fullText;
+      } else {
+        let dayText = `📅 2026 釜山慶州 7 日親子自由行 ‧ 行程表\n`;
+        dayText += `━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        dayText += generateFormattedDayText(currentPlannerDayKey);
+        dayText += `\n━━━━━━━━━━━━━━━━━━━━━━━\n💡 提示：每個時段皆可於網頁行程挑選器自由調整！`;
+        previewEl.innerText = dayText;
+      }
+    }
+
+    function copyPlannerText(mode) {
+      let textToCopy = '';
+      if (mode === 'all') {
+        let fullText = `📅 2026 釜山慶州 7 日親子自由行 ‧ 完整 7 天行程總覽\n`;
+        fullText += `👨‍👩‍👧‍👦 凱凱家 (晚班機回 CI187) ‧ 妍妍家 (早班機回 ‧ 最後一晚分開)\n`;
+        fullText += `✈️ 去程 12/06 15:40 CI186 (T1) ➔ 18:50 PUS (已預約9人座專車接送)\n`;
+        fullText += `━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+        ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'].forEach((dk, idx) => {
+          fullText += generateFormattedDayText(dk);
+          if (idx < 6) fullText += `\n\n───────────────────────\n\n`;
+        });
+
+        fullText += `\n\n━━━━━━━━━━━━━━━━━━━━━━━\n💡 雙家庭備忘：起飛前48小時 (12/04 15:40) 開放線上免費選位！`;
+        textToCopy = fullText;
+      } else {
+        const dayKey = currentPlannerDayKey === 'all' ? 'day1' : currentPlannerDayKey;
+        let dayText = `📅 2026 釜山慶州 7 日親子自由行 ‧ 行程表\n`;
+        dayText += `━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        dayText += generateFormattedDayText(dayKey);
+        dayText += `\n━━━━━━━━━━━━━━━━━━━━━━━\n💡 提示：每個時段皆可於網頁行程挑選器自由調整！`;
+        textToCopy = dayText;
+      }
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast(mode === 'all' ? "✅ 7 天完整行程文字已複製！可直接貼上 LINE 轉傳！" : "✅ 當日行程文字已複製！可直接貼上 LINE 轉傳！");
+      }).catch(err => {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast("✅ 行程文字已複製到剪貼簿！");
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMessage');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function loadPlannerPreset() {
+      if (confirm("確定要載入預設的精選行程範本嗎？現有自訂內容將被覆蓋。")) {
+        plannerData = JSON.parse(JSON.stringify(plannerPresetTemplate));
+        savePlannerData();
+        selectPlannerDay(currentPlannerDayKey);
+        showToast("✨ 已成功載入精選行程範本！");
+      }
+    }
+
+    function clearPlannerCurrentDay() {
+      const dayKey = currentPlannerDayKey === 'all' ? 'day1' : currentPlannerDayKey;
+      if (confirm(`確定要將【${plannerData[dayKey].name}】的所有時段設為「待定」嗎？`)) {
+        slotDefinitions.forEach(slot => {
+          plannerData[dayKey][slot.key] = "待定 (大家共同討論安排)";
+        });
+        savePlannerData();
+        selectPlannerDay(dayKey);
+        showToast("🔄 當日時段已重置為「待定」！");
+      }
+    }
+
+    // ==========================================
+    // 🗺️ KML MAP DATA & LEAFLET ENGINE (17 PLACES)
+    // ==========================================
     const places = [
-      { id: 0, name: "皇理團路 (황리단길)", lat: 35.8378, lon: 129.2104, rating: "4.2", reviews: "7,777", category: "旅遊景點", color: "#f39c12", img: "https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop", desc: "慶州熱門文青街區 融合傳統韓屋特色文創店家" },
-      { id: 1, name: "大陵苑 (대릉원)", lat: 35.8373, lon: 129.2125, rating: "4.5", reviews: "3,708", category: "古蹟墓園", color: "#27ae60", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop", desc: "慶州知名新羅古墓公園 綠意盎然丘陵景緻優美" },
-      { id: 2, name: "慶州 月精橋 (월정교)", lat: 35.8294, lon: 129.2181, rating: "4.6", reviews: "8,772", category: "傳統地標", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造橋樑 絕美夕陽景緻與夜點燈" },
-      { id: 3, name: "海雲臺藍線公園 尾浦站", lat: 35.1599, lon: 129.1675, rating: "4.5", reviews: "8,997", category: "膠囊列車", color: "#2980b9", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop", desc: "膠囊列車尾浦站風景最美 路線延伸至青沙浦站" },
-      { id: 4, name: "SEA LIFE 釜山水族館", lat: 35.1592, lon: 129.1610, rating: "4.2", reviews: "9,380", category: "水族館", color: "#00a8ff", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop", desc: "海雲臺沙灘旁邊水族館 適合親子探索海底世界" },
-      { id: 5, name: "Club D Oasis", lat: 35.1601, lon: 129.1678, rating: "4.4", reviews: "1,157", category: "水上樂園", color: "#16a085", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop", desc: "海雲臺高空無邊際泳池 享受水樂園奢華汗蒸幕" },
-      { id: 6, name: "東橫INN 釜山海雲台2號店", lat: 35.1593, lon: 129.1627, rating: "4.2", reviews: "2,195", category: "3 星級飯店", color: "#8e44ad", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop", desc: "海雲臺熱門三星飯店 距離美麗海景沙灘非常近" },
-      { id: 7, name: "ARTE MUSEUM Busan", lat: 35.0865, lon: 129.0759, rating: "4.8", reviews: "2,884", category: "光影展覽", color: "#9b59b6", img: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop", desc: "影島沉浸光影展覽 展現震撼數位媒體視覺效果" },
-      { id: 8, name: "釜山樂天世界冒險樂園", lat: 35.1963, lon: 129.2144, rating: "4.1", reviews: "3,206", category: "主題樂園", color: "#e74c3c", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop", desc: "釜山大型戶外城堡樂園 提供各類刺激遊樂設施" },
-      { id: 9, name: "海東龍宮寺", lat: 35.1884, lon: 129.2233, rating: "4.5", reviews: "27,471", category: "寺廟景點", color: "#d35400", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓國罕見建於海邊峭壁 景色極佳古老歷史寺廟" },
-      { id: 10, name: "新世界百貨公司 Centum City店", lat: 35.1691, lon: 129.1306, rating: "4.6", reviews: "2,806", category: "百貨購物", color: "#2ecc71", img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop", desc: "金氏紀錄全球最大百貨公司 內有熱門汗蒸幕店" }
+      { id: 0, name: "皇理團路 (황리단길)", lat: 35.8377, lon: 129.2097, rating: "4.2", reviews: "7,777", category: "旅遊景點", color: "#f39c12", img: "https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop", desc: "慶州熱門文青街區 融合傳統韓屋特色文創店家" },
+      { id: 1, name: "大陵苑 (대릉원)", lat: 35.8381, lon: 129.2108, rating: "4.5", reviews: "3,708", category: "古蹟墓園", color: "#27ae60", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop", desc: "慶州知名新羅古墓公園 綠意盎然丘陵景緻優美" },
+      { id: 2, name: "慶州 月精橋 (월정교)", lat: 35.8292, lon: 129.2181, rating: "4.6", reviews: "8,772", category: "傳統地標", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造橋樑 絕美夕陽景緻與夜點燈" },
+      { id: 3, name: "海雲臺藍線公園 尾浦站", lat: 35.1583, lon: 129.1728, rating: "4.5", reviews: "8,997", category: "膠囊列車", color: "#2980b9", img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop", desc: "膠囊列車 尾浦站出發風景最漂亮 終點站在青沙浦" },
+      { id: 4, name: "SEA LIFE 釜山水族館", lat: 35.1593, lon: 129.1610, rating: "4.2", reviews: "9,380", category: "水族館", color: "#00a8ff", img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&auto=format&fit=crop", desc: "海雲臺沙灘旁邊水族館 適合親子探索海底世界" },
+      { id: 5, name: "Club D Oasis", lat: 35.1601, lon: 129.1685, rating: "4.4", reviews: "1,157", category: "水上樂園/汗蒸幕", color: "#16a085", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop", desc: "海雲臺高空無邊際泳池 享受水樂園奢華汗蒸幕" },
+      { id: 6, name: "東橫INN 釜山海雲台2號店", lat: 35.1593, lon: 129.1627, rating: "4.2", reviews: "2,195", category: "3 星級飯店", color: "#8e44ad", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop", desc: "海雲臺熱門三星飯店 前 4 晚雙家庭同住海景第一排" },
+      { id: 7, name: "풍천만민물장어 海雲臺總店", lat: 35.1619, lon: 129.1674, rating: "4.6", reviews: "860", category: "美食餐廳", color: "#e67e22", img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop", desc: "海雲臺迎月路炭火烤淡水鰻魚 肉質厚實肥美滋補" },
+      { id: 8, name: "ARTE MUSEUM Busan", lat: 35.0871, lon: 129.0764, rating: "4.8", reviews: "2,884", category: "光影展覽", color: "#9b59b6", img: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&auto=format&fit=crop", desc: "影島沉浸光影展覽 展現震撼數位媒體視覺效果" },
+      { id: 9, name: "釜山樂天世界冒險樂園", lat: 35.1962, lon: 129.2149, rating: "4.1", reviews: "3,206", category: "主題樂園", color: "#e74c3c", img: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&auto=format&fit=crop", desc: "釜山大型戶外城堡樂園 提供各類刺激遊樂設施" },
+      { id: 10, name: "海東龍宮寺", lat: 35.1885, lon: 129.2231, rating: "4.5", reviews: "27,471", category: "寺廟景點", color: "#d35400", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓國罕見建於海邊峭壁 景色極佳古老歷史寺廟" },
+      { id: 11, name: "新世界百貨公司 Centum City店", lat: 35.1689, lon: 129.1296, rating: "4.6", reviews: "2,806", category: "百貨/汗蒸幕", color: "#2ecc71", img: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&auto=format&fit=crop", desc: "金氏紀錄全球最大百貨公司 內有熱門 Spa Land 汗蒸幕" },
+      { id: 12, name: "Jangduk Eels (장덕장어 西面直營店)", lat: 35.1536, lon: 129.0575, rating: "4.7", reviews: "1,320", category: "美食餐廳", color: "#e67e22", img: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600&auto=format&fit=crop", desc: "西面知名活烤海鰻名店 專人桌邊代烤焦香鮮嫩" },
+      { id: 13, name: "老宅邸 燒肉 (고택 Jeonpo)", lat: 35.1552, lon: 129.0645, rating: "4.8", reviews: "980", category: "美食餐廳", color: "#d35400", img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format&fit=crop", desc: "田浦咖啡街人氣老宅韓屋 炭火熟成黑豬肉與韓牛" },
+      { id: 14, name: "螞蟻家（西面店）개미집", lat: 35.1540, lon: 129.0583, rating: "4.3", reviews: "4,520", category: "美食餐廳", color: "#e74c3c", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop", desc: "釜山傳奇辣炒章腸蝦名店 拌入白飯海苔香辣過癮" },
+      { id: 15, name: "釜山市民公園 (Busan Citizens Park)", lat: 35.1682, lon: 129.0574, rating: "4.6", reviews: "11,400", category: "親子公園", color: "#27ae60", img: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop", desc: "釜山最大親子綠地公園 擁有超大草坪與兒童遊樂區" },
+      { id: 16, name: "Running Man Busan (三井塔10F)", lat: 35.1529, lon: 129.0597, rating: "4.4", reviews: "3,150", category: "室內樂園", color: "#f39c12", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop", desc: "西面三井塔室內闖關樂園 適合全家大小挑戰互動任務" }
     ];
 
     const polygons = [
@@ -816,6 +1975,10 @@
     const markerMap = {};
 
     window.onload = function() {
+      // 1. Initialize Planner Component
+      selectPlannerDay('day1');
+
+      // 2. Initialize Leaflet Map
       map = L.map('map').setView([35.3000, 129.1600], 10);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
 
@@ -873,6 +2036,16 @@
         setTimeout(() => { markerMap[id].openPopup(); }, 1200);
       }
     }
+
+    // Back to Top Button visibility
+    window.addEventListener('scroll', function() {
+      const btn = document.getElementById('backToTop');
+      if (window.scrollY > 400) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    });
   </script>
 </body>
 </html>
