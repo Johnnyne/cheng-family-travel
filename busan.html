@@ -478,15 +478,15 @@
 
     .picker-item-btn {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1.1rem;
       border: 1px solid var(--c-hairline);
       border-radius: var(--radius-sm);
       background: #ffffff;
       cursor: pointer;
       text-align: left;
-      font-size: 0.975rem;
+      font-size: 1.025rem;
+      font-weight: 500;
       line-height: 1.45;
       color: var(--c-ink);
       transition: all 0.15s ease;
@@ -495,20 +495,11 @@
     .picker-item-btn:hover {
       border-color: var(--c-ocean);
       background: #eff6ff;
-      transform: translateX(2px);
+      color: var(--c-ocean-dark);
+      transform: translateX(3px);
     }
     .picker-item-btn:active {
       background: #dbeafe;
-    }
-    .picker-item-action {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--c-ocean-dark);
-      background: #e0f2fe;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      flex-shrink: 0;
-      margin-left: 0.65rem;
     }
     .picker-empty-hint {
       text-align: center;
@@ -3004,7 +2995,6 @@
             html += `
               <button type="button" class="picker-item-btn" onclick="selectItemFromPicker('${safeItem}')">
                 <span>${item}</span>
-                <span class="picker-item-action">➕ 填入</span>
               </button>
             `;
           });
