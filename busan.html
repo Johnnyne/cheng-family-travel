@@ -2297,6 +2297,28 @@
               </div>
             </div>
           </article>
+
+          <article class="showcase-card" data-category="culture">
+            <div class="showcase-img-wrap">
+              <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop" class="showcase-img" alt="臨時首都紀念館">
+              <span class="showcase-badge-top" style="background:#475569;">🏛️ 總統官邸歷史古蹟</span>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <div class="showcase-title">臨時首都紀念館 (임시수도기념관)</div>
+                <div class="showcase-rating-row">
+                  <span class="rating-stars">★ 4.4</span>
+                  <span class="rating-reviews">(765 則 Google 評價) · 西區/近南浦洞</span>
+                </div>
+                <div class="showcase-desc">韓戰時期韓國將釜山設為臨時首都時的「總統官邸」與「政務廳」！日洋合璧的紅磚木造復古洋房，庭園林蔭清幽幽靜，重現歷史起居室與戰時文物。</div>
+                <div class="showcase-kid-tip"><strong>👶 參觀亮點：</strong>園區綠樹成蔭步道平緩，免費入場參觀，日式走廊與復古辦公室如同步入時光隧道。</div>
+              </div>
+              <div class="showcase-footer">
+                <span style="font-size:0.75rem; color:#64748b;">免費參觀 ‧ 近地鐵土城站2號出口</span>
+                <button class="btn-map-jump" onclick="flyToPlaceFromCard(33)">🗺️ 在地圖上查看</button>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </div>
@@ -2743,6 +2765,7 @@
           "大陵苑 (慶州新羅古墓公園 & 天馬塚)",
           "慶州 月精橋 (絕美古蹟木造廊橋夕陽夜景)",
           "瞻星台 & 東宮與月池 (雁鴨池夜景)",
+          "臨時首都紀念館 (韓戰時期總統官邸與政務廳 復古洋館庭園 免費參觀)",
           "佛國寺 & 石窟庵"
         ]
       },
@@ -3227,13 +3250,14 @@
       { id: 25, name: "螞蟻家（西面店）개미집", lat: 35.1540, lon: 129.0583, rating: "4.3", reviews: "4,520", category: "傳奇辣炒章腸蝦", color: "#e74c3c", img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop", desc: "釜山傳奇辣炒章魚+牛腸+蝦仁名店，拌入熱騰騰白飯與海苔酥，香辣濃郁超開胃。" },
       { id: 26, name: "풍천만민物장어 海雲臺總店", lat: 35.1619, lon: 129.1674, rating: "4.6", reviews: "860", category: "迎月路炭火烤鰻魚", color: "#e67e22", img: "https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=600&auto=format&fit=crop", desc: "海雲臺迎月路炭火烤淡水鰻魚，肉質厚實肥美，獨門醬汁香濃。" },
 
-      // 4. 文化地標與慶州歷史 (ID 27 - 32)
-      { id: 27, name: "海東龍宮寺 (機張)", lat: 35.1885, lon: 129.2231, rating: "4.5", reviews: "27,471", category: "海邊峭壁古剎", color: "#d35400", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓國罕見建於海邊懸崖峭壁的歷史古寺，十二生肖石像與壯闊浪花相伴，景色極佳。" },
-      { id: 28, name: "Club D Oasis (海雲台 LCT)", lat: 35.1601, lon: 129.1685, rating: "4.4", reviews: "1,157", category: "高空無邊際海景溫泉", color: "#16a085", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop", desc: "海雲臺高空無邊際泳池，俯瞰海灘全景，附設奢華現代汗蒸幕設施。" },
-      { id: 29, name: "東橫INN 釜山海雲台2號店", lat: 35.1593, lon: 129.1627, rating: "4.2", reviews: "2,195", category: "海景第一排飯店", color: "#8e44ad", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop", desc: "海雲臺熱門三星飯店，前 4 晚雙家庭同住海景第一排，下樓即是沙灘。" },
+      // 4. 文化地標與慶州歷史 (ID 27 - 33)
+      { id: 27, name: "海東龍宮寺 (機張)", lat: 35.1885, lon: 129.2231, rating: "4.5", reviews: "27,476", category: "海邊峭壁古剎", color: "#d35400", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓國罕見建於海邊懸崖峭壁的歷史古寺，十二生肖石像與壯闊浪花相伴，景色極佳。" },
+      { id: 28, name: "Club D Oasis (海雲台 LCT)", lat: 35.1601, lon: 129.1685, rating: "4.4", reviews: "1,158", category: "高空無邊際海景溫泉", color: "#16a085", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&auto=format&fit=crop", desc: "海雲臺高空無邊際泳池，俯瞰海灘全景，附設奢華現代汗蒸幕設施。" },
+      { id: 29, name: "東橫INN 釜山海雲台2號店", lat: 35.1593, lon: 129.1627, rating: "4.2", reviews: "2,196", category: "海景第一排飯店", color: "#8e44ad", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop", desc: "海雲臺熱門三星飯店，前 4 晚雙家庭同住海景第一排，下樓即是沙灘。" },
       { id: 30, name: "皇理團路 (황리단길 慶州)", lat: 35.8377, lon: 129.2097, rating: "4.2", reviews: "7,777", category: "文青韓屋街區", color: "#f39c12", img: "https://images.unsplash.com/photo-1541079998400-58e2e38101d1?w=600&auto=format&fit=crop", desc: "慶州熱門文青街區，融合傳統韓屋特色文創店家、特色咖啡館與十角拉絲起司餅。" },
       { id: 31, name: "大陵苑 (대릉원 慶州)", lat: 35.8381, lon: 129.2108, rating: "4.5", reviews: "3,708", category: "新羅古墓天馬塚", color: "#27ae60", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop", desc: "慶州知名新羅古墓公園，丘陵綠意盎然，可進入天馬塚內部參觀千年文物。" },
-      { id: 32, name: "慶州 月精橋 (월정교)", lat: 35.8292, lon: 129.2181, rating: "4.6", reviews: "8,772", category: "古蹟木橋/夜景點燈", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造迴廊橋，絕美夕陽景緻與夜間金黃倒影點燈令人讚嘆。" }
+      { id: 32, name: "慶州 月精橋 (월정교)", lat: 35.8292, lon: 129.2181, rating: "4.6", reviews: "8,774", category: "古蹟木橋/夜景點燈", color: "#d35400", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop", desc: "慶州經典傳統木造迴廊橋，絕美夕陽景緻與夜間金黃倒影點燈令人讚嘆。" },
+      { id: 33, name: "臨時首都紀念館 (임시수도기념관)", lat: 35.1052, lon: 129.0198, rating: "4.4", reviews: "765", category: "總統官邸/歷史博物館", color: "#475569", img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&auto=format&fit=crop", desc: "韓戰時期臨時首都總統官邸與政務廳，日洋合璧復古洋房與清幽庭園，免費參觀，近地鐵土城站與南浦商圈。" }
     ];
 
     const polygons = [
