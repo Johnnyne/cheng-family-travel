@@ -279,16 +279,38 @@
 
     .slot-controls {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.15fr 1fr;
       gap: 0.5rem;
     }
-    @media (max-width: 580px) {
+    @media (max-width: 640px) {
       .slot-controls {
         grid-template-columns: 1fr;
       }
     }
 
-    .slot-select, .slot-input {
+    .btn-open-picker {
+      width: 100%;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.825rem;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-sm);
+      background: #eff6ff;
+      color: var(--c-ocean-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+    .btn-open-picker:hover {
+      background: #dbeafe;
+      border-color: var(--c-ocean);
+      transform: translateY(-1px);
+    }
+
+    .slot-input {
       width: 100%;
       padding: 0.45rem 0.65rem;
       font-size: 0.85rem;
@@ -299,8 +321,223 @@
       font-family: inherit;
       outline: none;
     }
-    .slot-select:focus, .slot-input:focus {
+    .slot-input:focus {
       border-color: var(--c-ocean);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.1);
+    }
+
+    /* Modal Picker with Search Bar & Sticky Category Bar */
+    .planner-picker-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+    .planner-picker-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    .picker-modal-content {
+      background: #ffffff;
+      width: 100%;
+      max-width: 660px;
+      max-height: 85vh;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.2s ease;
+    }
+    .planner-picker-modal.active .picker-modal-content {
+      transform: scale(1);
+    }
+    .picker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.25rem;
+      background: #ffffff;
+      border-bottom: 1px solid var(--c-hairline);
+    }
+    .picker-target-tag {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--c-ink);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .picker-close-btn {
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--c-ink-2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .picker-close-btn:hover {
+      background: #e2e8f0;
+      color: var(--c-ink);
+    }
+
+    .picker-search-wrap {
+      padding: 0.75rem 1.25rem;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--c-hairline);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+    .picker-search-icon {
+      font-size: 1rem;
+      color: var(--c-ink-3);
+    }
+    .picker-search-input {
+      flex: 1;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-sm);
+      outline: none;
+      font-family: inherit;
+      background: #ffffff;
+      color: var(--c-ink);
+    }
+    .picker-search-input:focus {
+      border-color: var(--c-ocean);
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.12);
+    }
+    .picker-clear-search {
+      background: #e2e8f0;
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      cursor: pointer;
+      color: var(--c-ink-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Sticky Category Filter Bar */
+    .picker-sticky-cat-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffff;
+      padding: 0.55rem 1.25rem;
+      border-bottom: 1px solid var(--c-hairline);
+      display: flex;
+      gap: 0.35rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .picker-sticky-cat-bar::-webkit-scrollbar { display: none; }
+
+    .picker-cat-btn {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.775rem;
+      font-weight: 700;
+      border: 1px solid var(--c-hairline);
+      background: var(--c-paper);
+      color: var(--c-ink-2);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+    .picker-cat-btn:hover {
+      background: #e2e8f0;
+      color: var(--c-ink);
+    }
+    .picker-cat-btn.active {
+      background: var(--c-ocean-dark);
+      color: #ffffff;
+      border-color: var(--c-ocean-dark);
+    }
+
+    .picker-items-scroll {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .picker-items-scroll::-webkit-scrollbar { width: 5px; }
+    .picker-items-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+    .picker-group-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--c-ocean-dark);
+      padding: 0.4rem 0 0.15rem 0;
+      margin-top: 0.35rem;
+      border-bottom: 1px dashed var(--c-hairline);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .picker-item-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--c-hairline);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--c-ink);
+      transition: all 0.15s ease;
+      width: 100%;
+    }
+    .picker-item-btn:hover {
+      border-color: var(--c-ocean);
+      background: #eff6ff;
+      transform: translateX(2px);
+    }
+    .picker-item-btn:active {
+      background: #dbeafe;
+    }
+    .picker-item-action {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--c-ocean-dark);
+      background: #e0f2fe;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+    }
+    .picker-empty-hint {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--c-ink-3);
+      font-size: 0.9rem;
     }
 
     /* Output & Copy Area */
@@ -2418,6 +2655,41 @@
   <!-- Floating Toast Notification -->
   <div id="toastMessage" class="toast-msg">✅ 行程文字已複製到剪貼簿！可直接貼上 LINE 轉傳</div>
 
+  <!-- Planner Item Search & Sticky Category Picker Modal -->
+  <div id="plannerPickerModal" class="planner-picker-modal" onclick="handlePickerBackdropClick(event)">
+    <div class="picker-modal-content" onclick="event.stopPropagation()">
+      <div class="picker-header">
+        <div class="picker-target-tag" id="pickerTargetSlotTitle">
+          <span>✨</span> <span id="pickerSlotNameText">為【☀️ 上午行程】挑選景點或美食</span>
+        </div>
+        <button type="button" class="picker-close-btn" onclick="closePickerModal()" title="關閉">✕</button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="picker-search-wrap">
+        <span class="picker-search-icon">🔍</span>
+        <input type="text" id="pickerSearchInput" class="picker-search-input" placeholder="輸入關鍵字搜尋... (例如：滑車、恐龍、雪蟹、烤肉、咖啡、湯飯)" oninput="handlePickerSearchInput(this.value)">
+        <button type="button" class="picker-clear-search" id="pickerClearSearchBtn" onclick="clearPickerSearch()" title="清除搜尋" style="display:none;">✕</button>
+      </div>
+
+      <!-- Sticky Category Filter Bar -->
+      <div class="picker-sticky-cat-bar" id="pickerStickyCatBar">
+        <button type="button" class="picker-cat-btn active" data-cat="all" onclick="setPickerCategory('all')">🌈 全部</button>
+        <button type="button" class="picker-cat-btn" data-cat="boy-dad" onclick="setPickerCategory('boy-dad')">🦖 5歲男寶父子</button>
+        <button type="button" class="picker-cat-btn" data-cat="viral" onclick="setPickerCategory('viral')">📸 網紅海景打卡</button>
+        <button type="button" class="picker-cat-btn" data-cat="food" onclick="setPickerCategory('food')">🥩 在地老饕必吃</button>
+        <button type="button" class="picker-cat-btn" data-cat="culture" onclick="setPickerCategory('culture')">🏯 慶州古蹟文化</button>
+        <button type="button" class="picker-cat-btn" data-cat="transport" onclick="setPickerCategory('transport')">✈️ 交通與飯店</button>
+        <button type="button" class="picker-cat-btn" data-cat="general" onclick="setPickerCategory('general')">💡 通用狀態</button>
+      </div>
+
+      <!-- Scrollable Items List -->
+      <div class="picker-items-scroll" id="pickerItemsListContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
   <script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -2634,6 +2906,151 @@
       updatePlannerLivePreview();
     }
 
+    let activePickerDayKey = 'day1';
+    let activePickerSlotKey = 'morning';
+    let activePickerCategory = 'all';
+    let activePickerSearchQuery = '';
+
+    const pickerCategoryMapping = {
+      "💡 通用狀態": "general",
+      "🦖 5 歲男童與父子強推冒險": "boy-dad",
+      "📸 網紅打卡海景與特色聚落": "viral",
+      "🥩 釜山在地老饕必吃名店 (含親子友善)": "food",
+      "🏯 慶州歷史古蹟與文化": "culture",
+      "✈️ 機場交通與飯店入住": "transport"
+    };
+
+    function openPickerModal(dayKey, slotKey, slotLabel) {
+      activePickerDayKey = dayKey;
+      activePickerSlotKey = slotKey;
+      activePickerCategory = 'all';
+      activePickerSearchQuery = '';
+
+      const slotTextEl = document.getElementById('pickerSlotNameText');
+      if (slotTextEl) {
+        const dayTitle = plannerData[dayKey] ? plannerData[dayKey].name.split(' ')[0] : dayKey.toUpperCase();
+        slotTextEl.innerText = `為【${dayTitle} ‧ ${slotLabel}】搜尋挑選`;
+      }
+
+      const searchInput = document.getElementById('pickerSearchInput');
+      if (searchInput) {
+        searchInput.value = '';
+      }
+      const clearBtn = document.getElementById('pickerClearSearchBtn');
+      if (clearBtn) clearBtn.style.display = 'none';
+
+      // reset category buttons
+      document.querySelectorAll('#pickerStickyCatBar .picker-cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === 'all');
+      });
+
+      renderPickerItemsList();
+
+      const modal = document.getElementById('plannerPickerModal');
+      if (modal) {
+        modal.classList.add('active');
+        setTimeout(() => {
+          if (searchInput) searchInput.focus();
+        }, 150);
+      }
+    }
+
+    function closePickerModal() {
+      const modal = document.getElementById('plannerPickerModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handlePickerBackdropClick(e) {
+      if (e.target && e.target.id === 'plannerPickerModal') {
+        closePickerModal();
+      }
+    }
+
+    function setPickerCategory(catId) {
+      activePickerCategory = catId;
+      document.querySelectorAll('#pickerStickyCatBar .picker-cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === catId);
+      });
+      renderPickerItemsList();
+    }
+
+    function handlePickerSearchInput(val) {
+      activePickerSearchQuery = val.trim().toLowerCase();
+      const clearBtn = document.getElementById('pickerClearSearchBtn');
+      if (clearBtn) clearBtn.style.display = activePickerSearchQuery ? 'flex' : 'none';
+      renderPickerItemsList();
+    }
+
+    function clearPickerSearch() {
+      const searchInput = document.getElementById('pickerSearchInput');
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+      }
+      activePickerSearchQuery = '';
+      const clearBtn = document.getElementById('pickerClearSearchBtn');
+      if (clearBtn) clearBtn.style.display = 'none';
+      renderPickerItemsList();
+    }
+
+    function selectItemFromPicker(itemName) {
+      plannerData[activePickerDayKey][activePickerSlotKey] = itemName;
+      const inputEl = document.getElementById(`input_${activePickerDayKey}_${activePickerSlotKey}`);
+      if (inputEl) inputEl.value = itemName;
+      savePlannerData();
+      closePickerModal();
+      showToast(`✅ 已填入【${itemName.length > 16 ? itemName.substring(0,16)+'...' : itemName}】！`);
+    }
+
+    function renderPickerItemsList() {
+      const container = document.getElementById('pickerItemsListContainer');
+      if (!container) return;
+
+      let html = '';
+      let matchCount = 0;
+
+      plannerCategories.forEach(cat => {
+        const catKey = pickerCategoryMapping[cat.group] || 'other';
+
+        // Filter by sticky category
+        if (activePickerCategory !== 'all' && activePickerCategory !== catKey) {
+          return;
+        }
+
+        // Filter items by search query
+        const matchingItems = cat.items.filter(item => {
+          if (!activePickerSearchQuery) return true;
+          return item.toLowerCase().includes(activePickerSearchQuery) || cat.group.toLowerCase().includes(activePickerSearchQuery);
+        });
+
+        if (matchingItems.length > 0) {
+          matchCount += matchingItems.length;
+          html += `<div class="picker-group-title">${cat.group} (${matchingItems.length})</div>`;
+          matchingItems.forEach(item => {
+            const safeItem = item.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            html += `
+              <button type="button" class="picker-item-btn" onclick="selectItemFromPicker('${safeItem}')">
+                <span>${item}</span>
+                <span class="picker-item-action">➕ 填入</span>
+              </button>
+            `;
+          });
+        }
+      });
+
+      if (matchCount === 0) {
+        html = `
+          <div class="picker-empty-hint">
+            <div style="font-size:1.8rem; margin-bottom:0.5rem;">🔍</div>
+            <div style="font-weight:700; color:var(--c-ink-2); margin-bottom:0.3rem;">找不到符合「${activePickerSearchQuery}」的項目</div>
+            <div style="font-size:0.8rem; color:var(--c-ink-3);">建議嘗試其他關鍵字（如：滑車、恐龍、雪蟹、烤肉、咖啡、湯飯），或直接於文字框輸入。</div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
     function renderSingleDayPlannerForm(dayKey) {
       const container = document.getElementById('slotListContainer');
       if (!container) return;
@@ -2642,15 +3059,6 @@
       let html = '';
       slotDefinitions.forEach(slot => {
         const currentVal = dayData[slot.key] || '';
-        
-        let selectOptions = `<option value="">💡 點擊快速挑選 KML 景點 / 美食...</option>`;
-        plannerCategories.forEach(cat => {
-          selectOptions += `<optgroup label="${cat.group}">`;
-          cat.items.forEach(item => {
-            selectOptions += `<option value="${item}">${item}</option>`;
-          });
-          selectOptions += `</optgroup>`;
-        });
 
         html += `
           <div class="slot-item">
@@ -2664,9 +3072,10 @@
               </div>
             </div>
             <div class="slot-controls">
-              <select class="slot-select" onchange="handleSelectSlot('${dayKey}', '${slot.key}', this.value)">
-                ${selectOptions}
-              </select>
+              <button type="button" class="btn-open-picker" onclick="openPickerModal('${dayKey}', '${slot.key}', '${slot.label}')">
+                <span>🔍 搜尋 ＆ 挑選景點美食</span>
+                <span style="font-size:0.75rem; opacity:0.7;">▼</span>
+              </button>
               <input type="text" class="slot-input" id="input_${dayKey}_${slot.key}" 
                      value="${currentVal.replace(/"/g, '&quot;')}" 
                      placeholder="${slot.placeholder}" 
@@ -2976,11 +3385,18 @@
     // Back to Top Button visibility
     window.addEventListener('scroll', function() {
       const btn = document.getElementById('backToTop');
-      if (window.scrollY > 400) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
+      if (btn) {
+        if (window.scrollY > 400) {
+          btn.classList.add('visible');
+        } else {
+          btn.classList.remove('visible');
+        }
       }
+    });
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePickerModal();
     });
   </script>
 </body>
