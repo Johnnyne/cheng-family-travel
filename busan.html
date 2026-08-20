@@ -438,49 +438,10 @@
       justify-content: center;
     }
 
-    /* Sticky Category Filter Bar */
-    .picker-sticky-cat-bar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #ffffff;
-      padding: 0.55rem 1.25rem;
-      border-bottom: 1px solid var(--c-hairline);
-      display: flex;
-      gap: 0.35rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .picker-sticky-cat-bar::-webkit-scrollbar { display: none; }
-
-    .picker-cat-btn {
-      padding: 0.35rem 0.75rem;
-      font-size: 0.775rem;
-      font-weight: 700;
-      border: 1px solid var(--c-hairline);
-      background: var(--c-paper);
-      color: var(--c-ink-2);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: all 0.15s ease;
-    }
-    .picker-cat-btn:hover {
-      background: #e2e8f0;
-      color: var(--c-ink);
-    }
-    .picker-cat-btn.active {
-      background: var(--c-ocean-dark);
-      color: #ffffff;
-      border-color: var(--c-ocean-dark);
-    }
-
     .picker-items-scroll {
       flex: 1 1 auto;
       overflow-y: auto;
-      padding: 0.85rem 1.25rem;
+      padding: 0.5rem 1.25rem 1.25rem 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 0.45rem;
@@ -488,16 +449,31 @@
     .picker-items-scroll::-webkit-scrollbar { width: 5px; }
     .picker-items-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
 
-    .picker-group-title {
-      font-size: 0.8rem;
+    .picker-group-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .picker-group-sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #f8fafc;
+      border: 1px solid var(--c-hairline);
+      border-left: 4px solid var(--c-ocean);
+      padding: 0.55rem 0.85rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--c-ocean-dark);
-      padding: 0.4rem 0 0.15rem 0;
+      border-radius: var(--radius-sm);
       margin-top: 0.35rem;
-      border-bottom: 1px dashed var(--c-hairline);
+      margin-bottom: 0.15rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.3rem;
     }
 
     .picker-item-btn {
@@ -2672,20 +2648,9 @@
         <button type="button" class="picker-clear-search" id="pickerClearSearchBtn" onclick="clearPickerSearch()" title="清除搜尋" style="display:none;">✕</button>
       </div>
 
-      <!-- Sticky Category Filter Bar -->
-      <div class="picker-sticky-cat-bar" id="pickerStickyCatBar">
-        <button type="button" class="picker-cat-btn active" data-cat="all" onclick="setPickerCategory('all')">🌈 全部</button>
-        <button type="button" class="picker-cat-btn" data-cat="boy-dad" onclick="setPickerCategory('boy-dad')">🦖 5歲男寶父子</button>
-        <button type="button" class="picker-cat-btn" data-cat="viral" onclick="setPickerCategory('viral')">📸 網紅海景打卡</button>
-        <button type="button" class="picker-cat-btn" data-cat="food" onclick="setPickerCategory('food')">🥩 在地老饕必吃</button>
-        <button type="button" class="picker-cat-btn" data-cat="culture" onclick="setPickerCategory('culture')">🏯 慶州古蹟文化</button>
-        <button type="button" class="picker-cat-btn" data-cat="transport" onclick="setPickerCategory('transport')">✈️ 交通與飯店</button>
-        <button type="button" class="picker-cat-btn" data-cat="general" onclick="setPickerCategory('general')">💡 通用狀態</button>
-      </div>
-
-      <!-- Scrollable Items List -->
+      <!-- Scrollable Items List with Sticky Category Headers -->
       <div class="picker-items-scroll" id="pickerItemsListContainer">
-        <!-- Rendered dynamically -->
+        <!-- Rendered dynamically with sticky category headers -->
       </div>
     </div>
   </div>
@@ -2923,7 +2888,6 @@
     function openPickerModal(dayKey, slotKey, slotLabel) {
       activePickerDayKey = dayKey;
       activePickerSlotKey = slotKey;
-      activePickerCategory = 'all';
       activePickerSearchQuery = '';
 
       const slotTextEl = document.getElementById('pickerSlotNameText');
@@ -2938,11 +2902,6 @@
       }
       const clearBtn = document.getElementById('pickerClearSearchBtn');
       if (clearBtn) clearBtn.style.display = 'none';
-
-      // reset category buttons
-      document.querySelectorAll('#pickerStickyCatBar .picker-cat-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-cat') === 'all');
-      });
 
       renderPickerItemsList();
 
@@ -2964,14 +2923,6 @@
       if (e.target && e.target.id === 'plannerPickerModal') {
         closePickerModal();
       }
-    }
-
-    function setPickerCategory(catId) {
-      activePickerCategory = catId;
-      document.querySelectorAll('#pickerStickyCatBar .picker-cat-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-cat') === catId);
-      });
-      renderPickerItemsList();
     }
 
     function handlePickerSearchInput(val) {
@@ -3010,14 +2961,6 @@
       let matchCount = 0;
 
       plannerCategories.forEach(cat => {
-        const catKey = pickerCategoryMapping[cat.group] || 'other';
-
-        // Filter by sticky category
-        if (activePickerCategory !== 'all' && activePickerCategory !== catKey) {
-          return;
-        }
-
-        // Filter items by search query
         const matchingItems = cat.items.filter(item => {
           if (!activePickerSearchQuery) return true;
           return item.toLowerCase().includes(activePickerSearchQuery) || cat.group.toLowerCase().includes(activePickerSearchQuery);
@@ -3025,7 +2968,13 @@
 
         if (matchingItems.length > 0) {
           matchCount += matchingItems.length;
-          html += `<div class="picker-group-title">${cat.group} (${matchingItems.length})</div>`;
+          html += `
+            <div class="picker-group-section">
+              <div class="picker-group-sticky-header">
+                <span>${cat.group}</span>
+                <span style="font-size:0.75rem; font-weight:700; color:var(--c-ink-3); background:#e2e8f0; padding:0.15rem 0.5rem; border-radius:10px;">${matchingItems.length} 項</span>
+              </div>
+          `;
           matchingItems.forEach(item => {
             const safeItem = item.replace(/'/g, "\\'").replace(/"/g, '&quot;');
             html += `
@@ -3035,6 +2984,7 @@
               </button>
             `;
           });
+          html += `</div>`;
         }
       });
 
@@ -3043,7 +2993,7 @@
           <div class="picker-empty-hint">
             <div style="font-size:1.8rem; margin-bottom:0.5rem;">🔍</div>
             <div style="font-weight:700; color:var(--c-ink-2); margin-bottom:0.3rem;">找不到符合「${activePickerSearchQuery}」的項目</div>
-            <div style="font-size:0.8rem; color:var(--c-ink-3);">建議嘗試其他關鍵字（如：滑車、恐龍、雪蟹、烤肉、咖啡、湯飯），或直接於文字框輸入。</div>
+            <div style="font-size:0.8rem; color:var(--c-ink-3);">建議嘗試其他關鍵字（如：滑車、恐龍、雪蟹、烤肉、咖啡、湯飯），或直接於文字框手動輸入。</div>
           </div>
         `;
       }
